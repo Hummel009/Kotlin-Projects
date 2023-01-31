@@ -83,7 +83,7 @@ fun addObject() {
     map["a"] = prev1
     map["x"] = prev2
     map["z"] = prev3
-    
+
     showObjects()
 }
 
@@ -249,22 +249,13 @@ fun removeObjects() {
     showObjects()
 }
 
-class Content {
+class Content(
+    var contentName: String,
+    var contentIds: ArrayList<Int> = ArrayList(),
     var contentSubs: ArrayList<Content>? = ArrayList()
-    var contentIds: ArrayList<Int> = ArrayList()
-    var contentName: String
+) {
 
-    constructor(fName: String, fIds: ArrayList<Int>) {
-        contentName = fName
-        contentIds = fIds
-        contentSubs = null
-    }
-
-    constructor(fName: String, fIds: ArrayList<Int>, fSub: ArrayList<Content>?) {
-        contentName = fName
-        contentIds = fIds
-        contentSubs = fSub
-    }
+    constructor(fName: String, fIds: ArrayList<Int>) : this(fName, fIds, null)
 
     override fun toString(): String {
         if (contentSubs == null) {
