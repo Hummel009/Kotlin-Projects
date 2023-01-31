@@ -2,3 +2,4 @@
 .sonarlint
 .gradle
 .idea
+build
