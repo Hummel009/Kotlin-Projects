@@ -57,34 +57,33 @@ class ADS03 {
     fun print() {
         println()
         println()
-        print(root, "", "")
+        print(root!!, "", "")
     }
 
-    private fun print(root: Node?, s: String, isLeft: String) {
-        println(s + isLeft + root!!.value)
+    private fun print(root: Node, s: String, isLeft: String) {
+        println(s + isLeft + root.value)
         var se = s
         se += "   "
         if (root.left != null) {
-            print(root.left, se, "L) ")
+            print(root.left!!, se, "L) ")
         }
         if (root.right != null) {
-            print(root.right, se, "R) ")
+            print(root.right!!, se, "R) ")
         }
     }
 
     fun printABR() {
-        printABR(root)
+        printABR(root!!)
         abr[abrc] = root!!.value
         abrc++
     }
 
-    private fun printABR(root: Node?) {
-        root!!
+    private fun printABR(root: Node) {
         if (root.left != null) {
-            printABR(root.left)
+            printABR(root.left!!)
         }
         if (root.right != null) {
-            printABR(root.right)
+            printABR(root.right!!)
         }
         abr[abrc] = root.value
         abrc++
@@ -94,19 +93,18 @@ class ADS03 {
     fun printABRLinked() {
         println()
         println()
-        printABRLinked(root, "", "")
+        printABRLinked(root!!, "", "")
     }
 
-    private fun printABRLinked(root: Node?, s: String, isLeft: String) {
-        root!!
+    private fun printABRLinked(root: Node, s: String, isLeft: String) {
         println(s + isLeft + root.value)
         var se = s
         se += "   "
         if (root.left != null) {
-            printABRLinked(root.left, se, "L) ")
+            printABRLinked(root.left!!, se, "L) ")
         }
         if (root.right != null) {
-            printABRLinked(root.right, se, "R) ")
+            printABRLinked(root.right!!, se, "R) ")
         } else {
             var i = 0
             for (element in abr) {
@@ -121,40 +119,38 @@ class ADS03 {
     }
 
     fun printARB() {
-        printARB(root)
+        printARB(root!!)
         arb[arbc] = root!!.value
         arbc++
     }
 
-    private fun printARB(root: Node?) {
-        root!!
+    private fun printARB(root: Node) {
         if (root.left != null) {
-            printARB(root.left)
+            printARB(root.left!!)
         }
         print(root.value.toString() + " ")
         arb[arbc] = root.value
         arbc++
         if (root.right != null) {
-            printARB(root.right)
+            printARB(root.right!!)
         }
     }
 
     fun printARBLinked() {
         println()
         println()
-        printARBLinked(root, "", "")
+        printARBLinked(root!!, "", "")
     }
 
-    private fun printARBLinked(root: Node?, s: String, isLeft: String) {
-        root!!
+    private fun printARBLinked(root: Node, s: String, isLeft: String) {
         println(s + isLeft + root.value)
         var se = s
         se += "   "
         if (root.left != null) {
-            printARBLinked(root.left, se, "L) ")
+            printARBLinked(root.left!!, se, "L) ")
         }
         if (root.right != null) {
-            printARBLinked(root.right, se, "R) ")
+            printARBLinked(root.right!!, se, "R) ")
         } else {
             var i = 0
             for (element in arb) {
@@ -169,40 +165,38 @@ class ADS03 {
     }
 
     fun printRAB() {
-        printRAB(root)
+        printRAB(root!!)
         rab[rabc] = root!!.value
         rabc++
     }
 
-    private fun printRAB(root: Node?) {
-        root!!
+    private fun printRAB(root: Node) {
         print(root.value.toString() + " ")
         rab[rabc] = root.value
         rabc++
         if (root.left != null) {
-            printRAB(root.left)
+            printRAB(root.left!!)
         }
         if (root.right != null) {
-            printRAB(root.right)
+            printRAB(root.right!!)
         }
     }
 
     fun printRABLinked() {
         println()
         println()
-        printRABLinked(root, "", "")
+        printRABLinked(root!!, "", "")
     }
 
-    private fun printRABLinked(root: Node?, s: String, isLeft: String) {
-        root!!
+    private fun printRABLinked(root: Node, s: String, isLeft: String) {
         println(s + isLeft + root.value)
         var se = s
         se += "   "
         if (root.left != null) {
-            printRABLinked(root.left, se, "L) ")
+            printRABLinked(root.left!!, se, "L) ")
         }
         if (root.right != null) {
-            printRABLinked(root.right, se, "R) ")
+            printRABLinked(root.right!!, se, "R) ")
         } else {
             var i = 0
             for (element in rab) {
@@ -224,7 +218,7 @@ class ADS03 {
 
     private fun push(root: Node?, key: Int): Node {
         if (root == null) {
-            return  Node(key)
+            return Node(key)
         }
         if (key < root.value) {
             root.left = push(root.left, key)
