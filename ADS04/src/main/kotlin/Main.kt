@@ -10,7 +10,7 @@ var arrv: Array<Array<Int>> = Array(10) { Array(10) { 0 } }
 
 fun main() {
     val arrp: Array<Int> = Array(10) { 1 }
-    for (sus in 0..99) {
+    for (sus in 0 until 100) {
         step[sus] = 0
     }
 

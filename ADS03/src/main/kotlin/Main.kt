@@ -6,15 +6,15 @@ private var scan = Scanner(System.`in`)
 
 fun main() {
     val bst = ADS03()
-    val arr: Array<Int> = arrayOf(0, 0, 0, 0, 0, 0)
+    val arr: Array<Int> = Array(6) { 0 }
 
     print("ENTER NUMBERS (example: 45 10 7 12 90 50): ")
-    for (i in 0..5) {
+    for (i in 0 until 6) {
         arr[i] = scan.nextInt()
     }
     print("ENTER REMOVAL (example: 7): ")
     val rem = scan.nextInt()
-    for (i in 0..5) {
+    for (i in 0 until 6) {
         bst.push(arr[i])
     }
     print("START TREE: ")
@@ -230,7 +230,7 @@ class ADS03 {
 
     fun remove(i: Int) {
         root = null
-        for (c in 0..99) {
+        for (c in 0 until 100) {
             arb[c] = 0
             abr[c] = 0
             rab[c] = 0

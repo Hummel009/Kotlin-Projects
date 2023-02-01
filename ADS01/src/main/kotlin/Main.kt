@@ -132,8 +132,8 @@ fun drawAsAMatrix(left1: Int, right: Int, left2: Int) {
 
     val matr = Array(26) { arrayOfNulls<String>(26) }
 
-    for (i in 0..25) {
-        for (j in 0..25) {
+    for (i in 0 until 26) {
+        for (j in 0 until 26) {
             matr[i][j] = " "
         }
     }
@@ -163,8 +163,8 @@ fun drawAsAMatrix(left1: Int, right: Int, left2: Int) {
     println()
     println("==========================")
 
-    for (i in 0..25) {
-        for (j in 0..25) {
+    for (i in 0 until 26) {
+        for (j in 0 until 26) {
             print(matr[i][j])
         }
         println()
