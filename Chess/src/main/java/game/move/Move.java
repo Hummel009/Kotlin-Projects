@@ -1,18 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game.move;
 
 import game.board.Board;
 import game.board.Tile;
 import game.piece.Piece;
 
-/**
- *
- * @author Enes Kızılcın <nazifenes.kizilcin@stu.fsm.edu.tr>
- */
 public class Move implements java.io.Serializable{
 
     Board board;

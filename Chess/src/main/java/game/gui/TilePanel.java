@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game.gui;
 
 import side_client.Client;
@@ -28,11 +23,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Enes Kızılcın <nazifenes.kizilcin@stu.fsm.edu.tr>
- */
-//This class is the visual version of every Tile class in Board class
+
 public class TilePanel extends JPanel {
 
     Coordinate coordinate;
@@ -53,7 +44,7 @@ public class TilePanel extends JPanel {
                     return;
                 }
 
-                if (!chessBoard.hasChosenTile()) { // if there is no chosen piece . Then make this piece chosen...
+                if (!chessBoard.hasChosenTile()) { 
                     if (chessBoard.getTile(coordinate).hasPiece()) {
                         if (chessBoard.getCurrentPlayer().getTeam() != chessBoard.getTile(coordinate).getPiece().getTeam()) {
                             return;
@@ -63,18 +54,18 @@ public class TilePanel extends JPanel {
                     chessBoard.setChosenTile(chessBoard.getTile(coordinate));
 
                 } else {
-                    Tile destinationTile = chessBoard.getTile(coordinate); // if there is already a chosen piece then this tile will be destinatin place
+                    Tile destinationTile = chessBoard.getTile(coordinate); 
                     if (MoveUtilities.isValidMove(chessBoard, destinationTile)) {
                         Move move = new Move(chessBoard, chessBoard.getChosenTile(), destinationTile);
                         chessBoard.getCurrentPlayer().makeMove(chessBoard, move);
                         if (move.hasKilledPiece()) {
                             client.game.getBottomGameMenu().killedPiecesListModel.addElement(move.getKilledPiece().toString());
                         }
-                        //the time when we send move class directly we using this code.
-//                        Message movementMessage = new Message(Message.MessageTypes.MOVE);
-//                        movementMessage.content = (Object) (move);
-//                        client.Send(movementMessage);
-                        //instead of send move classs directly we just send the coordinates of the tiles (current,destination) in  MovementMessage object
+                        
+
+
+
+                        
                         Message msg = new Message(Message.MessageTypes.MOVE);
                         MovementMessage movement = new MovementMessage();
                         movement.currentCoordinate = move.getCurrentTile().getCoordinate();
@@ -83,7 +74,7 @@ public class TilePanel extends JPanel {
                             movement.isPieceKilled = true;
                         }
                         msg.content = (Object) movement;
-                        client.Send(msg);
+                        client.send(msg);
                         chessBoard.changeCurrentPlayer();
                         client.game.getBottomGameMenu().getTurnLBL().setText("Enemy Turn");
                         client.game.getBottomGameMenu().getTurnLBL().setForeground(Color.RED);
@@ -95,7 +86,7 @@ public class TilePanel extends JPanel {
                                 JOptionPane.showMessageDialog(null, "Winner: " + winnerTeam.toString());
                                 Message message = new Message(Message.MessageTypes.END);
                                 message.content = null;
-                                client.Send(message);
+                                client.send(message);
                             }
                         }
 
@@ -111,18 +102,18 @@ public class TilePanel extends JPanel {
                     if (MoveUtilities.controlCheckState(chessBoard, Team.BLACK)) {
                         JOptionPane.showMessageDialog(null, "Check state for team : " + Team.BLACK.toString());
 
-                        //if there is a chech-state. give a check information to client. And also send this same information to rival client
+                        
                         Message msg = new Message(Message.MessageTypes.CHECK);
-                        //the content will be the team which in check state ( in-danger)
+                        
                         msg.content = (Object) Team.BLACK;
-                        client.Send(msg);
+                        client.send(msg);
                     } else if (MoveUtilities.controlCheckState(chessBoard, Team.WHITE)) {
                         JOptionPane.showMessageDialog(null, "Check state for team : " + Team.WHITE.toString());
-                        //if there is a chech-state. give a check information to client. And also send this same information to rival client
+                        
                         Message msg = new Message(Message.MessageTypes.CHECK);
-                        //the content will be the team which in check state ( in-danger)
+                        
                         msg.content = (Object) Team.WHITE;
-                        client.Send(msg);
+                        client.send(msg);
                     }
                 }
                 boardPanel.updateBoardGUI(chessBoard);
@@ -157,7 +148,7 @@ public class TilePanel extends JPanel {
     }
 
     public void assignTilePieceIcon(Board board) {
-        //this.removeAll();
+        
         Tile thisTile = board.getTile(this.coordinate);
         if (thisTile == null) {
             System.out.println("Tile is null");
@@ -165,8 +156,8 @@ public class TilePanel extends JPanel {
 
         }
         if (thisTile.hasPiece()) {
-            //JLabel pieceIcon = new JLabel(BoardUtilities.getImageOfTeamPiece(thisTile.getPiece().getTeam(), thisTile.getPiece().getType()));
-            //this.add(pieceIcon);
+            
+            
             pieceIcon.setIcon(BoardUtilities.getImageOfTeamPiece(thisTile.getPiece().getTeam(), thisTile.getPiece().getType()));
             pieceIcon.validate();
         } else if (!thisTile.hasPiece()) {
@@ -174,7 +165,7 @@ public class TilePanel extends JPanel {
             pieceIcon.validate();
         }
 
-        //this.add(pieceIcon);
+        
     }
 
     public void assignTileColor(Board board) {

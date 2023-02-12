@@ -1,15 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game.resource;
 
 
-/**
- *
- * @author Enes Kızılcın <nazifenes.kizilcin@stu.fsm.edu.tr>
- */
 public class BOARD_Configurations {
 
     public static int ROW_COUNT = 8;

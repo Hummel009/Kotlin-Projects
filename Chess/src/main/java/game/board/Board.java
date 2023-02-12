@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game.board;
 
 import game.piece.*;
@@ -10,14 +5,10 @@ import game.player.Player;
 import game.resource.*;
 import game.util.BoardUtilities;
 
-/**
- *
- * @author Enes Kızılcın <nazifenes.kizilcin@stu.fsm.edu.tr>
- */
 
-//The purpose of this class is keeping the tiles (which are empty or keeping a piece). Actually this class
-// is the abstract board that pieces are sit on. Not have visualization. 
-//The all board you see is the visualized version of this board.
+
+
+
 
 public class Board implements java.io.Serializable{
 
@@ -73,7 +64,7 @@ public class Board implements java.io.Serializable{
     }
 
     public Board() {
-        //black
+        
         whitePlayer = new Player(Team.WHITE);
         blackPlayer = new Player(Team.BLACK);
         currentPlayer = whitePlayer;

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game.piece;
 
 import game.move.Move;
@@ -13,10 +8,6 @@ import java.util.List;
 import game.resource.PIECE_Configurations;
 import game.util.BoardUtilities;
 
-/**
- *
- * @author Enes Kızılcın <nazifenes.kizilcin@stu.fsm.edu.tr>
- */
 public class Knight extends Piece {
 
     public Knight(Team team) {
@@ -33,7 +24,7 @@ public class Knight extends Piece {
         for (Coordinate coord : PIECE_Configurations.KNIGHT_MOVES) {
  
             if (!BoardUtilities.isValidCoordinate(currentCoord.plus(coord))) {
-                continue; // chech if the coord outside of board.
+                continue; 
             }
             destinationTile = board.getTile(currentCoord.plus(coord));
 

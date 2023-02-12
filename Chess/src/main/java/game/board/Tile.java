@@ -1,20 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game.board;
 
 import game.piece.Coordinate;
 import game.piece.Piece;
 
-/**
- *
- * @author Enes Kızılcın <nazifenes.kizilcin@stu.fsm.edu.tr>
- */
 
-//A Tile is every single square that sits on board. Which has a x , y values (Coordinate) 
-// and keeps a piece (or not) in it.
+
+
 public class Tile implements java.io.Serializable{
 
     private Piece piece;

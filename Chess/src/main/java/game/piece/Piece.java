@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game.piece;
 
 import game.move.Move;
@@ -10,16 +5,12 @@ import game.board.Board;
 
 import java.util.List;
 
-/**
- *
- * @author Enes Kızılcın <nazifenes.kizilcin@stu.fsm.edu.tr>
- */
 
-//This are the pieces of chess. They have type ( KING, QUEEN or sth.) and team (WHITE,BLACK)...
+
 public abstract class Piece implements java.io.Serializable{
 
     private boolean killed = false;
-    private Team team; // Every piece in a team, black or white.
+    private Team team; 
     private PieceTypes type;
 
     public Piece(Team team, PieceTypes type) {
@@ -56,7 +47,7 @@ public abstract class Piece implements java.io.Serializable{
         return this.team.toString() + " " + this.type.toString();
     }
 
-    // This function calculates available moves of the piece on a given board and coordinate.
+    
     public abstract List<Move> availableMoves(Board board, Coordinate currentCoord);
 
 }

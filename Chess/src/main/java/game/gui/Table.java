@@ -1,6 +1,3 @@
-/*
- 
- */
 package game.gui;
 
 import side_client.Client;
@@ -16,11 +13,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Enes Kızılcın <nazifenes.kizilcin@stu.fsm.edu.tr>
- */
-// Table is the composition class that have all the game data in it and controls every object.
+
 
 public class Table {
 
@@ -37,7 +30,7 @@ public class Table {
         this.gameFrame.setSize(GUI_Configurations.OUTER_FRAME_DIMENSION);
         this.mainMenu = new MainMenu();
         this.client = new Client(this);
-        this.client.Connect("127.0.0.1", 4000);
+        this.client.connect("127.0.0.1", 4000);
         if (this.client.socket == null) {
             JOptionPane.showMessageDialog(null, "Servera bağlanılamadı");
             System.exit(0);
@@ -48,7 +41,7 @@ public class Table {
     }
 
     public void createMainMenu() {
-        //this.gameFrame.removeAll();
+        
         this.mainMenu.getInfoLBL().setText("");
         this.mainMenu.getInfoLBL().setVisible(false);
         this.mainMenu.getPlayBTN().addActionListener(new ActionListener() {
@@ -61,7 +54,7 @@ public class Table {
                     mainMenu.getPlayBTN().setEnabled(false);
                     Message msg = new Message(Message.MessageTypes.PAIRING);
                     msg.content = "ESLESME";
-                    client.Send(msg);
+                    client.send(msg);
                 }
                 if (client.isPaired == true) {
                     mainMenu.getInfoLBL().setText("Matched");

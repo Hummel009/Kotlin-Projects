@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package side_server;
 
 import java.io.IOException;
@@ -12,13 +7,9 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Enes Kızılcın <nazifenes.kizilcin@stu.fsm.edu.tr>
- */
 
-//This class represents the client in server-side. If this class not exists , client just seems a socket in server-side. But the clients
-// are more than a socket. So this object contains all information about a client and represents the clients in server-side.
+
+
 public class SClient {
 
     public Socket socket;

@@ -14,21 +14,8 @@ import game.player.Player;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
-/*
-  To change this license header, choose License Headers in Project Properties.
-  To change this template file, choose Tools | Templates
-  and open the template in the editor.
- */
-
- /* 9
- 
-  @author Enes Kızılcın <nazifenes.kizilcin@stu.fsm.edu.tr>
- */
-//The purpose of this thread is listening the server continiously if there is a message incoming to our input stream.
-// İf there is a message, then decide what will be happen.
 public class ClientListenThread extends Thread {
-
-    Client client;
+    public Client client;
 
     public ClientListenThread(Client client) {
         this.client = client;
@@ -37,9 +24,7 @@ public class ClientListenThread extends Thread {
     @Override
     public void run() {
         while (!this.client.socket.isClosed()) {
-
             try {
-
                 Message msg = (Message) (this.client.sInput.readObject());
                 switch (msg.type) {
                     case START:
@@ -53,23 +38,6 @@ public class ClientListenThread extends Thread {
                         this.client.game.getMainMenu().getInfoLBL().setText("Matched. Click To Start Game");
                         break;
                     case MOVE:
-                        /* when we read move object directly we need to to this changes to make the references true...
-
-                        move enemyMove = (move)(msg.content);
-                        player player = this.client.game.getChessBoard().getCurrentPlayer();
-                        enemyMove.setBoard(this.client.game.getChessBoard());
-                        enemyMove.setCurrentTile(this.client.game.getChessBoard().getTile(enemyMove.getCurrentTile().getCoordinate()));
-                        enemyMove.setDestinationTile(this.client.game.getChessBoard().getTile(enemyMove.getDestinationTile().getCoordinate()));
-                        if(enemyMove.getKilledPiece() != null)
-                        {
-                            enemyMove.setKilledPiece(this.client.game.getChessBoard().getTile(enemyMove.getDestinationTile().getCoordinate()).getPiece());
-                        }
-                        player.makeMove(this.client.game.getChessBoard(), enemyMove);
-                        this.client.game.getBoardPanel().updateBoardGUI(this.client.game.getChessBoard());
-                        this.client.game.getChessBoard().changeCurrentPlayer(); 
-                         */
-
-                        //when we use the movement message, these part is enough to know what enemy move.
                         MovementMessage movement = (MovementMessage) msg.content;
                         Board board = this.client.game.getChessBoard();
                         Player player = board.getCurrentPlayer();
@@ -80,10 +48,10 @@ public class ClientListenThread extends Thread {
                             if (move.getKilledPiece().getType() == PieceTypes.KING) {
                                 Team winnerTeam;
                                 winnerTeam = (move.getKilledPiece().getTeam() == Team.BLACK) ? Team.WHITE : Team.BLACK;
-                                JOptionPane.showMessageDialog(null, "Winner: " + winnerTeam.toString());
+                                JOptionPane.showMessageDialog(null, "Winner: " + winnerTeam);
                                 Message message = new Message(Message.MessageTypes.END);
                                 message.content = null;
-                                client.Send(message);
+                                client.send(message);
                                 break;
                             }
                         }
@@ -92,7 +60,6 @@ public class ClientListenThread extends Thread {
                         this.client.game.getBottomGameMenu().getTurnLBL().setForeground(Color.GREEN);
                         break;
                     case CHECK:
-                        //if any check state comes to client. Write information to the connected menu object.
                         Team checkStateTeam = (Team) msg.content;
                         JOptionPane.showMessageDialog(null, "Check state for team: " + checkStateTeam.toString());
                         break;

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game.util;
 
 import game.board.Board;
@@ -13,10 +8,6 @@ import game.piece.PieceTypes;
 import game.piece.Team;
 import game.resource.PIECE_Configurations;
 
-/**
- *
- * @author Enes Kızılcın <nazifenes.kizilcin@stu.fsm.edu.tr>
- */
 public class MoveUtilities {
 
     public static boolean isValidMove(Board board, Tile destinationTile) {
@@ -35,11 +26,11 @@ public class MoveUtilities {
 
         Tile destinationTile;
         Coordinate currentCoord = board.getCoordOfGivenTeamPiece(team, PieceTypes.KING);
-        //control is there a knight as a danger for king ( check state),
+        
         for (Coordinate coord : PIECE_Configurations.KNIGHT_MOVES) {
 
             if (!BoardUtilities.isValidCoordinate(currentCoord.plus(coord))) {
-                continue; // chech if the coord outside of board.
+                continue; 
             }
             destinationTile = board.getTile(currentCoord.plus(coord));
 
@@ -52,7 +43,7 @@ public class MoveUtilities {
             }
         }
         
-        //control is there a rooks, queen etc. (check danger from straight way)
+        
         
         Tile currentTile = board.getTile(currentCoord);
         Coordinate destinationCoordinate;
@@ -75,7 +66,7 @@ public class MoveUtilities {
                 }
             }
         }
-        //control is there a bishop, queen ( check danger from cross way)
+        
         for (Coordinate coord : PIECE_Configurations.BISHOP_MOVES) {
             destinationCoordinate = currentCoord;
             while (BoardUtilities.isValidCoordinate(destinationCoordinate.plus(coord))) {
@@ -97,7 +88,7 @@ public class MoveUtilities {
             }
         }
         
-        // control is there a pawn that able to attack king nearby. 
+        
         for (Coordinate coord : (Coordinate[]) PIECE_Configurations.PAWN_MOVES.get(team).get("Attack")) {
 
             if (!BoardUtilities.isValidCoordinate(currentCoord.plus(coord))) {

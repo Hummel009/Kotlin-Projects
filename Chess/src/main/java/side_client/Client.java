@@ -1,7 +1,8 @@
 package side_client;
 
-import game.piece.Team;
 import game.gui.Table;
+import game.piece.Team;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -9,19 +10,7 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author Enes Kızılcın <nazifenes.kizilcin@stu.fsm.edu.tr>
- */
-
-// The client which will be connect to server and play chess.
 public class Client {
-
     public Socket socket;
     public ObjectInputStream sInput;
     public ObjectOutputStream sOutput;
@@ -31,12 +20,12 @@ public class Client {
     public int serverPort;
     public ClientListenThread listenThread;
     public Table game;
-    
+
     public Client(Table game) {
         this.game = game;
     }
 
-    public void Connect(String serverIP, int port) {
+    public void connect(String serverIP, int port) {
         try {
             System.out.println("Connecting to the server");
             this.serverIP = serverIP;
@@ -52,20 +41,6 @@ public class Client {
         }
     }
 
-    public void Stop() {
-        if (this.socket != null) {
-
-            try {
-                this.socket.close();
-                this.sOutput.flush();
-                this.sOutput.close();
-                this.sInput.close();
-            } catch (IOException ex) {
-                Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-    }
-
     public Team getTeam() {
         return team;
     }
@@ -74,7 +49,7 @@ public class Client {
         this.team = team;
     }
 
-    public void Send(Object message) {
+    public void send(Object message) {
         try {
             this.sOutput.writeObject(message);
         } catch (IOException ex) {

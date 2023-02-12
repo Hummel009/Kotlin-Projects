@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package side_server;
 
 import msg.Message;
@@ -13,12 +8,8 @@ import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Enes Kızılcın <nazifenes.kizilcin@stu.fsm.edu.tr>
- */
 
-//This is a TCP protocol connection based server.
+
 public class Server {
 
     public ServerSocket socket;
@@ -27,8 +18,8 @@ public class Server {
     public ClientRemovingControlThread removingControlThread;
     public static ArrayList<SClient> clients;
 
-    //lock mechanism for pairing thread. One client can match with one client at the same time. So we use the lock mechanism to provide
-    //other clients not try to pair this client at the same time.
+    
+    
     public static Semaphore pairingLockForTwoPair = new Semaphore(1, true);
 
     public Server(int port) {
@@ -45,7 +36,7 @@ public class Server {
         }
     }
 
-    // starts the acceptance
+    
     public void ListenClientConnectionRequests() {
         this.listenConnectionRequestThread.start();
     }

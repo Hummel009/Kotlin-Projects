@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package game.util;
 
 import game.board.Tile;
@@ -16,10 +11,6 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
-/**
- *
- * @author Enes Kızılcın <nazifenes.kizilcin@stu.fsm.edu.tr>
- */
 public class BoardUtilities {
 
     public static boolean isValidCoordinate(Coordinate coord) {
@@ -83,7 +74,7 @@ public class BoardUtilities {
                 tiles[j][i] = new Tile(new Coordinate(j, i), null);
             }
         }
-        //white
+        
         tiles[0][7] = new Tile(new Coordinate(0, 7), new Rook(Team.WHITE));
         tiles[1][7] = new Tile(new Coordinate(1, 7), new Knight(Team.WHITE));
         tiles[2][7] = new Tile(new Coordinate(2, 7), new Bishop(Team.WHITE));
