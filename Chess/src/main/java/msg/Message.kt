@@ -2,8 +2,7 @@ package msg
 
 import java.io.Serializable
 
-class Message(@JvmField var type: MessageTypes) : Serializable {
-    @JvmField
+class Message(var type: MessageTypes) : Serializable {
     var content: Any? = null
 
     enum class MessageTypes {

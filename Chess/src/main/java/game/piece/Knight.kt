@@ -18,7 +18,7 @@ class Knight(team: Team) : Piece(team, PieceTypes.KNIGHT) {
             if (!destinationTile.hasPiece()) {
                 possibleMoves.add(Move(board, board.getTile(currentCoord), destinationTile))
             } else {
-                if (destinationTile.getPiece().team !== team) {
+                if (destinationTile.piece?.team !== team) {
                     possibleMoves.add(Move(board, board.getTile(currentCoord), destinationTile))
                 }
             }

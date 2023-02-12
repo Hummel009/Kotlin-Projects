@@ -21,7 +21,7 @@ class King(team: Team) : Piece(team, PieceTypes.KING) {
             if (!destinationTile.hasPiece()) {
                 possibleMoves.add(Move(board, currentTile, destinationTile))
             } else {
-                if (destinationTile.getPiece().team !== team) {
+                if (destinationTile.piece?.team !== team) {
                     possibleMoves.add(Move(board, currentTile, destinationTile))
                 }
             }

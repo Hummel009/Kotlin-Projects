@@ -12,7 +12,7 @@ class Move(var board: Board, @JvmField var currentTile: Tile, @JvmField var dest
 
     init {
         if (destinationTile.hasPiece()) {
-            killedPiece = destinationTile.getPiece()
+            killedPiece = destinationTile.piece
         }
     }
 

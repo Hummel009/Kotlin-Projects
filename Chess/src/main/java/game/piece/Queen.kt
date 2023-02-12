@@ -20,7 +20,7 @@ class Queen(team: Team) : Piece(team, PieceTypes.QUEEN) {
                 if (!destinationTile.hasPiece()) {
                     possibleMoves.add(Move(board, currentTile, destinationTile))
                 } else {
-                    if (destinationTile.getPiece().team !== team) {
+                    if (destinationTile.piece?.team !== team) {
                         possibleMoves.add(Move(board, currentTile, destinationTile))
                     }
                     break

@@ -10,20 +10,16 @@ import java.util.logging.Level
 import java.util.logging.Logger
 
 class Client(@JvmField var game: Table) {
-    @JvmField
     var socket: Socket? = null
-    @JvmField
     var sInput: ObjectInputStream? = null
     private var sOutput: ObjectOutputStream? = null
-    @JvmField
-    var isPaired = false
     private var serverIP: String? = null
-    private var serverPort = 0
     private var listenThread: ClientListenThread? = null
-    @JvmField
+    private var serverPort = 0
+    var isPaired = false
     var team = Team.NOCOLOR
 
-    fun connect(serverIP: String?, port: Int) {
+    fun connect(serverIP: String, port: Int) {
         try {
             println("Connecting to the server")
             this.serverIP = serverIP

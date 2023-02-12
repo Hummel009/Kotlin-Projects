@@ -20,7 +20,7 @@ class Pawn(team: Team) : Piece(team, PieceTypes.PAWN) {
                 possibleMoves.add(Move(board, currentTile, destinationTile))
             }
         }
-        if (currentTile.getCoordinate().y == Pieces.getPawnStartPosY(team)) {
+        if (currentTile.coordinate.y == Pieces.getPawnStartPosY(team)) {
             for (coord in Pieces.PAWN_MOVES[team]!!["Start"]!!) {
                 if (!BoardUtilities.isValidCoordinate(currentCoord.plus(coord))) {
                     continue
@@ -37,7 +37,7 @@ class Pawn(team: Team) : Piece(team, PieceTypes.PAWN) {
             }
             destinationTile = board.getTile(currentCoord.plus(coord))
             if (destinationTile.hasPiece()) {
-                if (destinationTile.getPiece().team !== team) {
+                if (destinationTile.piece?.team !== team) {
                     possibleMoves.add(Move(board, currentTile, destinationTile))
                 }
             }

@@ -14,8 +14,8 @@ object MoveUtilities {
         if (!board.hasChosenTile()) {
             return false
         }
-        for (m in board.getChosenTile().getPiece().availableMoves(board, board.getChosenTile().getCoordinate())) {
-            if (m.destinationTile.getCoordinate() == destinationTile.getCoordinate()) {
+        for (m in board.getChosenTile().piece?.availableMoves(board, board.getChosenTile().coordinate)!!) {
+            if (m.destinationTile.coordinate == destinationTile.coordinate) {
                 return true
             }
         }
@@ -32,9 +32,7 @@ object MoveUtilities {
             }
             destinationTile = board.getTile(currentCoord.plus(coord))
             if (destinationTile.hasPiece()) {
-                if (destinationTile.getPiece().team !== team && destinationTile.getPiece()
-                        .type === PieceTypes.KNIGHT
-                ) {
+                if (destinationTile.piece?.team !== team && destinationTile.piece?.type === PieceTypes.KNIGHT) {
                     return true
                 }
             }
@@ -47,12 +45,10 @@ object MoveUtilities {
                 destinationCoordinate = destinationCoordinate.plus(coord)
                 destinationTile = board.getTile(destinationCoordinate)
                 if (destinationTile.hasPiece()) {
-                    if (destinationTile.getPiece().team === team) {
+                    if (destinationTile.piece?.team === team) {
                         break
                     }
-                    return if (destinationTile.getPiece().team !== team && (destinationTile.getPiece()
-                            .type === PieceTypes.ROOK || destinationTile.getPiece().type === PieceTypes.QUEEN)
-                    ) {
+                    return if (destinationTile.piece?.team !== team && (destinationTile.piece?.type === PieceTypes.ROOK || destinationTile.piece?.type === PieceTypes.QUEEN)) {
                         true
                     } else {
                         break
@@ -66,13 +62,10 @@ object MoveUtilities {
                 destinationCoordinate = destinationCoordinate.plus(coord)
                 destinationTile = board.getTile(destinationCoordinate)
                 if (destinationTile.hasPiece()) {
-                    if (destinationTile.getPiece().team === team) {
+                    if (destinationTile.piece?.team === team) {
                         break
                     }
-                    return if (destinationTile.getPiece().team !== team && (destinationTile.getPiece()
-                            .type === PieceTypes.BISHOP || destinationTile.getPiece()
-                            .type === PieceTypes.QUEEN)
-                    ) {
+                    return if (destinationTile.piece?.team !== team && (destinationTile.piece?.type === PieceTypes.BISHOP || destinationTile.piece?.type === PieceTypes.QUEEN)) {
                         true
                     } else {
                         break
@@ -86,9 +79,7 @@ object MoveUtilities {
             }
             destinationTile = board.getTile(currentCoord.plus(coord))
             if (destinationTile.hasPiece()) {
-                if (destinationTile.getPiece().team !== team && destinationTile.getPiece()
-                        .type === PieceTypes.PAWN
-                ) {
+                if (destinationTile.piece?.team !== team && destinationTile.piece?.type === PieceTypes.PAWN) {
                     return true
                 }
             }

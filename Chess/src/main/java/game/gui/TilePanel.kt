@@ -39,7 +39,7 @@ class TilePanel(boardPanel: BoardPanel, var coordinate: Coordinate, chessBoard: 
                 }
                 if (!chessBoard.hasChosenTile()) {
                     if (chessBoard.getTile(coordinate).hasPiece()) {
-                        if (chessBoard.getCurrentPlayer().team !== chessBoard.getTile(coordinate).getPiece().team) {
+                        if (chessBoard.getCurrentPlayer().team !== chessBoard.getTile(coordinate).piece?.team) {
                             return
                         }
                     }
@@ -54,8 +54,8 @@ class TilePanel(boardPanel: BoardPanel, var coordinate: Coordinate, chessBoard: 
                         }
                         val msg = Message(Message.MessageTypes.MOVE)
                         val movement = MovementMessage()
-                        movement.currentCoordinate = move.currentTile.getCoordinate()
-                        movement.destinationCoordinate = move.destinationTile.getCoordinate()
+                        movement.currentCoordinate = move.currentTile.coordinate
+                        movement.destinationCoordinate = move.destinationTile.coordinate
                         if (move.killedPiece != null) {
                             movement.isPieceKilled = true
                         }
@@ -75,7 +75,7 @@ class TilePanel(boardPanel: BoardPanel, var coordinate: Coordinate, chessBoard: 
                         }
                     } else {
                         if (destinationTile.hasPiece()) {
-                            if (chessBoard.getCurrentPlayer().team !== chessBoard.getTile(coordinate).getPiece().team) {
+                            if (chessBoard.getCurrentPlayer().team !== chessBoard.getTile(coordinate).piece?.team) {
                                 return
                             }
                         }
@@ -111,7 +111,7 @@ class TilePanel(boardPanel: BoardPanel, var coordinate: Coordinate, chessBoard: 
             return
         }
         if (thisTile.hasPiece()) {
-            pieceIcon.icon = getImageOfTeamPiece(thisTile.getPiece().team, thisTile.getPiece().type)
+            pieceIcon.icon = thisTile.piece?.let { getImageOfTeamPiece(it.team, thisTile.piece?.type) }
             pieceIcon.validate()
         } else if (!thisTile.hasPiece()) {
             pieceIcon.icon = null
@@ -130,7 +130,7 @@ class TilePanel(boardPanel: BoardPanel, var coordinate: Coordinate, chessBoard: 
             background = Data.creamColor
         }
         if (board.hasChosenTile()) {
-            if (coordinate.equals(board.getChosenTile().getCoordinate())) {
+            if (coordinate == board.getChosenTile().coordinate) {
                 background = Color.GREEN
             }
         }
