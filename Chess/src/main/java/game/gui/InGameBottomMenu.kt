@@ -32,6 +32,31 @@ class InGameBottomMenu : JPanel() {
         jLabel2.foreground = Color(0, 255, 153)
         jLabel2.text = "Killed piece"
         val layout = GroupLayout(this)
-        Nokotlin.doSmth(layout, jLabel2, jScrollPane2, playersColorLBL, turnLBL)
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(
+                layout.createSequentialGroup().addGap(23, 23, 23).addGroup(
+                    layout.createParallelGroup(
+                        GroupLayout.Alignment.LEADING
+                    ).addComponent(playersColorLBL, GroupLayout.PREFERRED_SIZE, 161, GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 215, GroupLayout.PREFERRED_SIZE)
+                ).addGap(99, 99, 99).addComponent(turnLBL).addContainerGap(80, Short.MAX_VALUE.toInt())
+            ).addGroup(
+                layout.createSequentialGroup().addGap(94, 94, 94).addComponent(jLabel2)
+                    .addGap(0, 0, Short.MAX_VALUE.toInt())
+            )
+        )
+        layout.setVerticalGroup(
+            layout.createParallelGroup(GroupLayout.Alignment.LEADING).addGroup(
+                GroupLayout.Alignment.TRAILING, layout.createSequentialGroup().addContainerGap().addGroup(
+                    layout.createParallelGroup(
+                        GroupLayout.Alignment.BASELINE
+                    ).addComponent(turnLBL)
+                        .addComponent(playersColorLBL, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
+                ).addGap(18, 18, 18).addComponent(jLabel2).addPreferredGap(
+                    LayoutStyle.ComponentPlacement.RELATED, 11, Int.MAX_VALUE
+                ).addComponent(jScrollPane2, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
+                    .addGap(17, 17, 17)
+            )
+        )
     }
 }
