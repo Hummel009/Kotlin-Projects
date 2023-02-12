@@ -1,16 +1,13 @@
 package game.piece;
 
 import game.board.Board;
-import game.move.Move;
+import game.Move;
 
 import java.util.List;
 
-
 public abstract class Piece implements java.io.Serializable {
-
-    private boolean killed = false;
-    private Team team;
-    private PieceTypes type;
+    public Team team;
+    public PieceTypes type;
 
     public Piece(Team team, PieceTypes type) {
         this.setTeam(team);
@@ -33,19 +30,10 @@ public abstract class Piece implements java.io.Serializable {
         this.team = team;
     }
 
-    public boolean isKilled() {
-        return this.killed;
-    }
-
-    public void setKilled(boolean killed) {
-        this.killed = killed;
-    }
-
     @Override
     public String toString() {
         return this.team.toString() + " " + this.type.toString();
     }
-
 
     public abstract List<Move> availableMoves(Board board, Coordinate currentCoord);
 

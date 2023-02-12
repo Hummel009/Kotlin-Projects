@@ -3,11 +3,9 @@ package game.board;
 import game.piece.Coordinate;
 import game.piece.Piece;
 
-
 public class Tile implements java.io.Serializable {
-
-    private Piece piece;
-    private Coordinate coordinate;
+    public Piece piece;
+    public Coordinate coordinate;
 
     public Tile(Coordinate coordinate, Piece piece) {
         this.setPiece(piece);
@@ -15,7 +13,6 @@ public class Tile implements java.io.Serializable {
     }
 
     public Piece getPiece() {
-
         return this.piece;
     }
 
@@ -24,17 +21,11 @@ public class Tile implements java.io.Serializable {
     }
 
     public Coordinate getCoordinate() {
-
         return this.coordinate;
     }
 
     public void setCoordinate(Coordinate coordinate) {
         this.coordinate = coordinate;
-    }
-
-    public void setCoordinate(int x, int y) {
-        this.coordinate.setX(x);
-        this.coordinate.setY(y);
     }
 
     public boolean hasPiece() {
@@ -45,6 +36,5 @@ public class Tile implements java.io.Serializable {
     public String toString() {
         return coordinate.toString() + " Piece " + ((hasPiece() ? piece.toString() : "Empty"));
     }
-
 
 }

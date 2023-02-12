@@ -2,11 +2,11 @@ package game.util;
 
 import game.board.Board;
 import game.board.Tile;
-import game.move.Move;
+import game.Move;
 import game.piece.Coordinate;
 import game.piece.PieceTypes;
 import game.piece.Team;
-import game.resource.PieceConfigurations;
+import game.Pieces;
 
 public class MoveUtilities {
     public static boolean isValidMove(Board board, Tile destinationTile) {
@@ -25,7 +25,7 @@ public class MoveUtilities {
         Tile destinationTile;
         Coordinate currentCoord = board.getCoordOfGivenTeamPiece(team, PieceTypes.KING);
 
-        for (Coordinate coord : PieceConfigurations.KNIGHT_MOVES) {
+        for (Coordinate coord : Pieces.KNIGHT_MOVES) {
             if (!BoardUtilities.isValidCoordinate(currentCoord.plus(coord))) {
                 continue;
             }
@@ -39,7 +39,7 @@ public class MoveUtilities {
 
         board.getTile(currentCoord);
         Coordinate destinationCoordinate;
-        for (Coordinate coord : PieceConfigurations.ROOK_MOVES) {
+        for (Coordinate coord : Pieces.ROOK_MOVES) {
             destinationCoordinate = currentCoord;
             while (BoardUtilities.isValidCoordinate(destinationCoordinate.plus(coord))) {
                 destinationCoordinate = destinationCoordinate.plus(coord);
@@ -57,7 +57,7 @@ public class MoveUtilities {
             }
         }
 
-        for (Coordinate coord : PieceConfigurations.BISHOP_MOVES) {
+        for (Coordinate coord : Pieces.BISHOP_MOVES) {
             destinationCoordinate = currentCoord;
             while (BoardUtilities.isValidCoordinate(destinationCoordinate.plus(coord))) {
                 destinationCoordinate = destinationCoordinate.plus(coord);
@@ -75,7 +75,7 @@ public class MoveUtilities {
             }
         }
 
-        for (Coordinate coord : (Coordinate[]) PieceConfigurations.PAWN_MOVES.get(team).get("Attack")) {
+        for (Coordinate coord : (Coordinate[]) Pieces.PAWN_MOVES.get(team).get("Attack")) {
             if (!BoardUtilities.isValidCoordinate(currentCoord.plus(coord))) {
                 continue;
             }

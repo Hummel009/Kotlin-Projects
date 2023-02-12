@@ -3,41 +3,26 @@ package game.board;
 import game.piece.Coordinate;
 import game.piece.PieceTypes;
 import game.piece.Team;
-import game.player.Player;
-import game.resource.BoardConfigurations;
+import game.Player;
+import game.Data;
 import game.util.BoardUtilities;
 
 public class Board implements java.io.Serializable {
-
-    private final Tile[][] tiles;
-    private Player whitePlayer;
-    private Player blackPlayer;
-    private Player currentPlayer;
-    private Tile chosenTile = null;
+    public final Tile[][] tiles;
+    public final Player whitePlayer;
+    public final Player blackPlayer;
+    public Player currentPlayer;
+    public Tile chosenTile = null;
 
     public Board() {
-
         whitePlayer = new Player(Team.WHITE);
         blackPlayer = new Player(Team.BLACK);
         currentPlayer = whitePlayer;
         tiles = BoardUtilities.createStandardBoardTiles();
-
-    }
-
-    public Player getWhitePlayer() {
-        return whitePlayer;
-    }
-
-    public Player getBlackPlayer() {
-        return blackPlayer;
     }
 
     public Player getCurrentPlayer() {
         return currentPlayer;
-    }
-
-    public void setCurrentPlayer(Player currentPlayer) {
-        this.currentPlayer = currentPlayer;
     }
 
     public Tile getChosenTile() {
@@ -53,14 +38,10 @@ public class Board implements java.io.Serializable {
     }
 
     public boolean hasChosenTile() {
-        boolean hasChosen = false;
         if (chosenTile == null) {
             return false;
         }
-        if (chosenTile.getPiece() == null) {
-            return false;
-        }
-        return true;
+        return chosenTile.getPiece() != null;
     }
 
     public Tile getTile(Coordinate coordinate) {
@@ -76,8 +57,8 @@ public class Board implements java.io.Serializable {
     }
 
     public Coordinate getCoordOfGivenTeamPiece(Team team, PieceTypes pieceType) {
-        for (int i = 0; i < BoardConfigurations.ROW_COUNT; i++) {
-            for (int j = 0; j < BoardConfigurations.ROW_TILE_COUNT; j++) {
+        for (int i = 0; i < Data.ROW_COUNT; i++) {
+            for (int j = 0; j < Data.ROW_TILE_COUNT; j++) {
                 if (!tiles[i][j].hasPiece()) {
                     continue;
                 }
@@ -95,19 +76,5 @@ public class Board implements java.io.Serializable {
         } else {
             currentPlayer = whitePlayer;
         }
-    }
-
-    public Tile getTileOfGivenTeamPiece(Team team, PieceTypes pieceType) {
-        for (int i = 0; i < BoardConfigurations.ROW_COUNT; i++) {
-            for (int j = 0; j < BoardConfigurations.ROW_TILE_COUNT; j++) {
-                if (!tiles[i][j].hasPiece()) {
-                    continue;
-                }
-                if (tiles[i][j].getPiece().getTeam() == team && tiles[i][j].getPiece().getType() == pieceType) {
-                    return tiles[i][j];
-                }
-            }
-        }
-        return null;
     }
 }

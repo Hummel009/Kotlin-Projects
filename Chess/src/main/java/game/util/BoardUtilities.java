@@ -2,7 +2,7 @@ package game.util;
 
 import game.board.Tile;
 import game.piece.*;
-import game.resource.BoardConfigurations;
+import game.Data;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class BoardUtilities {
     public static boolean isValidCoordinate(Coordinate coord) {
-        return (coord.getX() >= BoardConfigurations.BOARD_LOWER_BOUND && coord.getX() <= BoardConfigurations.BOARD_UPPER_BOUND && coord.getY() >= BoardConfigurations.BOARD_LOWER_BOUND && coord.getY() <= BoardConfigurations.BOARD_UPPER_BOUND);
+        return (coord.getX() >= Data.BOARD_LOWER_BOUND && coord.getX() <= Data.BOARD_UPPER_BOUND && coord.getY() >= Data.BOARD_LOWER_BOUND && coord.getY() <= Data.BOARD_UPPER_BOUND);
     }
 
     public static ImageIcon getImageOfTeamPiece(Team team, PieceTypes pieceType) {
@@ -47,13 +47,13 @@ public class BoardUtilities {
             return new ImageIcon(bufferedImage);
 
         } catch (IOException ex) {
-            Logger.getLogger(BoardConfigurations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Data.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
 
     public static Tile[][] createStandardBoardTiles() {
-        Tile[][] tiles = new Tile[BoardConfigurations.ROW_COUNT][BoardConfigurations.ROW_TILE_COUNT];
+        Tile[][] tiles = new Tile[Data.ROW_COUNT][Data.ROW_TILE_COUNT];
         tiles[0][0] = new Tile(new Coordinate(0, 0), new Rook(Team.BLACK));
         tiles[1][0] = new Tile(new Coordinate(1, 0), new Knight(Team.BLACK));
         tiles[2][0] = new Tile(new Coordinate(2, 0), new Bishop(Team.BLACK));

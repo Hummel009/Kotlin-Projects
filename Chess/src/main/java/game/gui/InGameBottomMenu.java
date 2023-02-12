@@ -5,9 +5,9 @@ import java.awt.*;
 
 public class InGameBottomMenu extends javax.swing.JPanel {
     public DefaultListModel<String> killedPiecesListModel;
-    private javax.swing.JList<String> killedPiecesLIST;
-    private javax.swing.JLabel playersColorLBL;
-    private javax.swing.JLabel turnLBL;
+    public javax.swing.JList<String> killedPiecesLIST;
+    public javax.swing.JLabel playersColorLBL;
+    public javax.swing.JLabel turnLBL;
 
     public InGameBottomMenu() {
         initComponents();
@@ -23,7 +23,7 @@ public class InGameBottomMenu extends javax.swing.JPanel {
         return turnLBL;
     }
 
-    private void initComponents() {
+    public void initComponents() {
         playersColorLBL = new javax.swing.JLabel();
         JScrollPane jScrollPane2 = new JScrollPane();
         killedPiecesLIST = new javax.swing.JList<>();

@@ -1,7 +1,7 @@
-package game.player;
+package game;
 
 import game.board.Board;
-import game.move.Move;
+import game.Move;
 import game.piece.Team;
 
 public class Player implements java.io.Serializable {

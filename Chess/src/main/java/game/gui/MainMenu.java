@@ -9,7 +9,6 @@ public class MainMenu extends javax.swing.JPanel {
 
     public MainMenu() {
         initComponents();
-
     }
 
     public JLabel getInfoLBL() {
@@ -21,16 +20,15 @@ public class MainMenu extends javax.swing.JPanel {
     }
 
     public void initComponents() {
-
         playBTN = new javax.swing.JButton();
         exitBTN = new javax.swing.JButton();
         infoLBL = new javax.swing.JLabel();
 
         playBTN.setText("Search Match");
-        playBTN.addActionListener(evt -> playBTNActionPerformed(evt));
+        playBTN.addActionListener(this::playBTNActionPerformed);
 
         exitBTN.setText("Exit");
-        exitBTN.addActionListener(evt -> exitBTNActionPerformed(evt));
+        exitBTN.addActionListener(this::exitBTNActionPerformed);
 
         infoLBL.setText("Matching");
 
@@ -41,7 +39,6 @@ public class MainMenu extends javax.swing.JPanel {
     }
 
     public void playBTNActionPerformed(java.awt.event.ActionEvent evt) {
-
     }
 
     public void exitBTNActionPerformed(java.awt.event.ActionEvent evt) {

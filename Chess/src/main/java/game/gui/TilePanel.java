@@ -2,12 +2,11 @@ package game.gui;
 
 import game.board.Board;
 import game.board.Tile;
-import game.move.Move;
+import game.Move;
 import game.piece.Coordinate;
 import game.piece.PieceTypes;
 import game.piece.Team;
-import game.resource.BoardConfigurations;
-import game.resource.GuiConfigurations;
+import game.Data;
 import game.util.BoardUtilities;
 import game.util.MoveUtilities;
 import msg.Message;
@@ -19,18 +18,16 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-
 public class TilePanel extends JPanel {
-
-    Coordinate coordinate;
-    JLabel pieceIcon;
+    public Coordinate coordinate;
+    public JLabel pieceIcon;
 
     public TilePanel(BoardPanel boardPanel, Coordinate coord, Board chessBoard, Client client) {
         super(new GridBagLayout());
         this.coordinate = coord;
         pieceIcon = new JLabel();
         this.add(pieceIcon);
-        setPreferredSize(new Dimension(BoardConfigurations.TILE_SIZE, BoardConfigurations.TILE_SIZE));
+        setPreferredSize(new Dimension(Data.TILE_SIZE, Data.TILE_SIZE));
         assignTileColor(chessBoard);
         assignTilePieceIcon(chessBoard);
         addMouseListener(new MouseListener() {
@@ -39,16 +36,13 @@ public class TilePanel extends JPanel {
                 if (client.getTeam() != chessBoard.getCurrentPlayer().getTeam()) {
                     return;
                 }
-
                 if (!chessBoard.hasChosenTile()) {
                     if (chessBoard.getTile(coordinate).hasPiece()) {
                         if (chessBoard.getCurrentPlayer().getTeam() != chessBoard.getTile(coordinate).getPiece().getTeam()) {
                             return;
                         }
                     }
-
                     chessBoard.setChosenTile(chessBoard.getTile(coordinate));
-
                 } else {
                     Tile destinationTile = chessBoard.getTile(coordinate);
                     if (MoveUtilities.isValidMove(chessBoard, destinationTile)) {
@@ -57,8 +51,6 @@ public class TilePanel extends JPanel {
                         if (move.hasKilledPiece()) {
                             client.game.getBottomGameMenu().killedPiecesListModel.addElement(move.getKilledPiece().toString());
                         }
-
-
                         Message msg = new Message(Message.MessageTypes.MOVE);
                         MovementMessage movement = new MovementMessage();
                         movement.currentCoordinate = move.getCurrentTile().getCoordinate();
@@ -66,7 +58,7 @@ public class TilePanel extends JPanel {
                         if (move.getKilledPiece() != null) {
                             movement.isPieceKilled = true;
                         }
-                        msg.content = (Object) movement;
+                        msg.content = movement;
                         client.send(msg);
                         chessBoard.changeCurrentPlayer();
                         client.game.getBottomGameMenu().getTurnLBL().setText("Enemy Turn");
@@ -76,7 +68,7 @@ public class TilePanel extends JPanel {
                             if (move.getKilledPiece().getType() == PieceTypes.KING) {
                                 Team winnerTeam;
                                 winnerTeam = (move.getKilledPiece().getTeam() == Team.BLACK) ? Team.WHITE : Team.BLACK;
-                                JOptionPane.showMessageDialog(null, "Winner: " + winnerTeam.toString());
+                                JOptionPane.showMessageDialog(null, "Winner: " + winnerTeam);
                                 Message message = new Message(Message.MessageTypes.END);
                                 message.content = null;
                                 client.send(message);
@@ -93,24 +85,22 @@ public class TilePanel extends JPanel {
 
                     }
                     if (MoveUtilities.controlCheckState(chessBoard, Team.BLACK)) {
-                        JOptionPane.showMessageDialog(null, "Check state for team : " + Team.BLACK.toString());
-
+                        JOptionPane.showMessageDialog(null, "Check state for team : " + Team.BLACK);
 
                         Message msg = new Message(Message.MessageTypes.CHECK);
 
-                        msg.content = (Object) Team.BLACK;
+                        msg.content = Team.BLACK;
                         client.send(msg);
                     } else if (MoveUtilities.controlCheckState(chessBoard, Team.WHITE)) {
-                        JOptionPane.showMessageDialog(null, "Check state for team : " + Team.WHITE.toString());
+                        JOptionPane.showMessageDialog(null, "Check state for team : " + Team.WHITE);
 
                         Message msg = new Message(Message.MessageTypes.CHECK);
 
-                        msg.content = (Object) Team.WHITE;
+                        msg.content = Team.WHITE;
                         client.send(msg);
                     }
                 }
                 boardPanel.updateBoardGUI(chessBoard);
-
             }
 
             @Override
@@ -141,44 +131,35 @@ public class TilePanel extends JPanel {
     }
 
     public void assignTilePieceIcon(Board board) {
-
         Tile thisTile = board.getTile(this.coordinate);
         if (thisTile == null) {
             System.out.println("Tile is null");
             return;
-
         }
         if (thisTile.hasPiece()) {
-
-
             pieceIcon.setIcon(BoardUtilities.getImageOfTeamPiece(thisTile.getPiece().getTeam(), thisTile.getPiece().getType()));
             pieceIcon.validate();
         } else if (!thisTile.hasPiece()) {
             pieceIcon.setIcon(null);
             pieceIcon.validate();
         }
-
-
     }
 
     public void assignTileColor(Board board) {
-
         if (this.coordinate.getX() % 2 == 0 && this.coordinate.getY() % 2 == 0) {
-            this.setBackground(GuiConfigurations.creamColor);
+            this.setBackground(Data.creamColor);
         } else if (this.coordinate.getX() % 2 == 0 && this.coordinate.getY() % 2 == 1) {
-            this.setBackground(GuiConfigurations.lightCyanColor);
+            this.setBackground(Data.lightCyanColor);
         } else if (this.coordinate.getX() % 2 == 1 && this.coordinate.getY() % 2 == 0) {
-            this.setBackground(GuiConfigurations.lightCyanColor);
+            this.setBackground(Data.lightCyanColor);
         } else if (this.coordinate.getX() % 2 == 1 && this.coordinate.getY() % 2 == 1) {
-            this.setBackground(GuiConfigurations.creamColor);
+            this.setBackground(Data.creamColor);
         }
         if (board.hasChosenTile()) {
             if (this.coordinate.equals(board.getChosenTile().getCoordinate())) {
                 this.setBackground(Color.GREEN);
             }
-
         }
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
     }
 }

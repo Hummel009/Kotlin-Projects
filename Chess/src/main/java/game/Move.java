@@ -1,4 +1,4 @@
-package game.move;
+package game;
 
 import game.board.Board;
 import game.board.Tile;

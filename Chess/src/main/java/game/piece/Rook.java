@@ -2,15 +2,14 @@ package game.piece;
 
 import game.board.Board;
 import game.board.Tile;
-import game.move.Move;
-import game.resource.PieceConfigurations;
+import game.Move;
+import game.Pieces;
 import game.util.BoardUtilities;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Rook extends Piece {
-
     public Rook(Team team) {
         super(team, PieceTypes.ROOK);
     }
@@ -21,7 +20,7 @@ public class Rook extends Piece {
         Tile currentTile = board.getTile(currentCoord);
         Tile destinationTile;
         Coordinate destinationCoordinate;
-        for (Coordinate coord : PieceConfigurations.ROOK_MOVES) {
+        for (Coordinate coord : Pieces.ROOK_MOVES) {
             destinationCoordinate = currentCoord;
             while (BoardUtilities.isValidCoordinate(destinationCoordinate.plus(coord))) {
                 destinationCoordinate = destinationCoordinate.plus(coord);
@@ -31,14 +30,11 @@ public class Rook extends Piece {
                 } else {
                     if (destinationTile.getPiece().getTeam() != this.getTeam()) {
                         possibleMoves.add(new Move(board, currentTile, destinationTile));
-                        break;
-                    } else {
-                        break;
                     }
+                    break;
                 }
             }
         }
         return possibleMoves;
     }
-
 }

@@ -2,27 +2,25 @@ package game.piece;
 
 import game.board.Board;
 import game.board.Tile;
-import game.move.Move;
-import game.resource.PieceConfigurations;
+import game.Move;
+import game.Pieces;
 import game.util.BoardUtilities;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Queen extends Piece {
-
     public Queen(Team team) {
         super(team, PieceTypes.QUEEN);
     }
 
     @Override
     public List<Move> availableMoves(Board board, Coordinate currentCoord) {
-
-        List<Move> possibleMoves = new ArrayList<Move>();
+        List<Move> possibleMoves = new ArrayList<>();
         Tile currentTile = board.getTile(currentCoord);
         Tile destinationTile;
         Coordinate destinationCoordinate;
-        for (Coordinate coord : PieceConfigurations.QUEEN_MOVES) {
+        for (Coordinate coord : Pieces.QUEEN_MOVES) {
             destinationCoordinate = currentCoord;
             while (BoardUtilities.isValidCoordinate(destinationCoordinate.plus(coord))) {
                 destinationCoordinate = destinationCoordinate.plus(coord);
@@ -32,15 +30,11 @@ public class Queen extends Piece {
                 } else {
                     if (destinationTile.getPiece().getTeam() != this.getTeam()) {
                         possibleMoves.add(new Move(board, currentTile, destinationTile));
-                        break;
-                    } else {
-                        break;
                     }
+                    break;
                 }
             }
         }
         return possibleMoves;
-
     }
-
 }

@@ -7,8 +7,7 @@ public enum Team implements java.io.Serializable {
             return "White";
         }
 
-    },
-    BLACK {
+    }, BLACK {
         @Override
         public String toString() {
             return "Black";
@@ -18,6 +17,5 @@ public enum Team implements java.io.Serializable {
         public String toString() {
             return "No Color";
         }
-    };
-
+    }
 }

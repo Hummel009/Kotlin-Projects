@@ -1,10 +1,10 @@
 package side_client;
 
 import game.board.Board;
-import game.move.Move;
+import game.Move;
 import game.piece.PieceTypes;
 import game.piece.Team;
-import game.player.Player;
+import game.Player;
 import msg.Message;
 import msg.MovementMessage;
 

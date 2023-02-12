@@ -1,4 +1,4 @@
-package game.resource;
+package game;
 
 import game.piece.Coordinate;
 import game.piece.Team;
@@ -6,7 +6,7 @@ import game.piece.Team;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PieceConfigurations {
+public class Pieces {
     public static Coordinate[] KNIGHT_MOVES = {new Coordinate(2, 1), new Coordinate(-2, 1), new Coordinate(2, -1), new Coordinate(-2, -1), new Coordinate(1, 2), new Coordinate(-1, 2), new Coordinate(1, -2), new Coordinate(-1, -2)};
     public static Coordinate[] BISHOP_MOVES = {new Coordinate(1, 1), new Coordinate(-1, 1), new Coordinate(1, -1), new Coordinate(-1, -1)};
     public static Coordinate[] ROOK_MOVES = {new Coordinate(0, 1), new Coordinate(0, -1), new Coordinate(1, 0), new Coordinate(-1, 0)};
@@ -33,7 +33,6 @@ public class PieceConfigurations {
         blackPawnMoves.put("Start", BLACK_PAWN_START_MOVES);
         PAWN_MOVES.put(Team.WHITE, whitePawnMoves);
         PAWN_MOVES.put(Team.BLACK, blackPawnMoves);
-
     }
 
     public static int getPawnStartPosY(Team team) {
