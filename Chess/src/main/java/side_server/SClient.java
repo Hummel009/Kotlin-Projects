@@ -8,9 +8,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
-
-
-
 public class SClient {
 
     public Socket socket;
@@ -21,7 +18,7 @@ public class SClient {
     public boolean isPaired;
     public boolean isWantToPair = false;
     public ClientPairingThread pairingThread;
-    
+
     public SClient(Socket socket) {
 
         try {
@@ -35,14 +32,15 @@ public class SClient {
             Logger.getLogger(SClient.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void Send(Object msg)
-    {
+
+    public void Send(Object msg) {
         try {
             this.cOutput.writeObject(msg);
         } catch (IOException ex) {
             Logger.getLogger(SClient.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
     public void Listen() {
         this.clientListenThread.start();
     }

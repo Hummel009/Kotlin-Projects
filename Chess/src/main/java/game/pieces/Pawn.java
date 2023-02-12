@@ -1,12 +1,13 @@
 package game.pieces;
 
 import game.boards.Board;
-import game.move.Move;
 import game.boards.Tile;
-import java.util.ArrayList;
-import java.util.List;
+import game.move.Move;
 import game.resources.PIECE_Configurations;
 import game.util.BoardUtilities;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Pawn extends Piece {
@@ -21,7 +22,7 @@ public class Pawn extends Piece {
         Tile currentTile = board.getTile(currentCoord);
         Tile destinationTile;
 
-        
+
         for (Coordinate coord : (Coordinate[]) PIECE_Configurations.PAWN_MOVES.get(this.getTeam()).get("Normal")) {
             if (!BoardUtilities.isValidCoordinate(currentCoord.plus(coord))) {
                 continue;
@@ -30,7 +31,7 @@ public class Pawn extends Piece {
             if (!destinationTile.hasPiece()) {
                 possibleMoves.add(new Move(board, currentTile, destinationTile));
             }
-            
+
         }
         if (currentTile.getCoordinate().getY() == PIECE_Configurations.getPawnStartPosY(this.getTeam())) {
             for (Coordinate coord : (Coordinate[]) PIECE_Configurations.PAWN_MOVES.get(this.getTeam()).get("side_client.Start")) {

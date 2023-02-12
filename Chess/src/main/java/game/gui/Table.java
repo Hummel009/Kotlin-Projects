@@ -1,19 +1,15 @@
 package game.gui;
 
-import side_client.Client;
-import messages.Message;
 import game.boards.Board;
-
 import game.pieces.Team;
 import game.resources.GUI_Configurations;
-import java.awt.BorderLayout;
-import java.awt.Color;
+import messages.Message;
+import side_client.Client;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
-
 
 
 public class Table {
@@ -42,7 +38,7 @@ public class Table {
     }
 
     public void createMainMenu() {
-        
+
         this.mainMenu.getInfoLBL().setText("");
         this.mainMenu.getInfoLBL().setVisible(false);
         this.mainMenu.getPlayBTN().addActionListener(new ActionListener() {
@@ -70,22 +66,20 @@ public class Table {
         });
         this.gameFrame.add(mainMenu, BorderLayout.CENTER);
     }
+
     public void createGamePanel() {
         this.gameFrame.remove(mainMenu);
         this.chessBoard = new Board();
         this.boardPanel = new BoardPanel(this.chessBoard, this.client);
         this.bottomGameMenu = new InGameBottomMenu();
         this.bottomGameMenu.getPlayersColorLBL().setText("Your color is " + this.client.getTeam().toString());
-        if(this.client.getTeam() == Team.WHITE)
-        {
+        if (this.client.getTeam() == Team.WHITE) {
             this.bottomGameMenu.getTurnLBL().setText("Your Turn");
             this.bottomGameMenu.getTurnLBL().setForeground(Color.GREEN);
-        }
-        else
-        {
+        } else {
             this.bottomGameMenu.getTurnLBL().setText("Enemy Turn");
             this.bottomGameMenu.getTurnLBL().setForeground(Color.RED);
-        }    
+        }
         this.gameFrame.add(boardPanel);
         this.gameFrame.add(this.boardPanel, BorderLayout.CENTER);
         this.gameFrame.add(this.bottomGameMenu, BorderLayout.PAGE_END);
@@ -93,7 +87,7 @@ public class Table {
         this.gameFrame.setVisible(true);
 
     }
-    
+
     public MainMenu getMainMenu() {
         return mainMenu;
     }
@@ -122,6 +116,10 @@ public class Table {
         return gameFrame;
     }
 
+    public void setGameFrame(JFrame gameFrame) {
+        this.gameFrame = gameFrame;
+    }
+
     public BoardPanel getBoardPanel() {
         return boardPanel;
     }
@@ -136,10 +134,6 @@ public class Table {
 
     public void setChessBoard(Board chessBoard) {
         this.chessBoard = chessBoard;
-    }
-
-    public void setGameFrame(JFrame gameFrame) {
-        this.gameFrame = gameFrame;
     }
 
 }

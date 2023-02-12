@@ -2,10 +2,11 @@ package game.pieces;
 
 
 import game.boards.Board;
-import game.move.Move;
 import game.boards.Tile;
+import game.move.Move;
 import game.resources.PIECE_Configurations;
 import game.util.BoardUtilities;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,16 +15,16 @@ public class King extends Piece {
 
     private boolean castlingDone = false;
 
+    public King(Team team) {
+        super(team, PieceTypes.KING);
+    }
+
     public boolean isCastlingDone() {
         return castlingDone;
     }
 
     public void setCastlingDone(boolean castlingDone) {
         this.castlingDone = castlingDone;
-    }
-
-    public King(Team team) {
-        super(team, PieceTypes.KING);
     }
 
     @Override
@@ -34,8 +35,7 @@ public class King extends Piece {
         Coordinate destinationCoordinate;
         for (Coordinate coord : PIECE_Configurations.QUUEN_MOVES) {
             destinationCoordinate = currentCoord.plus(coord);
-            if(!BoardUtilities.isValidCoordinate(destinationCoordinate))
-            {
+            if (!BoardUtilities.isValidCoordinate(destinationCoordinate)) {
                 continue;
             }
             destinationTile = board.getTile(destinationCoordinate);

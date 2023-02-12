@@ -1,7 +1,7 @@
 package side_client;
 
-import game.pieces.Team;
 import game.gui.Table;
+import game.pieces.Team;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -15,12 +15,12 @@ public class Client {
     public Socket socket;
     public ObjectInputStream sInput;
     public ObjectOutputStream sOutput;
-    private Team team = Team.NOCOLOR;
     public boolean isPaired = false;
     public String serverIP;
     public int serverPort;
     public ClientListenThread listenThread;
     public Table game;
+    private Team team = Team.NOCOLOR;
 
     public Client(Table game) {
         this.game = game;

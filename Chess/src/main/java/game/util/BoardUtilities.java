@@ -3,13 +3,14 @@ package game.util;
 import game.boards.Tile;
 import game.pieces.*;
 import game.resources.BOARD_Configurations;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 
 
 public class BoardUtilities {
@@ -76,7 +77,7 @@ public class BoardUtilities {
                 tiles[j][i] = new Tile(new Coordinate(j, i), null);
             }
         }
-        
+
         tiles[0][7] = new Tile(new Coordinate(0, 7), new Rook(Team.WHITE));
         tiles[1][7] = new Tile(new Coordinate(1, 7), new Knight(Team.WHITE));
         tiles[2][7] = new Tile(new Coordinate(2, 7), new Bishop(Team.WHITE));

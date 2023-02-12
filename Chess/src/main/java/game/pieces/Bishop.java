@@ -1,12 +1,13 @@
 package game.pieces;
 
-import game.move.Move;
 import game.boards.Board;
 import game.boards.Tile;
-import java.util.ArrayList;
-import java.util.List;
+import game.move.Move;
 import game.resources.PIECE_Configurations;
 import game.util.BoardUtilities;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Bishop extends Piece {

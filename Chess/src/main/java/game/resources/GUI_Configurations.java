@@ -1,8 +1,6 @@
 package game.resources;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import java.awt.*;
 
 
 public class GUI_Configurations {

@@ -63,7 +63,7 @@ public class ClientListenThread extends Thread {
                         this.client.game.getBottomGameMenu().getTurnLBL().setForeground(Color.GREEN);
                         break;
                     case CHECK:
-                        
+
                         Team checkStateTeam = (Team) msg.content;
                         JOptionPane.showMessageDialog(null, "Check state for team: " + checkStateTeam.toString());
                         break;

@@ -4,10 +4,6 @@ import java.io.IOException;
 import java.net.Socket;
 
 
-
-
-
-
 public class ListenConnectionRequestThread extends Thread {
 
     private Server server;
@@ -24,7 +20,7 @@ public class ListenConnectionRequestThread extends Thread {
                 SClient nClient = new SClient(nSocket);
                 nClient.Listen();
                 server.clients.add(nClient);
-                
+
             } catch (IOException ex) {
                 System.out.println("There is an error occured when the new side_client being accepted.");
             }

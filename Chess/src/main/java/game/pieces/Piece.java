@@ -1,17 +1,15 @@
 package game.pieces;
 
-import game.move.Move;
 import game.boards.Board;
+import game.move.Move;
 
 import java.util.List;
 
 
-
-
-public abstract class Piece implements java.io.Serializable{
+public abstract class Piece implements java.io.Serializable {
 
     private boolean killed = false;
-    private Team team; 
+    private Team team;
     private PieceTypes type;
 
     public Piece(Team team, PieceTypes type) {
@@ -48,7 +46,7 @@ public abstract class Piece implements java.io.Serializable{
         return this.team.toString() + " " + this.type.toString();
     }
 
-    
+
     public abstract List<Move> availableMoves(Board board, Coordinate currentCoord);
 
 }

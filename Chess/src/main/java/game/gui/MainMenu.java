@@ -1,9 +1,12 @@
 package game.gui;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
+import javax.swing.*;
 
 public class MainMenu extends javax.swing.JPanel {
+    private javax.swing.JButton exitBTN;
+    private javax.swing.JLabel infoLBL;
+    private javax.swing.JButton playBTN;
+
     public MainMenu() {
         initComponents();
 
@@ -13,7 +16,6 @@ public class MainMenu extends javax.swing.JPanel {
         return exitBTN;
     }
 
-   
     public JLabel getInfoLBL() {
         return infoLBL;
     }
@@ -48,42 +50,35 @@ public class MainMenu extends javax.swing.JPanel {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(217, 217, 217)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(playBTN, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
-                    .addComponent(exitBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(40, 40, 40)
-                .addComponent(infoLBL)
-                .addContainerGap(134, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(217, 217, 217)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(playBTN, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                                        .addComponent(exitBTN, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(40, 40, 40)
+                                .addComponent(infoLBL)
+                                .addContainerGap(134, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(127, 127, 127)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(playBTN)
-                    .addComponent(infoLBL))
-                .addGap(29, 29, 29)
-                .addComponent(exitBTN)
-                .addContainerGap(190, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(127, 127, 127)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(playBTN)
+                                        .addComponent(infoLBL))
+                                .addGap(29, 29, 29)
+                                .addComponent(exitBTN)
+                                .addContainerGap(190, Short.MAX_VALUE))
         );
     }
 
-
     private void playBTNActionPerformed(java.awt.event.ActionEvent evt) {
-        
+
     }
 
     private void exitBTNActionPerformed(java.awt.event.ActionEvent evt) {
         System.exit(0);
     }
 
-
-    
-    private javax.swing.JButton exitBTN;
-    private javax.swing.JLabel infoLBL;
-    private javax.swing.JButton playBTN;
-    
 }

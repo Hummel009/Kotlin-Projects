@@ -1,10 +1,11 @@
 package game.pieces;
 
 import game.boards.Board;
-import game.move.Move;
 import game.boards.Tile;
+import game.move.Move;
 import game.resources.PIECE_Configurations;
 import game.util.BoardUtilities;
+
 import java.util.ArrayList;
 import java.util.List;
 
