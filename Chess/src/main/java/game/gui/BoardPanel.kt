@@ -7,7 +7,7 @@ import side_client.Client
 import java.awt.GridLayout
 import javax.swing.JPanel
 
-class BoardPanel(chessBoard: Board?, client: Client?) : JPanel(GridLayout(Data.ROW_COUNT, Data.ROW_TILE_COUNT)) {
+class BoardPanel(chessBoard: Board, client: Client) : JPanel(GridLayout(Data.ROW_COUNT, Data.ROW_TILE_COUNT)) {
     private var boardTiles: Array<Array<TilePanel?>> = Array(Data.ROW_COUNT) { arrayOfNulls(Data.ROW_TILE_COUNT) }
 
     init {
@@ -20,7 +20,7 @@ class BoardPanel(chessBoard: Board?, client: Client?) : JPanel(GridLayout(Data.R
         }
     }
 
-    fun updateBoardGUI(board: Board?) {
+    fun updateBoardGUI(board: Board) {
         for (i in 0 until Data.ROW_COUNT) {
             for (j in 0 until Data.ROW_TILE_COUNT) {
                 boardTiles[i][j]!!.assignTileColor(board)

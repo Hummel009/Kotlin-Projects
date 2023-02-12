@@ -25,14 +25,14 @@ class ClientListenThread(var client: Client) : Thread() {
 
                     MessageTypes.PAIRING -> {
                         client.isPaired = true
-                        client.game.getMainMenu().getPlayBTN().isEnabled = true
-                        client.game.getMainMenu().getPlayBTN().text = "Start Game"
-                        client.game.getMainMenu().getInfoLBL().text = "Matched. Click To Start Game"
+                        client.game.mainMenu.playBTN?.isEnabled = true
+                        client.game.mainMenu.playBTN?.text = "Start Game"
+                        client.game.mainMenu.infoLBL?.text = "Matched. Click To Start Game"
                     }
 
                     MessageTypes.MOVE -> {
                         val movement = msg.content as MovementMessage?
-                        val board = client.game.getChessBoard()
+                        val board = client.game.chessBoard
                         val player = board.getCurrentPlayer()
                         val move = Move(
                             board, board.getTile(movement!!.currentCoordinate), board.getTile(
@@ -40,7 +40,7 @@ class ClientListenThread(var client: Client) : Thread() {
                             )
                         )
                         player.makeMove(board, move)
-                        client.game.getBoardPanel().updateBoardGUI(client.game.getChessBoard())
+                        client.game.boardPanel.updateBoardGUI(client.game.chessBoard)
                         if (move.hasKilledPiece()) {
                             if (move.killedPiece!!.type === PieceTypes.KING) {
                                 val winnerTeam: Team = if (move.killedPiece!!.team === Team.BLACK) Team.WHITE else Team.BLACK
@@ -52,8 +52,8 @@ class ClientListenThread(var client: Client) : Thread() {
                             }
                         }
                         board.changeCurrentPlayer()
-                        client.game.getBottomGameMenu().getTurnLBL().text = "Your Turn"
-                        client.game.getBottomGameMenu().getTurnLBL().foreground = Color.GREEN
+                        client.game.bottomGameMenu.turnLBL.text = "Your Turn"
+                        client.game.bottomGameMenu.turnLBL.foreground = Color.GREEN
                     }
 
                     MessageTypes.CHECK -> {
@@ -63,7 +63,7 @@ class ClientListenThread(var client: Client) : Thread() {
 
                     MessageTypes.LEAVE -> {
                         JOptionPane.showMessageDialog(null, "Enemy left. Returning to the Menu.")
-                        client.game.getGameFrame().remove(client.game.getBoardPanel())
+                        client.game.gameFrame.remove(client.game.boardPanel)
                         client.game.createMainMenu()
                     }
 
