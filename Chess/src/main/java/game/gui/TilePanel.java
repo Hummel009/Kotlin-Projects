@@ -1,28 +1,23 @@
 package game.gui;
 
-import side_client.Client;
-import messages.Message;
-import messages.MovementMessage;
 import game.boards.Board;
 import game.boards.Tile;
-import game.pieces.Coordinate;
 import game.move.Move;
+import game.pieces.Coordinate;
 import game.pieces.PieceTypes;
 import game.pieces.Team;
-import java.awt.GridBagLayout;
-import javax.swing.JPanel;
 import game.resources.BOARD_Configurations;
 import game.resources.GUI_Configurations;
 import game.util.BoardUtilities;
 import game.util.MoveUtilities;
-import java.awt.Color;
-import java.awt.Dimension;
+import messages.Message;
+import messages.MovementMessage;
+import side_client.Client;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 
 
 public class TilePanel extends JPanel {
@@ -45,7 +40,7 @@ public class TilePanel extends JPanel {
                     return;
                 }
 
-                if (!chessBoard.hasChosenTile()) { 
+                if (!chessBoard.hasChosenTile()) {
                     if (chessBoard.getTile(coordinate).hasPiece()) {
                         if (chessBoard.getCurrentPlayer().getTeam() != chessBoard.getTile(coordinate).getPiece().getTeam()) {
                             return;
@@ -55,18 +50,15 @@ public class TilePanel extends JPanel {
                     chessBoard.setChosenTile(chessBoard.getTile(coordinate));
 
                 } else {
-                    Tile destinationTile = chessBoard.getTile(coordinate); 
+                    Tile destinationTile = chessBoard.getTile(coordinate);
                     if (MoveUtilities.isValidMove(chessBoard, destinationTile)) {
                         Move move = new Move(chessBoard, chessBoard.getChosenTile(), destinationTile);
                         chessBoard.getCurrentPlayer().makeMove(chessBoard, move);
                         if (move.hasKilledPiece()) {
                             client.game.getBottomGameMenu().killedPiecesListModel.addElement(move.getKilledPiece().toString());
                         }
-                        
 
 
-
-                        
                         Message msg = new Message(Message.MessageTypes.MOVE);
                         MovementMessage movement = new MovementMessage();
                         movement.currentCoordinate = move.getCurrentTile().getCoordinate();
@@ -103,16 +95,16 @@ public class TilePanel extends JPanel {
                     if (MoveUtilities.controlCheckState(chessBoard, Team.BLACK)) {
                         JOptionPane.showMessageDialog(null, "Check state for team : " + Team.BLACK.toString());
 
-                        
+
                         Message msg = new Message(Message.MessageTypes.CHECK);
-                        
+
                         msg.content = (Object) Team.BLACK;
                         client.Send(msg);
                     } else if (MoveUtilities.controlCheckState(chessBoard, Team.WHITE)) {
                         JOptionPane.showMessageDialog(null, "Check state for team : " + Team.WHITE.toString());
-                        
+
                         Message msg = new Message(Message.MessageTypes.CHECK);
-                        
+
                         msg.content = (Object) Team.WHITE;
                         client.Send(msg);
                     }
@@ -149,7 +141,7 @@ public class TilePanel extends JPanel {
     }
 
     public void assignTilePieceIcon(Board board) {
-        
+
         Tile thisTile = board.getTile(this.coordinate);
         if (thisTile == null) {
             System.out.println("Tile is null");
@@ -157,8 +149,8 @@ public class TilePanel extends JPanel {
 
         }
         if (thisTile.hasPiece()) {
-            
-            
+
+
             pieceIcon.setIcon(BoardUtilities.getImageOfTeamPiece(thisTile.getPiece().getTeam(), thisTile.getPiece().getType()));
             pieceIcon.validate();
         } else if (!thisTile.hasPiece()) {
@@ -166,7 +158,7 @@ public class TilePanel extends JPanel {
             pieceIcon.validate();
         }
 
-        
+
     }
 
     public void assignTileColor(Board board) {

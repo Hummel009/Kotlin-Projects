@@ -5,7 +5,7 @@ import game.boards.Tile;
 import game.pieces.Piece;
 
 
-public class Move implements java.io.Serializable{
+public class Move implements java.io.Serializable {
 
     Board board;
     Tile currentTile;
@@ -62,9 +62,8 @@ public class Move implements java.io.Serializable{
     public void setKilledPiece(Piece killedPiece) {
         this.killedPiece = killedPiece;
     }
-    
-    public boolean hasKilledPiece()
-    {
+
+    public boolean hasKilledPiece() {
         return this.killedPiece != null;
     }
 }

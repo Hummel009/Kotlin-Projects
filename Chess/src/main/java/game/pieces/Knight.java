@@ -1,12 +1,13 @@
 package game.pieces;
 
-import game.move.Move;
 import game.boards.Board;
 import game.boards.Tile;
-import java.util.ArrayList;
-import java.util.List;
+import game.move.Move;
 import game.resources.PIECE_Configurations;
 import game.util.BoardUtilities;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Knight extends Piece {
@@ -14,7 +15,7 @@ public class Knight extends Piece {
     public Knight(Team team) {
         super(team, PieceTypes.KNIGHT);
     }
-    
+
     @Override
     public List<Move> availableMoves(Board board, Coordinate currentCoord) {
 
@@ -23,17 +24,17 @@ public class Knight extends Piece {
         Tile destinationTile;
 
         for (Coordinate coord : PIECE_Configurations.KNIGHT_MOVES) {
- 
+
             if (!BoardUtilities.isValidCoordinate(currentCoord.plus(coord))) {
-                continue; 
+                continue;
             }
             destinationTile = board.getTile(currentCoord.plus(coord));
 
             if (!destinationTile.hasPiece()) {
-                possibleMoves.add(new Move(board,board.getTile(currentCoord),destinationTile));
+                possibleMoves.add(new Move(board, board.getTile(currentCoord), destinationTile));
             } else {
                 if (destinationTile.getPiece().getTeam() != this.getTeam()) {
-                    possibleMoves.add(new Move(board,board.getTile(currentCoord),destinationTile));
+                    possibleMoves.add(new Move(board, board.getTile(currentCoord), destinationTile));
                 }
             }
         }

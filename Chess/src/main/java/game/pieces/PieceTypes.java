@@ -1,10 +1,7 @@
 package game.pieces;
 
 
-
-
-public enum PieceTypes
-{
+public enum PieceTypes {
     QUEEN,
     KING,
     ROOK,
