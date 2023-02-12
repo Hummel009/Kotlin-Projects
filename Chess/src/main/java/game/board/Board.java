@@ -45,7 +45,7 @@ public class Board implements java.io.Serializable {
     }
 
     public Tile getTile(Coordinate coordinate) {
-        return getTile(coordinate.getX(), coordinate.getY());
+        return getTile(coordinate.x, coordinate.y);
     }
 
     public Tile getTile(int x, int y) {
@@ -62,7 +62,7 @@ public class Board implements java.io.Serializable {
                 if (!tiles[i][j].hasPiece()) {
                     continue;
                 }
-                if (tiles[i][j].getPiece().getTeam() == team && tiles[i][j].getPiece().getType() == pieceType) {
+                if (tiles[i][j].getPiece().team == team && tiles[i][j].getPiece().type == pieceType) {
                     return tiles[i][j].getCoordinate();
                 }
             }

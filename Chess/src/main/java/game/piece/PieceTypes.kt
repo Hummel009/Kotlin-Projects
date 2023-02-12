@@ -1,5 +1,5 @@
-package game.piece;
+package game.piece
 
-public enum PieceTypes {
+enum class PieceTypes {
     QUEEN, KING, ROOK, BISHOP, KNIGHT, PAWN
 }

@@ -66,8 +66,8 @@ public class Table {
         this.chessBoard = new Board();
         this.boardPanel = new BoardPanel(this.chessBoard, this.client);
         this.bottomGameMenu = new InGameBottomMenu();
-        this.bottomGameMenu.getPlayersColorLBL().setText("Your color is " + this.client.getTeam().toString());
-        if (this.client.getTeam() == Team.WHITE) {
+        this.bottomGameMenu.getPlayersColorLBL().setText("Your color is " + this.client.team.toString());
+        if (this.client.team == Team.WHITE) {
             this.bottomGameMenu.getTurnLBL().setText("Your Turn");
             this.bottomGameMenu.getTurnLBL().setForeground(Color.GREEN);
         } else {

@@ -33,12 +33,12 @@ public class TilePanel extends JPanel {
         addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (client.getTeam() != chessBoard.getCurrentPlayer().getTeam()) {
+                if (client.team != chessBoard.getCurrentPlayer().team) {
                     return;
                 }
                 if (!chessBoard.hasChosenTile()) {
                     if (chessBoard.getTile(coordinate).hasPiece()) {
-                        if (chessBoard.getCurrentPlayer().getTeam() != chessBoard.getTile(coordinate).getPiece().getTeam()) {
+                        if (chessBoard.getCurrentPlayer().team != chessBoard.getTile(coordinate).getPiece().team) {
                             return;
                         }
                     }
@@ -49,13 +49,13 @@ public class TilePanel extends JPanel {
                         Move move = new Move(chessBoard, chessBoard.getChosenTile(), destinationTile);
                         chessBoard.getCurrentPlayer().makeMove(chessBoard, move);
                         if (move.hasKilledPiece()) {
-                            client.game.getBottomGameMenu().killedPiecesListModel.addElement(move.getKilledPiece().toString());
+                            client.game.getBottomGameMenu().killedPiecesListModel.addElement(move.killedPiece.toString());
                         }
                         Message msg = new Message(Message.MessageTypes.MOVE);
                         MovementMessage movement = new MovementMessage();
-                        movement.currentCoordinate = move.getCurrentTile().getCoordinate();
-                        movement.destinationCoordinate = move.getDestinationTile().getCoordinate();
-                        if (move.getKilledPiece() != null) {
+                        movement.currentCoordinate = move.currentTile.getCoordinate();
+                        movement.destinationCoordinate = move.destinationTile.getCoordinate();
+                        if (move.killedPiece != null) {
                             movement.isPieceKilled = true;
                         }
                         msg.content = movement;
@@ -65,9 +65,9 @@ public class TilePanel extends JPanel {
                         client.game.getBottomGameMenu().getTurnLBL().setForeground(Color.RED);
 
                         if (move.hasKilledPiece()) {
-                            if (move.getKilledPiece().getType() == PieceTypes.KING) {
+                            if (move.killedPiece.type == PieceTypes.KING) {
                                 Team winnerTeam;
-                                winnerTeam = (move.getKilledPiece().getTeam() == Team.BLACK) ? Team.WHITE : Team.BLACK;
+                                winnerTeam = (move.killedPiece.team == Team.BLACK) ? Team.WHITE : Team.BLACK;
                                 JOptionPane.showMessageDialog(null, "Winner: " + winnerTeam);
                                 Message message = new Message(Message.MessageTypes.END);
                                 message.content = null;
@@ -77,7 +77,7 @@ public class TilePanel extends JPanel {
 
                     } else {
                         if (destinationTile.hasPiece()) {
-                            if (chessBoard.getCurrentPlayer().getTeam() != chessBoard.getTile(coordinate).getPiece().getTeam()) {
+                            if (chessBoard.getCurrentPlayer().team != chessBoard.getTile(coordinate).getPiece().team) {
                                 return;
                             }
                         }
@@ -137,7 +137,7 @@ public class TilePanel extends JPanel {
             return;
         }
         if (thisTile.hasPiece()) {
-            pieceIcon.setIcon(BoardUtilities.getImageOfTeamPiece(thisTile.getPiece().getTeam(), thisTile.getPiece().getType()));
+            pieceIcon.setIcon(BoardUtilities.getImageOfTeamPiece(thisTile.getPiece().team, thisTile.getPiece().type));
             pieceIcon.validate();
         } else if (!thisTile.hasPiece()) {
             pieceIcon.setIcon(null);
@@ -146,13 +146,13 @@ public class TilePanel extends JPanel {
     }
 
     public void assignTileColor(Board board) {
-        if (this.coordinate.getX() % 2 == 0 && this.coordinate.getY() % 2 == 0) {
+        if (this.coordinate.x % 2 == 0 && this.coordinate.y % 2 == 0) {
             this.setBackground(Data.creamColor);
-        } else if (this.coordinate.getX() % 2 == 0 && this.coordinate.getY() % 2 == 1) {
+        } else if (this.coordinate.x % 2 == 0 && this.coordinate.y % 2 == 1) {
             this.setBackground(Data.lightCyanColor);
-        } else if (this.coordinate.getX() % 2 == 1 && this.coordinate.getY() % 2 == 0) {
+        } else if (this.coordinate.x % 2 == 1 && this.coordinate.y % 2 == 0) {
             this.setBackground(Data.lightCyanColor);
-        } else if (this.coordinate.getX() % 2 == 1 && this.coordinate.getY() % 2 == 1) {
+        } else if (this.coordinate.x % 2 == 1 && this.coordinate.y % 2 == 1) {
             this.setBackground(Data.creamColor);
         }
         if (board.hasChosenTile()) {
