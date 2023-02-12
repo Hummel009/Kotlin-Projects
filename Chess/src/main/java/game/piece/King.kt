@@ -17,12 +17,12 @@ class King(team: Team) : Piece(team, PieceTypes.KING) {
             if (!BoardUtilities.isValidCoordinate(destinationCoordinate)) {
                 continue
             }
-            destinationTile = board.getTile(destinationCoordinate)
+            destinationTile = board.getTile(destinationCoordinate)!!
             if (!destinationTile.hasPiece()) {
-                possibleMoves.add(Move(board, currentTile, destinationTile))
+                currentTile?.let { Move(board, it, destinationTile) }?.let { possibleMoves.add(it) }
             } else {
                 if (destinationTile.piece?.team !== team) {
-                    possibleMoves.add(Move(board, currentTile, destinationTile))
+                    currentTile?.let { Move(board, it, destinationTile) }?.let { possibleMoves.add(it) }
                 }
             }
         }

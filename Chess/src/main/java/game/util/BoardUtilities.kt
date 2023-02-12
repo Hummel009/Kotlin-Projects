@@ -19,7 +19,7 @@ object BoardUtilities {
     @JvmStatic
     fun getImageOfTeamPiece(team: Team, pieceType: PieceTypes?): ImageIcon? {
         var imagePath = "src/main/java/game/img/"
-        if (team == null || pieceType == null) {
+        if (pieceType == null) {
             imagePath += "transparent.png"
         } else {
             imagePath += if (team === Team.BLACK) {

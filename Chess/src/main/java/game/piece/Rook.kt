@@ -16,12 +16,12 @@ class Rook(team: Team) : Piece(team, PieceTypes.ROOK) {
             destinationCoordinate = currentCoord
             while (BoardUtilities.isValidCoordinate(destinationCoordinate.plus(coord))) {
                 destinationCoordinate = destinationCoordinate.plus(coord)
-                destinationTile = board.getTile(destinationCoordinate)
+                destinationTile = board.getTile(destinationCoordinate)!!
                 if (!destinationTile.hasPiece()) {
-                    possibleMoves.add(Move(board, currentTile, destinationTile))
+                    currentTile?.let { Move(board, it, destinationTile) }?.let { possibleMoves.add(it) }
                 } else {
                     if (destinationTile.piece?.team !== team) {
-                        possibleMoves.add(Move(board, currentTile, destinationTile))
+                        currentTile?.let { Move(board, it, destinationTile) }?.let { possibleMoves.add(it) }
                     }
                     break
                 }
