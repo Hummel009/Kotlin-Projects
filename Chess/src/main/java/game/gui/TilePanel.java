@@ -1,27 +1,23 @@
 package game.gui;
 
-import side_client.Client;
-import msg.Message;
-import msg.MovementMessage;
 import game.board.Board;
 import game.board.Tile;
-import game.piece.Coordinate;
 import game.move.Move;
+import game.piece.Coordinate;
 import game.piece.PieceTypes;
 import game.piece.Team;
-import java.awt.GridBagLayout;
-import javax.swing.JPanel;
 import game.resource.BOARD_Configurations;
 import game.resource.GUI_Configurations;
 import game.util.BoardUtilities;
 import game.util.MoveUtilities;
-import java.awt.Color;
-import java.awt.Dimension;
+import msg.Message;
+import msg.MovementMessage;
+import side_client.Client;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import javax.swing.BorderFactory;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 
 
 public class TilePanel extends JPanel {
