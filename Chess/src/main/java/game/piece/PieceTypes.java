@@ -3,19 +3,21 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package game.piece;
 
-
-import game.gui.Table;
 /**
  *
  * @author Enes Kızılcın <nazifenes.kizilcin@stu.fsm.edu.tr>
  */
 
-//To Start The game ( main class)
-public class Start {
-    public static void main(String[] args) {
-        
-            Table table = new Table();
-        
-    }
+//This enum is using for surely define the type of pieces.
+public enum PieceTypes
+{
+    QUEEN,
+    KING,
+    ROOK,
+    BISHOP,
+    KNIGHT,
+    PAWN,
+    EMPTY
 }
