@@ -28,7 +28,7 @@ public class BoardUtilities {
 
     public static ImageIcon getImageOfTeamPiece(Team team, PieceTypes pieceType) {
 
-        String imagePath = "C:\\Users\\enesk\\bilgisayar_aglari\\Chess\\ChessProject\\src\\main\\java\\chess_game\\Img\\";
+        String imagePath = "src/main/java/chess_game/Img/";
         if (team == null || pieceType == null) {
             imagePath += "transparent.png";
         } else {
