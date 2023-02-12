@@ -1,3 +1,5 @@
+package side_client;
+
 import game.gui.Table;
 
 public class Start {
