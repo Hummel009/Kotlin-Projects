@@ -75,7 +75,7 @@ public class BoardUtilities {
                 tiles[j][i] = new Tile(new Coordinate(j, i), null);
             }
         }
-        
+
         tiles[0][7] = new Tile(new Coordinate(0, 7), new Rook(Team.WHITE));
         tiles[1][7] = new Tile(new Coordinate(1, 7), new Knight(Team.WHITE));
         tiles[2][7] = new Tile(new Coordinate(2, 7), new Bishop(Team.WHITE));

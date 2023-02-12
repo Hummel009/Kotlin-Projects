@@ -4,12 +4,8 @@ import java.io.IOException;
 import java.net.Socket;
 
 
-
-
-
 public class ListenConnectionRequestThread extends Thread {
-
-    private Server server;
+    public Server server;
 
     public ListenConnectionRequestThread(Server server) {
         this.server = server;
@@ -21,9 +17,9 @@ public class ListenConnectionRequestThread extends Thread {
             try {
                 Socket nSocket = this.server.socket.accept();
                 SClient nClient = new SClient(nSocket);
-                nClient.Listen();
-                server.clients.add(nClient);
-                
+                nClient.listen();
+                Server.clients.add(nClient);
+
             } catch (IOException ex) {
                 System.out.println("There is an error occured when the new client being accepted.");
             }

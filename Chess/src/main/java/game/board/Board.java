@@ -8,17 +8,22 @@ import game.resource.BOARD_Configurations;
 import game.util.BoardUtilities;
 
 
-
-
-
-
-public class Board implements java.io.Serializable{
+public class Board implements java.io.Serializable {
 
     private final Tile[][] tiles;
     private Player whitePlayer;
     private Player blackPlayer;
     private Player currentPlayer;
     private Tile chosenTile = null;
+
+    public Board() {
+
+        whitePlayer = new Player(Team.WHITE);
+        blackPlayer = new Player(Team.BLACK);
+        currentPlayer = whitePlayer;
+        tiles = BoardUtilities.createStandartBoardTiles();
+
+    }
 
     public Player getWhitePlayer() {
         return whitePlayer;
@@ -40,19 +45,6 @@ public class Board implements java.io.Serializable{
         return chosenTile;
     }
 
-    public boolean hasChosenTile() {
-        boolean hasChosen = false;
-        if(chosenTile == null)
-        {
-            return false;
-        }
-        if(chosenTile.getPiece() == null)
-        {
-            return false;   
-        }
-        return true;
-    }
-
     public void setChosenTile(Tile chosenTile) {
         if (!chosenTile.hasPiece()) {
             this.chosenTile = null;
@@ -61,17 +53,19 @@ public class Board implements java.io.Serializable{
         }
     }
 
-    public Tile getTile(Coordinate coordinate) {
-        return getTile(coordinate.getX(), coordinate.getY());
+    public boolean hasChosenTile() {
+        boolean hasChosen = false;
+        if (chosenTile == null) {
+            return false;
+        }
+        if (chosenTile.getPiece() == null) {
+            return false;
+        }
+        return true;
     }
 
-    public Board() {
-        
-        whitePlayer = new Player(Team.WHITE);
-        blackPlayer = new Player(Team.BLACK);
-        currentPlayer = whitePlayer;
-        tiles = BoardUtilities.createStandartBoardTiles();
-
+    public Tile getTile(Coordinate coordinate) {
+        return getTile(coordinate.getX(), coordinate.getY());
     }
 
     public Tile getTile(int x, int y) {

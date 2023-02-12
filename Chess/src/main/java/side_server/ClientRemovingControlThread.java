@@ -1,11 +1,8 @@
 package side_server;
 
 
-
-
-public class ClientRemovingControlThread extends Thread{
-
-    private Server server;
+public class ClientRemovingControlThread extends Thread {
+    public final Server server;
 
     public ClientRemovingControlThread(Server server) {
         this.server = server;
@@ -13,18 +10,8 @@ public class ClientRemovingControlThread extends Thread{
 
     @Override
     public void run() {
-        
-        while(!this.server.socket.isClosed())
-        {
-            for(SClient client : Server.clients)
-            {
-                if(client.socket.isClosed())
-                {
-                    Server.clients.remove(client);
-                }
-            }
+        while (!this.server.socket.isClosed()) {
+            Server.clients.removeIf(client -> client.socket.isClosed());
         }
     }
-    
-    
 }

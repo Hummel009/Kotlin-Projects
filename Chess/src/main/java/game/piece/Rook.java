@@ -9,16 +9,15 @@ import game.util.BoardUtilities;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Rook extends Piece{
+public class Rook extends Piece {
 
-    public Rook(Team team)
-    {
-        super(team,PieceTypes.ROOK);
+    public Rook(Team team) {
+        super(team, PieceTypes.ROOK);
     }
-    
+
     @Override
-    public List<Move> availableMoves(Board board,Coordinate currentCoord) {
-         List<Move> possibleMoves = new ArrayList<Move>();
+    public List<Move> availableMoves(Board board, Coordinate currentCoord) {
+        List<Move> possibleMoves = new ArrayList<Move>();
         Tile currentTile = board.getTile(currentCoord);
         Tile destinationTile;
         Coordinate destinationCoordinate;
@@ -41,5 +40,5 @@ public class Rook extends Piece{
         }
         return possibleMoves;
     }
- 
+
 }

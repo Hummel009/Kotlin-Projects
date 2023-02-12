@@ -21,7 +21,7 @@ public class Pawn extends Piece {
         Tile currentTile = board.getTile(currentCoord);
         Tile destinationTile;
 
-        
+
         for (Coordinate coord : (Coordinate[]) PIECE_Configurations.PAWN_MOVES.get(this.getTeam()).get("Normal")) {
             if (!BoardUtilities.isValidCoordinate(currentCoord.plus(coord))) {
                 continue;
@@ -30,7 +30,7 @@ public class Pawn extends Piece {
             if (!destinationTile.hasPiece()) {
                 possibleMoves.add(new Move(board, currentTile, destinationTile));
             }
-            
+
         }
         if (currentTile.getCoordinate().getY() == PIECE_Configurations.getPawnStartPosY(this.getTeam())) {
             for (Coordinate coord : (Coordinate[]) PIECE_Configurations.PAWN_MOVES.get(this.getTeam()).get("Start")) {

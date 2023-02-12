@@ -25,7 +25,7 @@ public class ClientListenThread extends Thread {
                         break;
                     case MOVE:
                     case CHECK:
-                        this.client.pair.Send(msg);
+                        this.client.pair.send(msg);
                         break;
                     case END:
                         this.client.pair = null;

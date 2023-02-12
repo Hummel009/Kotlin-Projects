@@ -26,11 +26,11 @@ public class MoveUtilities {
 
         Tile destinationTile;
         Coordinate currentCoord = board.getCoordOfGivenTeamPiece(team, PieceTypes.KING);
-        
+
         for (Coordinate coord : PIECE_Configurations.KNIGHT_MOVES) {
 
             if (!BoardUtilities.isValidCoordinate(currentCoord.plus(coord))) {
-                continue; 
+                continue;
             }
             destinationTile = board.getTile(currentCoord.plus(coord));
 
@@ -42,9 +42,8 @@ public class MoveUtilities {
                 }
             }
         }
-        
-        
-        
+
+
         Tile currentTile = board.getTile(currentCoord);
         Coordinate destinationCoordinate;
         for (Coordinate coord : PIECE_Configurations.ROOK_MOVES) {
@@ -66,7 +65,7 @@ public class MoveUtilities {
                 }
             }
         }
-        
+
         for (Coordinate coord : PIECE_Configurations.BISHOP_MOVES) {
             destinationCoordinate = currentCoord;
             while (BoardUtilities.isValidCoordinate(destinationCoordinate.plus(coord))) {
@@ -87,8 +86,8 @@ public class MoveUtilities {
                 }
             }
         }
-        
-        
+
+
         for (Coordinate coord : (Coordinate[]) PIECE_Configurations.PAWN_MOVES.get(team).get("Attack")) {
 
             if (!BoardUtilities.isValidCoordinate(currentCoord.plus(coord))) {

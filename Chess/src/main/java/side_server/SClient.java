@@ -7,11 +7,7 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
-
-
 public class SClient {
-
     public Socket socket;
     public ObjectInputStream cInput;
     public ObjectOutputStream cOutput;
@@ -20,9 +16,8 @@ public class SClient {
     public boolean isPaired;
     public boolean isWantToPair = false;
     public ClientPairingThread pairingThread;
-    
-    public SClient(Socket socket) {
 
+    public SClient(Socket socket) {
         try {
             this.socket = socket;
             this.cOutput = new ObjectOutputStream(this.socket.getOutputStream());
@@ -34,15 +29,16 @@ public class SClient {
             Logger.getLogger(SClient.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void Send(Object msg)
-    {
+
+    public void send(Object msg) {
         try {
             this.cOutput.writeObject(msg);
         } catch (IOException ex) {
             Logger.getLogger(SClient.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void Listen() {
+
+    public void listen() {
         this.clientListenThread.start();
     }
 }
