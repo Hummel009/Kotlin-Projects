@@ -1,8 +1,7 @@
 package game.resource;
 
 
-public class BOARD_Configurations {
-
+public class BoardConfigurations {
     public static int ROW_COUNT = 8;
     public static int ROW_TILE_COUNT = 8;
     public static int BOARD_LOWER_BOUND = 0;

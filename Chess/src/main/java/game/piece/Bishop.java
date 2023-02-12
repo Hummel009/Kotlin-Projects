@@ -3,7 +3,7 @@ package game.piece;
 import game.board.Board;
 import game.board.Tile;
 import game.move.Move;
-import game.resource.PIECE_Configurations;
+import game.resource.PieceConfigurations;
 import game.util.BoardUtilities;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class Bishop extends Piece {
         Tile currentTile = board.getTile(currentCoord);
         Tile destinationTile;
         Coordinate destinationCoordinate;
-        for (Coordinate coord : PIECE_Configurations.BISHOP_MOVES) {
+        for (Coordinate coord : PieceConfigurations.BISHOP_MOVES) {
             destinationCoordinate = currentCoord;
             while (BoardUtilities.isValidCoordinate(destinationCoordinate.plus(coord))) {
                 destinationCoordinate = destinationCoordinate.plus(coord);

@@ -6,8 +6,8 @@ import game.move.Move;
 import game.piece.Coordinate;
 import game.piece.PieceTypes;
 import game.piece.Team;
-import game.resource.BOARD_Configurations;
-import game.resource.GUI_Configurations;
+import game.resource.BoardConfigurations;
+import game.resource.GuiConfigurations;
 import game.util.BoardUtilities;
 import game.util.MoveUtilities;
 import msg.Message;
@@ -30,7 +30,7 @@ public class TilePanel extends JPanel {
         this.coordinate = coord;
         pieceIcon = new JLabel();
         this.add(pieceIcon);
-        setPreferredSize(new Dimension(BOARD_Configurations.TILE_SIZE, BOARD_Configurations.TILE_SIZE));
+        setPreferredSize(new Dimension(BoardConfigurations.TILE_SIZE, BoardConfigurations.TILE_SIZE));
         assignTileColor(chessBoard);
         assignTilePieceIcon(chessBoard);
         addMouseListener(new MouseListener() {
@@ -164,13 +164,13 @@ public class TilePanel extends JPanel {
     public void assignTileColor(Board board) {
 
         if (this.coordinate.getX() % 2 == 0 && this.coordinate.getY() % 2 == 0) {
-            this.setBackground(GUI_Configurations.creamColor);
+            this.setBackground(GuiConfigurations.creamColor);
         } else if (this.coordinate.getX() % 2 == 0 && this.coordinate.getY() % 2 == 1) {
-            this.setBackground(GUI_Configurations.lightCyanColor);
+            this.setBackground(GuiConfigurations.lightCyanColor);
         } else if (this.coordinate.getX() % 2 == 1 && this.coordinate.getY() % 2 == 0) {
-            this.setBackground(GUI_Configurations.lightCyanColor);
+            this.setBackground(GuiConfigurations.lightCyanColor);
         } else if (this.coordinate.getX() % 2 == 1 && this.coordinate.getY() % 2 == 1) {
-            this.setBackground(GUI_Configurations.creamColor);
+            this.setBackground(GuiConfigurations.creamColor);
         }
         if (board.hasChosenTile()) {
             if (this.coordinate.equals(board.getChosenTile().getCoordinate())) {

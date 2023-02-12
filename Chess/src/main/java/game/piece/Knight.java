@@ -3,7 +3,7 @@ package game.piece;
 import game.board.Board;
 import game.board.Tile;
 import game.move.Move;
-import game.resource.PIECE_Configurations;
+import game.resource.PieceConfigurations;
 import game.util.BoardUtilities;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class Knight extends Piece {
 
         Tile destinationTile;
 
-        for (Coordinate coord : PIECE_Configurations.KNIGHT_MOVES) {
+        for (Coordinate coord : PieceConfigurations.KNIGHT_MOVES) {
 
             if (!BoardUtilities.isValidCoordinate(currentCoord.plus(coord))) {
                 continue;

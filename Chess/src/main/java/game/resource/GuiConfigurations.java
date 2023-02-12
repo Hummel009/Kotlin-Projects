@@ -2,8 +2,7 @@ package game.resource;
 
 import java.awt.*;
 
-public class GUI_Configurations {
-
+public class GuiConfigurations {
     public static int SCREEN_WIDTH = 600;
     public static int SCREEN_HEIGHT = 700;
     public static int TILE_HEIGHT = 64;
@@ -19,5 +18,4 @@ public class GUI_Configurations {
     public static int BottomGameMenuHorizontalGap = 50;
     public static int BottomGameMenuVerticalGap = SCREEN_HEIGHT;
     public static int BottomGameMenuAlignment = FlowLayout.LEADING;
-
 }

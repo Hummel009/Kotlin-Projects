@@ -5,12 +5,11 @@ import game.board.Tile;
 import game.piece.Piece;
 
 public class Move implements java.io.Serializable {
-
-    Board board;
-    Tile currentTile;
-    Tile destinationTile;
-    Piece movedPiece;
-    Piece killedPiece;
+    public Board board;
+    public Tile currentTile;
+    public Tile destinationTile;
+    public Piece movedPiece;
+    public Piece killedPiece;
 
     public Move(Board board, Tile currentTile, Tile destinationTile) {
         this.board = board;
@@ -34,32 +33,12 @@ public class Move implements java.io.Serializable {
         return currentTile;
     }
 
-    public void setCurrentTile(Tile currentTile) {
-        this.currentTile = currentTile;
-    }
-
     public Tile getDestinationTile() {
         return destinationTile;
     }
 
-    public void setDestinationTile(Tile destinationTile) {
-        this.destinationTile = destinationTile;
-    }
-
-    public Piece getMovedPiece() {
-        return movedPiece;
-    }
-
-    public void setMovedPiece(Piece movedPiece) {
-        this.movedPiece = movedPiece;
-    }
-
     public Piece getKilledPiece() {
         return killedPiece;
-    }
-
-    public void setKilledPiece(Piece killedPiece) {
-        this.killedPiece = killedPiece;
     }
 
     public boolean hasKilledPiece() {

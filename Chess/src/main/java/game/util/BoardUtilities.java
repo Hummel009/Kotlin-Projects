@@ -2,7 +2,7 @@ package game.util;
 
 import game.board.Tile;
 import game.piece.*;
-import game.resource.BOARD_Configurations;
+import game.resource.BoardConfigurations;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -13,13 +13,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class BoardUtilities {
-
     public static boolean isValidCoordinate(Coordinate coord) {
-        return (coord.getX() >= BOARD_Configurations.BOARD_LOWER_BOUND && coord.getX() <= BOARD_Configurations.BOARD_UPPER_BOUND && coord.getY() >= BOARD_Configurations.BOARD_LOWER_BOUND && coord.getY() <= BOARD_Configurations.BOARD_UPPER_BOUND);
+        return (coord.getX() >= BoardConfigurations.BOARD_LOWER_BOUND && coord.getX() <= BoardConfigurations.BOARD_UPPER_BOUND && coord.getY() >= BoardConfigurations.BOARD_LOWER_BOUND && coord.getY() <= BoardConfigurations.BOARD_UPPER_BOUND);
     }
 
     public static ImageIcon getImageOfTeamPiece(Team team, PieceTypes pieceType) {
-
         String imagePath = "src/main/java/game/img/";
         if (team == null || pieceType == null) {
             imagePath += "transparent.png";
@@ -46,17 +44,16 @@ public class BoardUtilities {
         try {
             File img = new File(imagePath);
             BufferedImage bufferedImage = ImageIO.read(img);
-            ImageIcon imageIcon = new ImageIcon(bufferedImage);
-            return imageIcon;
+            return new ImageIcon(bufferedImage);
 
         } catch (IOException ex) {
-            Logger.getLogger(BOARD_Configurations.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(BoardConfigurations.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
 
-    public static Tile[][] createStandartBoardTiles() {
-        Tile[][] tiles = new Tile[BOARD_Configurations.ROW_COUNT][BOARD_Configurations.ROW_TILE_COUNT];
+    public static Tile[][] createStandardBoardTiles() {
+        Tile[][] tiles = new Tile[BoardConfigurations.ROW_COUNT][BoardConfigurations.ROW_TILE_COUNT];
         tiles[0][0] = new Tile(new Coordinate(0, 0), new Rook(Team.BLACK));
         tiles[1][0] = new Tile(new Coordinate(1, 0), new Knight(Team.BLACK));
         tiles[2][0] = new Tile(new Coordinate(2, 0), new Bishop(Team.BLACK));

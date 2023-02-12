@@ -2,7 +2,7 @@ package game.gui;
 
 import game.board.Board;
 import game.piece.Team;
-import game.resource.GUI_Configurations;
+import game.resource.GuiConfigurations;
 import msg.Message;
 import side_client.Client;
 
@@ -24,7 +24,7 @@ public class Table {
     public Table() {
         this.gameFrame = new JFrame("Chess");
         this.gameFrame.setLayout(new BorderLayout());
-        this.gameFrame.setSize(GUI_Configurations.OUTER_FRAME_DIMENSION);
+        this.gameFrame.setSize(GuiConfigurations.OUTER_FRAME_DIMENSION);
         this.mainMenu = new MainMenu();
         this.client = new Client(this);
         this.client.connect("127.0.0.1", 4000);

@@ -6,43 +6,20 @@ import game.piece.Team;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PIECE_Configurations {
-
-
+public class PieceConfigurations {
     public static Coordinate[] KNIGHT_MOVES = {new Coordinate(2, 1), new Coordinate(-2, 1), new Coordinate(2, -1), new Coordinate(-2, -1), new Coordinate(1, 2), new Coordinate(-1, 2), new Coordinate(1, -2), new Coordinate(-1, -2)};
-
-
     public static Coordinate[] BISHOP_MOVES = {new Coordinate(1, 1), new Coordinate(-1, 1), new Coordinate(1, -1), new Coordinate(-1, -1)};
-
-
     public static Coordinate[] ROOK_MOVES = {new Coordinate(0, 1), new Coordinate(0, -1), new Coordinate(1, 0), new Coordinate(-1, 0)};
-
-
-    public static Coordinate[] QUUEN_MOVES = {new Coordinate(0, 1), new Coordinate(0, -1), new Coordinate(1, 0), new Coordinate(-1, 0), new Coordinate(1, 1), new Coordinate(-1, 1), new Coordinate(1, -1), new Coordinate(-1, -1)};
-
-
+    public static Coordinate[] QUEEN_MOVES = {new Coordinate(0, 1), new Coordinate(0, -1), new Coordinate(1, 0), new Coordinate(-1, 0), new Coordinate(1, 1), new Coordinate(-1, 1), new Coordinate(1, -1), new Coordinate(-1, -1)};
     public static Coordinate[] BLACK_PAWN_NORMAL_MOVES = {new Coordinate(0, 1)};
-
-
     public static Coordinate[] WHITE_PAWN_NORMAL_MOVES = {new Coordinate(0, -1)};
-
-
     public static Coordinate[] WHITE_PAWN_ATTACK_MOVES = {new Coordinate(1, -1), new Coordinate(-1, -1)};
-
-
     public static Coordinate[] BLACK_PAWN_ATTACK_MOVES = {new Coordinate(1, 1), new Coordinate(-1, 1)};
-
-
     public static Coordinate[] BLACK_PAWN_START_MOVES = {new Coordinate(0, 2)};
-
-
     public static Coordinate[] WHITE_PAWN_START_MOVES = {new Coordinate(0, -2)};
-
     public static int BLACK_PAWNS_START_Y_POS = 1;
-
     public static int WHITE_PAWNS_START_Y_POS = 6;
-
-    public static Map<Team, Map> PAWN_MOVES;
+    public static Map<Team, Map<String, Coordinate[]>> PAWN_MOVES;
 
     static {
         PAWN_MOVES = new HashMap<>();

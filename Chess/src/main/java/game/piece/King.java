@@ -4,7 +4,7 @@ package game.piece;
 import game.board.Board;
 import game.board.Tile;
 import game.move.Move;
-import game.resource.PIECE_Configurations;
+import game.resource.PieceConfigurations;
 import game.util.BoardUtilities;
 
 import java.util.ArrayList;
@@ -32,7 +32,7 @@ public class King extends Piece {
         Tile currentTile = board.getTile(currentCoord);
         Tile destinationTile;
         Coordinate destinationCoordinate;
-        for (Coordinate coord : PIECE_Configurations.QUUEN_MOVES) {
+        for (Coordinate coord : PieceConfigurations.QUEEN_MOVES) {
             destinationCoordinate = currentCoord.plus(coord);
             if (!BoardUtilities.isValidCoordinate(destinationCoordinate)) {
                 continue;

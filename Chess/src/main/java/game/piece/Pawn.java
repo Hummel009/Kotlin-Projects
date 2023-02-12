@@ -3,7 +3,7 @@ package game.piece;
 import game.board.Board;
 import game.board.Tile;
 import game.move.Move;
-import game.resource.PIECE_Configurations;
+import game.resource.PieceConfigurations;
 import game.util.BoardUtilities;
 
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class Pawn extends Piece {
         Tile destinationTile;
 
 
-        for (Coordinate coord : (Coordinate[]) PIECE_Configurations.PAWN_MOVES.get(this.getTeam()).get("Normal")) {
+        for (Coordinate coord : (Coordinate[]) PieceConfigurations.PAWN_MOVES.get(this.getTeam()).get("Normal")) {
             if (!BoardUtilities.isValidCoordinate(currentCoord.plus(coord))) {
                 continue;
             }
@@ -32,8 +32,8 @@ public class Pawn extends Piece {
             }
 
         }
-        if (currentTile.getCoordinate().getY() == PIECE_Configurations.getPawnStartPosY(this.getTeam())) {
-            for (Coordinate coord : (Coordinate[]) PIECE_Configurations.PAWN_MOVES.get(this.getTeam()).get("Start")) {
+        if (currentTile.getCoordinate().getY() == PieceConfigurations.getPawnStartPosY(this.getTeam())) {
+            for (Coordinate coord : (Coordinate[]) PieceConfigurations.PAWN_MOVES.get(this.getTeam()).get("Start")) {
                 if (!BoardUtilities.isValidCoordinate(currentCoord.plus(coord))) {
                     continue;
                 }
@@ -44,7 +44,7 @@ public class Pawn extends Piece {
 
             }
         }
-        for (Coordinate coord : (Coordinate[]) PIECE_Configurations.PAWN_MOVES.get(this.getTeam()).get("Attack")) {
+        for (Coordinate coord : (Coordinate[]) PieceConfigurations.PAWN_MOVES.get(this.getTeam()).get("Attack")) {
 
             if (!BoardUtilities.isValidCoordinate(currentCoord.plus(coord))) {
                 continue;
