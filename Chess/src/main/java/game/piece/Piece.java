@@ -1,7 +1,7 @@
 package game.piece;
 
-import game.move.Move;
 import game.board.Board;
+import game.move.Move;
 
 import java.util.List;
 

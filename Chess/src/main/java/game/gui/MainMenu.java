@@ -1,7 +1,6 @@
 package game.gui;
 
-import javax.swing.JButton;
-import javax.swing.JLabel;
+import javax.swing.*;
 
 public class MainMenu extends javax.swing.JPanel {
 

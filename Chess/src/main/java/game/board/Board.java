@@ -1,8 +1,10 @@
 package game.board;
 
-import game.piece.*;
+import game.piece.Coordinate;
+import game.piece.PieceTypes;
+import game.piece.Team;
 import game.player.Player;
-import game.resource.*;
+import game.resource.BOARD_Configurations;
 import game.util.BoardUtilities;
 
 

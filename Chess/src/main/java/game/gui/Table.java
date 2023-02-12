@@ -1,17 +1,15 @@
 package game.gui;
 
-import side_client.Client;
-import msg.Message;
 import game.board.Board;
-
 import game.piece.Team;
 import game.resource.GUI_Configurations;
-import java.awt.BorderLayout;
-import java.awt.Color;
+import msg.Message;
+import side_client.Client;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 
 

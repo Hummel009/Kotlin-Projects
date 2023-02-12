@@ -1,8 +1,6 @@
 package game.gui;
 
-import javax.swing.DefaultListModel;
-import javax.swing.JLabel;
-import javax.swing.JList;
+import javax.swing.*;
 
 public class InGameBottomMenu extends javax.swing.JPanel {
 

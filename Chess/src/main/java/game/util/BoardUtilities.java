@@ -3,13 +3,14 @@ package game.util;
 import game.board.Tile;
 import game.piece.*;
 import game.resource.BOARD_Configurations;
+
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 
 public class BoardUtilities {
 

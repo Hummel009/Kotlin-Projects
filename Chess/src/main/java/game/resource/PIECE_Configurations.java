@@ -2,6 +2,7 @@ package game.resource;
 
 import game.piece.Coordinate;
 import game.piece.Team;
+
 import java.util.HashMap;
 import java.util.Map;
 

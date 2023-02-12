@@ -2,8 +2,8 @@ package game.util;
 
 import game.board.Board;
 import game.board.Tile;
-import game.piece.Coordinate;
 import game.move.Move;
+import game.piece.Coordinate;
 import game.piece.PieceTypes;
 import game.piece.Team;
 import game.resource.PIECE_Configurations;

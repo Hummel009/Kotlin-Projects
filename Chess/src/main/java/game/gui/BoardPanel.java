@@ -1,13 +1,12 @@
 package game.gui;
 
-import side_client.Client;
 import game.board.Board;
 import game.piece.Coordinate;
-
-import javax.swing.JPanel;
 import game.resource.BOARD_Configurations;
+import side_client.Client;
 
-import java.awt.GridLayout;
+import javax.swing.*;
+import java.awt.*;
 
 
 

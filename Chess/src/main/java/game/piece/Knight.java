@@ -1,12 +1,13 @@
 package game.piece;
 
-import game.move.Move;
 import game.board.Board;
 import game.board.Tile;
-import java.util.ArrayList;
-import java.util.List;
+import game.move.Move;
 import game.resource.PIECE_Configurations;
 import game.util.BoardUtilities;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Knight extends Piece {
 

@@ -1,8 +1,8 @@
 package game.player;
 
-import game.move.Move;
 import game.board.Board;
-import game.piece.*;
+import game.move.Move;
+import game.piece.Team;
 
 
 

@@ -1,18 +1,18 @@
 package side_client;
 
-import msg.Message;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import msg.MovementMessage;
 import game.board.Board;
 import game.move.Move;
 import game.piece.PieceTypes;
 import game.piece.Team;
 import game.player.Player;
-import java.awt.Color;
-import javax.swing.JOptionPane;
+import msg.Message;
+import msg.MovementMessage;
+
+import javax.swing.*;
+import java.awt.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ClientListenThread extends Thread {
     public Client client;
