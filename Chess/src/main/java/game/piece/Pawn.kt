@@ -15,21 +15,19 @@ class Pawn(team: Team) : Piece(team, PieceTypes.PAWN) {
             if (!BoardUtilities.isValidCoordinate(currentCoord.plus(coord))) {
                 continue
             }
-            destinationTile = board.getTile(currentCoord.plus(coord))!!
+            destinationTile = board.getTile(currentCoord.plus(coord))
             if (!destinationTile.hasPiece()) {
-                currentTile?.let { Move(board, it, destinationTile) }?.let { possibleMoves.add(it) }
+                Move(board, currentTile, destinationTile).let { possibleMoves.add(it) }
             }
         }
-        if (currentTile != null) {
-            if (currentTile.coordinate.y == Pieces.getPawnStartPosY(team)) {
-                for (coord in Pieces.PAWN_MOVES[team]!!["Start"]!!) {
-                    if (!BoardUtilities.isValidCoordinate(currentCoord.plus(coord))) {
-                        continue
-                    }
-                    destinationTile = board.getTile(currentCoord.plus(coord))!!
-                    if (!destinationTile.hasPiece()) {
-                        Move(board, currentTile, destinationTile).let { possibleMoves.add(it) }
-                    }
+        if (currentTile.coordinate.y == Pieces.getPawnStartPosY(team)) {
+            for (coord in Pieces.PAWN_MOVES[team]!!["Start"]!!) {
+                if (!BoardUtilities.isValidCoordinate(currentCoord.plus(coord))) {
+                    continue
+                }
+                destinationTile = board.getTile(currentCoord.plus(coord))
+                if (!destinationTile.hasPiece()) {
+                    Move(board, currentTile, destinationTile).let { possibleMoves.add(it) }
                 }
             }
         }
@@ -37,10 +35,10 @@ class Pawn(team: Team) : Piece(team, PieceTypes.PAWN) {
             if (!BoardUtilities.isValidCoordinate(currentCoord.plus(coord))) {
                 continue
             }
-            destinationTile = board.getTile(currentCoord.plus(coord))!!
+            destinationTile = board.getTile(currentCoord.plus(coord))
             if (destinationTile.hasPiece()) {
-                if (destinationTile.piece?.team !== team) {
-                    currentTile?.let { Move(board, it, destinationTile) }?.let { possibleMoves.add(it) }
+                if (destinationTile.piece.team !== team) {
+                    Move(board, currentTile, destinationTile).let { possibleMoves.add(it) }
                 }
             }
         }

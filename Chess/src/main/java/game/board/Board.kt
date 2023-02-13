@@ -3,17 +3,18 @@ package game.board
 import game.Data
 import game.Player
 import game.piece.Coordinate
+import game.piece.PieceNull
 import game.piece.PieceTypes
 import game.piece.Team
 import game.util.BoardUtilities.createStandardBoardTiles
 import java.io.Serializable
 
 class Board : Serializable {
-    private val tiles: Array<Array<Tile?>>
+    private val tiles: Array<Array<Tile>>
     private val whitePlayer: Player = Player(Team.WHITE)
     private val blackPlayer: Player = Player(Team.BLACK)
     var currentPlayer: Player
-    var chosenTile: Tile? = null
+    var chosenTile: Tile = TileNull()
 
     init {
         currentPlayer = whitePlayer
@@ -22,25 +23,26 @@ class Board : Serializable {
 
     fun setChosenTile2(chosenTile: Tile) {
         if (!chosenTile.hasPiece()) {
-            this.chosenTile = null
+            this.chosenTile = TileNull()
         } else {
             this.chosenTile = chosenTile
         }
     }
 
     fun hasChosenTile(): Boolean {
-        return if (chosenTile == null) {
+        return if (chosenTile == TileNull()) {
             false
-        } else chosenTile!!.piece != null
+        } else chosenTile.piece !is PieceNull
     }
 
-    fun getTile(coordinate: Coordinate): Tile? {
+    fun getTile(coordinate: Coordinate): Tile {
         return getTile(coordinate.x, coordinate.y)
     }
 
-    fun getTile(x: Int, y: Int): Tile? {
+    fun getTile(x: Int, y: Int): Tile {
         if (x < 0 || x > 7 || y < 0 || y > 7) {
             println("Get Tile Index Bound Of Array")
+            return TileNull()
         }
         return tiles[x][y]
     }
@@ -48,11 +50,11 @@ class Board : Serializable {
     fun getCoordOfGivenTeamPiece(team: Team, pieceType: PieceTypes): Coordinate? {
         for (i in 0 until Data.ROW_COUNT) {
             for (j in 0 until Data.ROW_TILE_COUNT) {
-                if (!tiles[i][j]!!.hasPiece()) {
+                if (!tiles[i][j].hasPiece()) {
                     continue
                 }
-                if (tiles[i][j]!!.piece!!.team === team && tiles[i][j]!!.piece!!.type === pieceType) {
-                    return tiles[i][j]!!.coordinate
+                if (tiles[i][j].piece.team === team && tiles[i][j].piece.type === pieceType) {
+                    return tiles[i][j].coordinate
                 }
             }
         }

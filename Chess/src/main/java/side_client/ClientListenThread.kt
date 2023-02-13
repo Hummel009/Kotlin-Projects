@@ -34,30 +34,26 @@ class ClientListenThread(var client: Client) : Thread() {
                         val movement = msg.content as MovementMessage?
                         val board = client.game.chessBoard
                         val player = board.currentPlayer
-                        val move = board.getTile(movement!!.currentCoordinate)?.let {
-                            Move(
-                                board, it, board.getTile(
-                                    movement.destinationCoordinate
-                                )!!
+                        val move = Move(
+                            board, board.getTile(movement!!.currentCoordinate), board.getTile(
+                                movement.destinationCoordinate
                             )
-                        }
-                        if (move != null) {
-                            player.makeMove(board, move)
-                            client.game.boardPanel.updateBoardGUI(client.game.chessBoard)
-                            if (move.hasKilledPiece()) {
-                                if (move.killedPiece!!.type === PieceTypes.KING) {
-                                    val winnerTeam: Team = if (move.killedPiece!!.team === Team.BLACK) Team.WHITE else Team.BLACK
-                                    JOptionPane.showMessageDialog(null, "Winner: $winnerTeam")
-                                    val message = Message(MessageTypes.END)
-                                    message.content = null
-                                    client.send(message)
-                                    break
-                                }
+                        )
+                        player.makeMove(board, move)
+                        client.game.boardPanel.updateBoardGUI(client.game.chessBoard)
+                        if (move.hasKilledPiece()) {
+                            if (move.killedPiece.type === PieceTypes.KING) {
+                                val winnerTeam: Team = if (move.killedPiece.team === Team.BLACK) Team.WHITE else Team.BLACK
+                                JOptionPane.showMessageDialog(null, "Winner: $winnerTeam")
+                                val message = Message(MessageTypes.END)
+                                message.content = null
+                                client.send(message)
+                                break
                             }
-                            board.changeCurrentPlayer()
-                            client.game.bottomGameMenu.turnLBL.text = "Your Turn"
-                            client.game.bottomGameMenu.turnLBL.foreground = Color.GREEN
                         }
+                        board.changeCurrentPlayer()
+                        client.game.bottomGameMenu.turnLBL.text = "Your Turn"
+                        client.game.bottomGameMenu.turnLBL.foreground = Color.GREEN
                     }
 
                     MessageTypes.CHECK -> {
