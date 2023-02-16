@@ -16,12 +16,12 @@ class Queen(team: Team) : Piece(team, PieceTypes.QUEEN) {
             destinationCoordinate = currentCoord
             while (BoardUtilities.isValidCoordinate(destinationCoordinate.plus(coord))) {
                 destinationCoordinate = destinationCoordinate.plus(coord)
-                destinationTile = board.getTile(destinationCoordinate)!!
+                destinationTile = board.getTile(destinationCoordinate)
                 if (!destinationTile.hasPiece()) {
-                    currentTile?.let { Move(board, it, destinationTile) }?.let { possibleMoves.add(it) }
+                    Move(board, currentTile, destinationTile).let { possibleMoves.add(it) }
                 } else {
-                    if (destinationTile.piece?.team !== team) {
-                        currentTile?.let { Move(board, it, destinationTile) }?.let { possibleMoves.add(it) }
+                    if (destinationTile.piece.team !== team) {
+                        Move(board, currentTile, destinationTile).let { possibleMoves.add(it) }
                     }
                     break
                 }

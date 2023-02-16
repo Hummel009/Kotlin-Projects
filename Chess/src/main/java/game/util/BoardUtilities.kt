@@ -2,6 +2,7 @@ package game.util
 
 import game.Data
 import game.board.Tile
+import game.board.TileNull
 import game.piece.*
 import java.io.File
 import java.io.IOException
@@ -52,8 +53,10 @@ object BoardUtilities {
     }
 
     @JvmStatic
-    fun createStandardBoardTiles(): Array<Array<Tile?>> {
-        val tiles = Array(Data.ROW_COUNT) { arrayOfNulls<Tile>(Data.ROW_TILE_COUNT) }
+    fun createStandardBoardTiles(): Array<Array<Tile>> {
+        val tiles: Array<Array<Tile>> = Array(Data.ROW_COUNT) {
+            Array(Data.ROW_TILE_COUNT) { TileNull() }
+        }
         tiles[0][0] = Tile(Coordinate(0, 0), Rook(Team.BLACK))
         tiles[1][0] = Tile(Coordinate(1, 0), Knight(Team.BLACK))
         tiles[2][0] = Tile(Coordinate(2, 0), Bishop(Team.BLACK))
@@ -68,7 +71,7 @@ object BoardUtilities {
         }
         for (i in 2..5) {
             for (j in 0..7) {
-                tiles[j][i] = Tile(Coordinate(j, i), null)
+                tiles[j][i] = Tile(Coordinate(j, i), PieceNull())
             }
         }
         tiles[0][7] = Tile(Coordinate(0, 7), Rook(Team.WHITE))

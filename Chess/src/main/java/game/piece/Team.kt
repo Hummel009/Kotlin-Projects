@@ -13,7 +13,7 @@ enum class Team : Serializable {
             return "Black"
         }
     },
-    NOCOLOR {
+    NO_COLOR {
         override fun toString(): String {
             return "No Color"
         }

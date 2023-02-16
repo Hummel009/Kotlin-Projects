@@ -1,5 +1,5 @@
 package game.piece
 
 enum class PieceTypes {
-    QUEEN, KING, ROOK, BISHOP, KNIGHT, PAWN
+    QUEEN, KING, ROOK, BISHOP, KNIGHT, PAWN, NULL
 }

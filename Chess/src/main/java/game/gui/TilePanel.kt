@@ -3,7 +3,9 @@ package game.gui
 import game.Data
 import game.Move
 import game.board.Board
+import game.board.TileNull
 import game.piece.Coordinate
+import game.piece.PieceNull
 import game.piece.PieceTypes
 import game.piece.Team
 import game.util.BoardUtilities.getImageOfTeamPiece
@@ -38,52 +40,48 @@ class TilePanel(boardPanel: BoardPanel, var coordinate: Coordinate, chessBoard: 
                     return
                 }
                 if (!chessBoard.hasChosenTile()) {
-                    if (chessBoard.getTile(coordinate)?.hasPiece() == true) {
-                        if (chessBoard.currentPlayer.team !== chessBoard.getTile(coordinate)!!.piece?.team) {
+                    if (chessBoard.getTile(coordinate).hasPiece()) {
+                        if (chessBoard.currentPlayer.team !== chessBoard.getTile(coordinate).piece.team) {
                             return
                         }
                     }
-                    chessBoard.getTile(coordinate)?.let { chessBoard.setChosenTile2(it) }
+                    chessBoard.getTile(coordinate).let { chessBoard.setChosenTile2(it) }
                 } else {
                     val destinationTile = chessBoard.getTile(coordinate)
-                    if (destinationTile?.let { isValidMove(chessBoard, it) } == true) {
-                        val move = chessBoard.chosenTile?.let { Move(chessBoard, it, destinationTile) }
-                        if (move != null) {
-                            chessBoard.currentPlayer.makeMove(chessBoard, move)
-                            if (move.hasKilledPiece()) {
-                                client.game.bottomGameMenu.killedPiecesListModel.addElement(move.killedPiece.toString())
-                            }
-                            val msg = Message(Message.MessageTypes.MOVE)
-                            val movement = MovementMessage()
-                            movement.currentCoordinate = move.currentTile.coordinate
-                            movement.destinationCoordinate = move.destinationTile.coordinate
-                            if (move.killedPiece != null) {
-                                movement.isPieceKilled = true
-                            }
-                            msg.content = movement
-                            client.send(msg)
-                            chessBoard.changeCurrentPlayer()
-                            client.game.bottomGameMenu.turnLBL.text = "Enemy Turn"
-                            client.game.bottomGameMenu.turnLBL.foreground = Color.RED
-                            if (move.hasKilledPiece()) {
-                                if (move.killedPiece!!.type === PieceTypes.KING) {
-                                    val winnerTeam: Team = if (move.killedPiece!!.team === Team.BLACK) Team.WHITE else Team.BLACK
-                                    JOptionPane.showMessageDialog(null, "Winner: $winnerTeam")
-                                    val message = Message(Message.MessageTypes.END)
-                                    message.content = null
-                                    client.send(message)
-                                }
+                    if (isValidMove(chessBoard, destinationTile)) {
+                        val move = Move(chessBoard, chessBoard.chosenTile, destinationTile)
+                        chessBoard.currentPlayer.makeMove(chessBoard, move)
+                        if (move.hasKilledPiece()) {
+                            client.game.bottomGameMenu.killedPiecesListModel.addElement(move.killedPiece.toString())
+                        }
+                        val msg = Message(Message.MessageTypes.MOVE)
+                        val movement = MovementMessage()
+                        movement.currentCoordinate = move.currentTile.coordinate
+                        movement.destinationCoordinate = move.destinationTile.coordinate
+                        if (move.killedPiece !is PieceNull) {
+                            movement.isPieceKilled = true
+                        }
+                        msg.content = movement
+                        client.send(msg)
+                        chessBoard.changeCurrentPlayer()
+                        client.game.bottomGameMenu.turnLBL.text = "Enemy Turn"
+                        client.game.bottomGameMenu.turnLBL.foreground = Color.RED
+                        if (move.hasKilledPiece()) {
+                            if (move.killedPiece.type === PieceTypes.KING) {
+                                val winnerTeam: Team = if (move.killedPiece.team === Team.BLACK) Team.WHITE else Team.BLACK
+                                JOptionPane.showMessageDialog(null, "Winner: $winnerTeam")
+                                val message = Message(Message.MessageTypes.END)
+                                message.content = null
+                                client.send(message)
                             }
                         }
                     } else {
-                        if (destinationTile != null) {
-                            if (destinationTile.hasPiece()) {
-                                if (chessBoard.currentPlayer.team !== chessBoard.getTile(coordinate)!!.piece?.team) {
-                                    return
-                                }
+                        if (destinationTile.hasPiece()) {
+                            if (chessBoard.currentPlayer.team !== chessBoard.getTile(coordinate).piece.team) {
+                                return
                             }
-                            chessBoard.setChosenTile2(destinationTile)
                         }
+                        chessBoard.setChosenTile2(destinationTile)
                     }
                     if (controlCheckState(chessBoard, Team.BLACK)) {
                         JOptionPane.showMessageDialog(null, "Check state for team : " + Team.BLACK)
@@ -110,12 +108,12 @@ class TilePanel(boardPanel: BoardPanel, var coordinate: Coordinate, chessBoard: 
 
     fun assignTilePieceIcon(board: Board) {
         val thisTile = board.getTile(coordinate)
-        if (thisTile == null) {
+        if (thisTile is TileNull) {
             println("Tile is null")
             return
         }
         if (thisTile.hasPiece()) {
-            pieceIcon.icon = thisTile.piece?.let { getImageOfTeamPiece(it.team, thisTile.piece?.type) }
+            pieceIcon.icon = getImageOfTeamPiece(thisTile.piece.team, thisTile.piece.type)
             pieceIcon.validate()
         } else if (!thisTile.hasPiece()) {
             pieceIcon.icon = null
@@ -134,7 +132,7 @@ class TilePanel(boardPanel: BoardPanel, var coordinate: Coordinate, chessBoard: 
             background = Data.creamColor
         }
         if (board.hasChosenTile()) {
-            if (coordinate == board.chosenTile?.coordinate ) {
+            if (coordinate == board.chosenTile.coordinate) {
                 background = Color.GREEN
             }
         }

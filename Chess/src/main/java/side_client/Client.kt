@@ -17,7 +17,7 @@ class Client(@JvmField var game: Table) {
     private var listenThread: ClientListenThread? = null
     private var serverPort = 0
     var isPaired = false
-    var team = Team.NOCOLOR
+    var team = Team.NO_COLOR
 
     fun connect(serverIP: String, port: Int) {
         try {
