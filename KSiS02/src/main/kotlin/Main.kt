@@ -10,7 +10,7 @@ const val SEND_INTERVAL_MS = 1000
 const val REPORT_INTERVAL_MS = 5000
 
 fun main() {
-    val serverAddress = InetAddress.getLocalHost()
+    val serverAddress = InetAddress.getByName("192.168.100.11")
     val tcpSocket = Socket(serverAddress, SERVER_PORT)
     val udpSocket = DatagramSocket()
 
