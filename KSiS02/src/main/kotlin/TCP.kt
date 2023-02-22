@@ -26,11 +26,13 @@ fun main() {
 
         // Получение результата
         val result = inputStream.read()
-        println("Результат: $result")
+        if (result == 0) {
+            println("Обмен прошёл успешно")
+        }
     }
 
     // Вывод результатов
-    val speed = dataSize / (time / 1000.0)  // скорость в байтах/сек
-    println("Скорость передачи: $speed байт/сек")
+    val speed = dataSize / (time / 1000000.0)
+    println("Скорость передачи: $speed КБ/с")
     tcpSocket.close()
 }
