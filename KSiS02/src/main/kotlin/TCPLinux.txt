@@ -1,8 +1,7 @@
-import java.io.*
 import java.net.*
 
 fun main() {
-    val serverPort = 8080
+    val serverPort = 6061
     val serverSocket = ServerSocket(serverPort)
     println("Сервер запущен и ожидает подключений на порту $serverPort")
 
