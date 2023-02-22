@@ -33,7 +33,7 @@ fun main() {
     }
 
     // Вывод результатов
-    val speed = dataSize / (time / 1000000.0)
-    println("Скорость передачи: $speed КБ/с")
+    val speed = dataSize / (time / 1000.0)
+    println("Скорость передачи: $speed байт/с")
     udpSocket.close()
 }

@@ -6,7 +6,7 @@ import kotlin.system.measureTimeMillis
 fun main() {
     // Установка соединения с сервером
     val serverAddress = InetAddress.getByName("192.168.43.177")
-    val serverPort = 8080
+    val serverPort = 6061
     val tcpSocket = Socket(serverAddress, serverPort)
 
     // Генерация случайных данных
@@ -32,7 +32,7 @@ fun main() {
     }
 
     // Вывод результатов
-    val speed = dataSize / (time / 1000000.0)
-    println("Скорость передачи: $speed КБ/с")
+    val speed = dataSize / (time / 1000.0)
+    println("Скорость передачи: $speed байт/с")
     tcpSocket.close()
 }
