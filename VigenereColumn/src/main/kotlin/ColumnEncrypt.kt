@@ -3,8 +3,8 @@ package main.java.hummel
 import java.util.*
 
 fun main() {
-    val key = FileEncryptionGUI.preprocess("АМОГУС")
-    val msg = FileEncryptionGUI.preprocess("ИДИ ДОМОЙ СКОРЕЕ")
+    val key = FileEncryptionGUI.preprocess("ЯРМОЛИК")
+    val msg = FileEncryptionGUI.preprocess("ИНФОРМАЦИОННАЯ ТЕОРИЯ")
     val ciphertext = ColumnEncrypt.encryptColumn(msg, key, true)
     println(ciphertext)
 }
@@ -14,7 +14,7 @@ object ColumnEncrypt {
         ColumnSharedMethods.sort(square, 1)
         val sb = StringBuilder()
         for (j in key.indices) {
-            for (i in 3 until msg.length) {
+            for (i in 3 until msg.length + 3) {
                 if (square[i][j] != " ") {
                     sb.append(square[i][j])
                 }
@@ -52,6 +52,9 @@ object ColumnEncrypt {
                 if (savedPos >= message.length) {
                     break@loop
                 }
+                if (currentRule == keyword.length + 1) {
+                    currentRule = 1
+                }
                 if (square[1][i] == currentRule.toString()) {
                     currentLine++
                     currentRule++
@@ -62,7 +65,7 @@ object ColumnEncrypt {
     }
 
     fun encryptColumn(msg: String, key: String, show: Boolean): String {
-        val square = Array(msg.length) { Array(key.length) { " " } }
+        val square = Array(msg.length + 3) { Array(key.length) { " " } }
         fillEncryptTable(square, key, msg)
         if (show) {
             ColumnSharedMethods.show(square)

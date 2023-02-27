@@ -3,9 +3,8 @@ package main.java.hummel
 import java.util.*
 
 fun main() {
-    val key = FileEncryptionGUI.preprocess("АМОГУС")
-    val msg = FileEncryptionGUI.preprocess("ИДМЙООЕИОСРДКЕ")
-
+    val key = FileEncryptionGUI.preprocess("ЯРМОЛИК")
+    val msg = FileEncryptionGUI.preprocess("МНАРНРФИЕОООНЦТЯИАЯИ")
     val plaintext = ColumnDecrypt.decryptColumn(msg, key, true)
     println(plaintext)
 }
@@ -13,7 +12,7 @@ fun main() {
 object ColumnDecrypt {
     private fun scanDecryptTable(square: Array<Array<String>>, key: String, msg: String): String {
         val sb = StringBuilder()
-        for (i in 3 until msg.length) {
+        for (i in 3 until msg.length + 3) {
             for (j in key.indices) {
                 if (square[i][j] != " ") {
                     sb.append(square[i][j])
@@ -51,6 +50,9 @@ object ColumnDecrypt {
                 if (counter > message.length) {
                     break@loop
                 }
+                if (currentRule == keyword.length + 1) {
+                    currentRule = 1
+                }
                 square[currentLine][i] = "*"
                 counter++
                 if (square[1][i] == currentRule.toString()) {
@@ -64,7 +66,7 @@ object ColumnDecrypt {
 
         var count = 0
         for (j in keyword.indices) {
-            for (i in 3 until message.length) {
+            for (i in 3 until message.length + 3) {
                 if (square[i][j] == "*") {
                     square[i][j] = message[count].toString()
                     count++
@@ -75,7 +77,7 @@ object ColumnDecrypt {
     }
 
     fun decryptColumn(msg: String, key: String, show: Boolean): String {
-        val square = Array(msg.length) { Array(key.length) { " " } }
+        val square = Array(msg.length + 3) { Array(key.length) { " " } }
         fillDecryptTable(square, key, msg)
         if (show) {
             ColumnSharedMethods.show(square)
