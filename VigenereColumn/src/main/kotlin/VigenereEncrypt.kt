@@ -14,7 +14,6 @@ object VigenereEncrypt {
     fun encryptVigenere(msg: String, key: String): String {
         val square = VigenereSharedMethods.generateVigenereSquare()
         var newKey = key + msg
-        // удаляем символы с конца
         newKey = newKey.substring(0, newKey.length - key.length)
         var encryptMsg = ""
 

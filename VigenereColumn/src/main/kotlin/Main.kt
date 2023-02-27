@@ -4,6 +4,7 @@ import java.awt.BorderLayout
 import java.awt.EventQueue
 import java.awt.GridLayout
 import java.io.*
+import java.nio.charset.Charset
 import java.util.*
 import javax.swing.*
 import javax.swing.border.EmptyBorder
@@ -42,7 +43,7 @@ class FileEncryptionGUI : JFrame() {
     }
 
     private fun encryptFile() {
-        val keyword = textFieldKeyword.text
+        val keyword = textFieldKeyword.text.replace(" ", "").uppercase(Locale.getDefault())
         val outputPath = textFieldOutputPath.text
         if (inputFile == null) {
             JOptionPane.showMessageDialog(this, "Please select a file to encrypt", "Error", JOptionPane.ERROR_MESSAGE)
@@ -56,7 +57,7 @@ class FileEncryptionGUI : JFrame() {
             JOptionPane.showMessageDialog(this, "Please select an output path", "Error", JOptionPane.ERROR_MESSAGE)
             return
         }
-        val inputText = readFile(inputFile!!).uppercase(Locale.getDefault())
+        val inputText = readFile(inputFile!!).replace(" ", "").uppercase(Locale.getDefault())
         var outputText = ""
         if (algorithm == "Column Method") {
             outputText = ColumnEncrypt.encryptColumn(inputText, keyword, false)
@@ -68,7 +69,7 @@ class FileEncryptionGUI : JFrame() {
     }
 
     private fun decryptFile() {
-        val keyword = textFieldKeyword.text
+        val keyword = textFieldKeyword.text.replace(" ", "").uppercase(Locale.getDefault())
         val outputPath = textFieldOutputPath.text
         if (inputFile == null) {
             JOptionPane.showMessageDialog(this, "Please select a file to decrypt", "Error", JOptionPane.ERROR_MESSAGE)
@@ -82,7 +83,7 @@ class FileEncryptionGUI : JFrame() {
             JOptionPane.showMessageDialog(this, "Please select an output path", "Error", JOptionPane.ERROR_MESSAGE)
             return
         }
-        val inputText = readFile(inputFile!!).uppercase(Locale.getDefault())
+        val inputText = readFile(inputFile!!).replace(" ", "").uppercase(Locale.getDefault())
         var outputText = ""
         if (algorithm == "Column Method") {
             outputText = ColumnDecrypt.decryptColumn(inputText, keyword, false)
@@ -152,18 +153,13 @@ class FileEncryptionGUI : JFrame() {
 
 
     private fun readFile(file: File): String {
+        val reader = file.bufferedReader(Charset.forName("UTF-8"))
         val sb = StringBuilder()
-        try {
-            val scanner = Scanner(file)
-            while (scanner.hasNextLine()) {
-                var line = scanner.nextLine()
-                line = line.replace("[^а-яА-Я]".toRegex(), "")
-                sb.append(line)
-            }
-            scanner.close()
-        } catch (e: FileNotFoundException) {
-            e.printStackTrace()
+        var line: String?
+        while (reader.readLine().also { line = it } != null) {
+            sb.append(line)
         }
+        reader.close()
         return sb.toString()
     }
 
