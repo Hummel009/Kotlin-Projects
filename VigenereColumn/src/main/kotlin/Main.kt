@@ -3,9 +3,8 @@ package main.java.hummel
 import java.awt.BorderLayout
 import java.awt.EventQueue
 import java.awt.GridLayout
-import java.io.*
+import java.io.File
 import java.nio.charset.Charset
-import java.util.*
 import javax.swing.*
 import javax.swing.border.EmptyBorder
 
@@ -43,7 +42,7 @@ class FileEncryptionGUI : JFrame() {
     }
 
     private fun encryptFile() {
-        val keyword = textFieldKeyword.text.replace(" ", "").uppercase(Locale.getDefault())
+        val keyword = preprocess(textFieldKeyword.text)
         val outputPath = textFieldOutputPath.text
         if (inputFile == null) {
             JOptionPane.showMessageDialog(this, "Please select a file to encrypt", "Error", JOptionPane.ERROR_MESSAGE)
@@ -57,19 +56,19 @@ class FileEncryptionGUI : JFrame() {
             JOptionPane.showMessageDialog(this, "Please select an output path", "Error", JOptionPane.ERROR_MESSAGE)
             return
         }
-        val inputText = readFile(inputFile!!).replace(" ", "").uppercase(Locale.getDefault())
+        val inputText = preprocess(readFile(inputFile!!))
         var outputText = ""
         if (algorithm == "Column Method") {
             outputText = ColumnEncrypt.encryptColumn(inputText, keyword, false)
         } else if (algorithm == "Vigenere") {
             outputText = VigenereEncrypt.encryptVigenere(inputText, keyword)
         }
-        writeFile(outputFile, outputText)
+        writeFile(outputFile!!, outputText)
         JOptionPane.showMessageDialog(this, "Encryption complete", "Message", JOptionPane.INFORMATION_MESSAGE)
     }
 
     private fun decryptFile() {
-        val keyword = textFieldKeyword.text.replace(" ", "").uppercase(Locale.getDefault())
+        val keyword = preprocess(textFieldKeyword.text)
         val outputPath = textFieldOutputPath.text
         if (inputFile == null) {
             JOptionPane.showMessageDialog(this, "Please select a file to decrypt", "Error", JOptionPane.ERROR_MESSAGE)
@@ -83,14 +82,14 @@ class FileEncryptionGUI : JFrame() {
             JOptionPane.showMessageDialog(this, "Please select an output path", "Error", JOptionPane.ERROR_MESSAGE)
             return
         }
-        val inputText = readFile(inputFile!!).replace(" ", "").uppercase(Locale.getDefault())
+        val inputText = preprocess(readFile(inputFile!!))
         var outputText = ""
         if (algorithm == "Column Method") {
             outputText = ColumnDecrypt.decryptColumn(inputText, keyword, false)
         } else if (algorithm == "Vigenere") {
             outputText = VigenereDecrypt.decryptVigenere(inputText, keyword)
         }
-        writeFile(outputFile, outputText)
+        writeFile(outputFile!!, outputText)
         JOptionPane.showMessageDialog(this, "Decryption complete", "Message", JOptionPane.INFORMATION_MESSAGE)
     }
 
@@ -150,8 +149,6 @@ class FileEncryptionGUI : JFrame() {
         setLocationRelativeTo(null)
     }
 
-
-
     private fun readFile(file: File): String {
         val reader = file.bufferedReader(Charset.forName("UTF-8"))
         val sb = StringBuilder()
@@ -163,14 +160,10 @@ class FileEncryptionGUI : JFrame() {
         return sb.toString()
     }
 
-    private fun writeFile(file: File?, text: String) {
-        try {
-            val writer = BufferedWriter(FileWriter(file!!))
-            writer.write(text)
-            writer.close()
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
+    private fun writeFile(file: File, text: String) {
+        val writer = file.outputStream().writer(Charset.forName("UTF-8")).buffered()
+        writer.write(text)
+        writer.close()
     }
 
     companion object {
@@ -187,6 +180,10 @@ class FileEncryptionGUI : JFrame() {
                     e.printStackTrace()
                 }
             }
+        }
+
+        fun preprocess(str: String): String {
+            return str.filter { it in ALPHABET }
         }
     }
 }

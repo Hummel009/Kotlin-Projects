@@ -3,9 +3,8 @@ package main.java.hummel
 import java.util.*
 
 fun main() {
-    val key = "АМОГУС".replace(" ", "").uppercase(Locale.getDefault())
-    val msg = "ИДИДОМОЙСКОРЕЕ".replace(" ", "").uppercase(Locale.getDefault())
-
+    val key = FileEncryptionGUI.preprocess("АМОГУС")
+    val msg = FileEncryptionGUI.preprocess("ИДИ ДОМОЙ СКОРЕЕ")
     val ciphertext = ColumnEncrypt.encryptColumn(msg, key, true)
     println(ciphertext)
 }

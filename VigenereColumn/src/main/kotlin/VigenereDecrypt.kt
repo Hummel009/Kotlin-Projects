@@ -1,10 +1,8 @@
 package main.java.hummel
 
-import java.util.*
-
 fun main() {
-    val key = "АМОГУС".replace(" ", "").uppercase(Locale.getDefault())
-    val msg = "ИРЧЖВЮЧНЪОЭЭУО".replace(" ", "").uppercase(Locale.getDefault())
+    val key = FileEncryptionGUI.preprocess("АМОГУС")
+    val msg = FileEncryptionGUI.preprocess("ИРЧЖВЮЧНЪОЭЭУО")
 
     val plaintext = VigenereDecrypt.decryptVigenere(msg, key)
     println(plaintext)
