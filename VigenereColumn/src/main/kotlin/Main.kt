@@ -56,15 +56,13 @@ class FileEncryptionGUI : JFrame() {
             JOptionPane.showMessageDialog(this, "Please select an output path", "Error", JOptionPane.ERROR_MESSAGE)
             return
         }
-        val inputText = readFile(inputFile!!)
-        println("INPUT $inputText")
+        val inputText = readFile(inputFile!!).uppercase(Locale.getDefault())
         var outputText = ""
         if (algorithm == "Column Method") {
-            outputText = encryptColumnMethod(inputText, keyword)
+            outputText = ColumnEncrypt.encryptColumn(inputText, keyword, false)
         } else if (algorithm == "Vigenere") {
-            outputText = encryptVigenere(inputText, keyword)
+            outputText = VigenereEncrypt.encryptVigenere(inputText, keyword)
         }
-        println("OUTPUT $outputText")
         writeFile(outputFile, outputText)
         JOptionPane.showMessageDialog(this, "Encryption complete", "Message", JOptionPane.INFORMATION_MESSAGE)
     }
@@ -84,15 +82,13 @@ class FileEncryptionGUI : JFrame() {
             JOptionPane.showMessageDialog(this, "Please select an output path", "Error", JOptionPane.ERROR_MESSAGE)
             return
         }
-        val inputText = readFile(inputFile!!)
-        println("INPUT $inputText")
+        val inputText = readFile(inputFile!!).uppercase(Locale.getDefault())
         var outputText = ""
         if (algorithm == "Column Method") {
-            outputText = decryptColumnMethod(inputText, keyword)
+            outputText = ColumnDecrypt.decryptColumn(inputText, keyword, false)
         } else if (algorithm == "Vigenere") {
-            outputText = decryptVigenere(inputText, keyword)
+            outputText = VigenereDecrypt.decryptVigenere(inputText, keyword)
         }
-        println("OUTPUT $outputText")
         writeFile(outputFile, outputText)
         JOptionPane.showMessageDialog(this, "Decryption complete", "Message", JOptionPane.INFORMATION_MESSAGE)
     }
@@ -153,7 +149,37 @@ class FileEncryptionGUI : JFrame() {
         setLocationRelativeTo(null)
     }
 
+
+
+    private fun readFile(file: File): String {
+        val sb = StringBuilder()
+        try {
+            val scanner = Scanner(file)
+            while (scanner.hasNextLine()) {
+                var line = scanner.nextLine()
+                line = line.replace("[^а-яА-Я]".toRegex(), "")
+                sb.append(line)
+            }
+            scanner.close()
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+        }
+        return sb.toString()
+    }
+
+    private fun writeFile(file: File?, text: String) {
+        try {
+            val writer = BufferedWriter(FileWriter(file!!))
+            writer.write(text)
+            writer.close()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
+    }
+
     companion object {
+        const val ALPHABET = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
+
         @JvmStatic
         fun main(args: Array<String>) {
             EventQueue.invokeLater {
@@ -165,136 +191,6 @@ class FileEncryptionGUI : JFrame() {
                     e.printStackTrace()
                 }
             }
-        }
-
-        private fun readFile(file: File): String {
-            val sb = StringBuilder()
-            try {
-                val scanner = Scanner(file)
-                while (scanner.hasNextLine()) {
-                    var line = scanner.nextLine()
-                    line = line.replace("[^а-яА-Я]".toRegex(), "")
-                    sb.append(line)
-                }
-                scanner.close()
-            } catch (e: FileNotFoundException) {
-                e.printStackTrace()
-            }
-            return sb.toString()
-        }
-
-        private fun writeFile(file: File?, text: String) {
-            try {
-                val writer = BufferedWriter(FileWriter(file!!))
-                writer.write(text)
-                writer.close()
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-        }
-
-        private const val ALPHABET = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя"
-        fun encryptColumnMethod(input: String, key: String): String {
-            val output = StringBuilder()
-            for (i in input.indices) {
-                val c = input[i]
-                val index = ALPHABET.indexOf(c.lowercaseChar())
-                if (index != -1) {
-                    val keyIndex = i % key.length
-                    val keyChar = key[keyIndex]
-                    val keyCharIndex = ALPHABET.indexOf(keyChar.lowercaseChar())
-                    var newIndex = (index + keyCharIndex) % ALPHABET.length
-                    if (newIndex < 0) {
-                        newIndex += ALPHABET.length
-                    }
-                    val newChar = ALPHABET[newIndex]
-                    if (Character.isUpperCase(c)) {
-                        output.append(newChar.uppercaseChar())
-                    } else {
-                        output.append(newChar)
-                    }
-                } else {
-                    output.append(c)
-                }
-            }
-            return output.toString()
-        }
-
-        fun decryptColumnMethod(input: String, key: String): String {
-            val output = StringBuilder()
-            for (i in input.indices) {
-                val c = input[i]
-                val keyIndex = i % key.length
-                val keyChar = key[keyIndex]
-                val keyCharIndex = ALPHABET.indexOf(keyChar.lowercaseChar())
-                val index = ALPHABET.indexOf(c.lowercaseChar())
-                if (index != -1) {
-                    var newIndex = (index - keyCharIndex + ALPHABET.length) % ALPHABET.length
-                    if (newIndex < 0) {
-                        newIndex += ALPHABET.length
-                    }
-                    val newChar = ALPHABET[newIndex]
-                    if (Character.isUpperCase(c)) {
-                        output.append(newChar.uppercaseChar())
-                    } else {
-                        output.append(newChar)
-                    }
-                } else {
-                    output.append(c)
-                }
-            }
-            return output.toString()
-        }
-
-        private const val ALPHABET_SIZE = 33
-        fun encryptVigenere(input: String, key: String): String {
-            val keyIndices = IntArray(input.length)
-            for (i in input.indices) {
-                keyIndices[i] = key[i % key.length].code - 'а'.code
-            }
-            val result = StringBuilder()
-            var i = 0
-            var j = 0
-            while (i < input.length) {
-                val c = input[i]
-                if (Character.isLetter(c)) {
-                    val cIndex = c.code - 'а'.code
-                    val kIndex = keyIndices[j]
-                    val encryptedIndex = (cIndex + kIndex) % ALPHABET_SIZE
-                    val encryptedChar = (encryptedIndex + 'а'.code).toChar()
-                    result.append(encryptedChar)
-                    j = (j + 1) % keyIndices.size
-                } else {
-                    result.append(c)
-                }
-                i++
-            }
-            return result.toString()
-        }
-
-        fun decryptVigenere(input: String, key: String): String {
-            val keyIndices = IntArray(input.length)
-            for (i in input.indices) {
-                keyIndices[i] = key[i % key.length].code - 'а'.code
-            }
-            val result = StringBuilder()
-            var i = 0
-            var j = 0
-            while (i < input.length) {
-                val c = input[i]
-                if (Character.isLetter(c)) {
-                    val cIndex = c.code - 'а'.code
-                    val kIndex = keyIndices[j]
-                    val decryptedIndex = (cIndex - kIndex + ALPHABET_SIZE) % ALPHABET_SIZE
-                    val decryptedChar = (decryptedIndex + 'а'.code).toChar()
-                    result.append(decryptedChar)
-                    j = (j + 1) % keyIndices.size
-                } else {
-                    result.append(c)
-                }
-                i++
-            }
-            return result.toString()
         }
     }
 }
