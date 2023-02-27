@@ -4,7 +4,8 @@ import java.awt.BorderLayout
 import java.awt.EventQueue
 import java.awt.GridLayout
 import java.io.File
-import java.nio.charset.Charset
+import java.nio.charset.StandardCharsets
+import java.util.*
 import javax.swing.*
 import javax.swing.border.EmptyBorder
 
@@ -42,13 +43,14 @@ class FileEncryptionGUI : JFrame() {
     }
 
     private fun encryptFile() {
-        val keyword = preprocess(textFieldKeyword.text)
+        val keyword = textFieldKeyword.text
+        val key = preprocess(keyword)
         val outputPath = textFieldOutputPath.text
         if (inputFile == null) {
             JOptionPane.showMessageDialog(this, "Please select a file to encrypt", "Error", JOptionPane.ERROR_MESSAGE)
             return
         }
-        if (keyword.isEmpty()) {
+        if (key.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter a keyword and key", "Error", JOptionPane.ERROR_MESSAGE)
             return
         }
@@ -56,25 +58,27 @@ class FileEncryptionGUI : JFrame() {
             JOptionPane.showMessageDialog(this, "Please select an output path", "Error", JOptionPane.ERROR_MESSAGE)
             return
         }
-        val inputText = preprocess(readFile(inputFile!!))
+        val inputText = readFile(inputFile!!)
+        val msg = preprocess(inputText)
         var outputText = ""
         if (algorithm == "Column Method") {
-            outputText = ColumnEncrypt.encryptColumn(inputText, keyword, false)
+            outputText = ColumnEncrypt.encryptColumn(msg, key, false)
         } else if (algorithm == "Vigenere") {
-            outputText = VigenereEncrypt.encryptVigenere(inputText, keyword)
+            outputText = VigenereEncrypt.encryptVigenere(msg, key)
         }
         writeFile(outputFile!!, outputText)
         JOptionPane.showMessageDialog(this, "Encryption complete", "Message", JOptionPane.INFORMATION_MESSAGE)
     }
 
     private fun decryptFile() {
-        val keyword = preprocess(textFieldKeyword.text)
+        val keyword = textFieldKeyword.text
+        val key = preprocess(keyword)
         val outputPath = textFieldOutputPath.text
         if (inputFile == null) {
             JOptionPane.showMessageDialog(this, "Please select a file to decrypt", "Error", JOptionPane.ERROR_MESSAGE)
             return
         }
-        if (keyword.isEmpty()) {
+        if (key.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter a keyword and key", "Error", JOptionPane.ERROR_MESSAGE)
             return
         }
@@ -82,12 +86,13 @@ class FileEncryptionGUI : JFrame() {
             JOptionPane.showMessageDialog(this, "Please select an output path", "Error", JOptionPane.ERROR_MESSAGE)
             return
         }
-        val inputText = preprocess(readFile(inputFile!!))
+        val inputText = readFile(inputFile!!)
+        val msg = preprocess(inputText)
         var outputText = ""
         if (algorithm == "Column Method") {
-            outputText = ColumnDecrypt.decryptColumn(inputText, keyword, false)
+            outputText = ColumnDecrypt.decryptColumn(msg, key, false)
         } else if (algorithm == "Vigenere") {
-            outputText = VigenereDecrypt.decryptVigenere(inputText, keyword)
+            outputText = VigenereDecrypt.decryptVigenere(msg, key)
         }
         writeFile(outputFile!!, outputText)
         JOptionPane.showMessageDialog(this, "Decryption complete", "Message", JOptionPane.INFORMATION_MESSAGE)
@@ -150,7 +155,7 @@ class FileEncryptionGUI : JFrame() {
     }
 
     private fun readFile(file: File): String {
-        val reader = file.bufferedReader(Charset.forName("UTF-8"))
+        val reader = file.bufferedReader(StandardCharsets.UTF_8)
         val sb = StringBuilder()
         var line: String?
         while (reader.readLine().also { line = it } != null) {
@@ -161,7 +166,7 @@ class FileEncryptionGUI : JFrame() {
     }
 
     private fun writeFile(file: File, text: String) {
-        val writer = file.outputStream().writer(Charset.forName("UTF-8")).buffered()
+        val writer = file.bufferedWriter(StandardCharsets.UTF_8)
         writer.write(text)
         writer.close()
     }
@@ -183,7 +188,8 @@ class FileEncryptionGUI : JFrame() {
         }
 
         fun preprocess(str: String): String {
-            return str.filter { it in ALPHABET }
+            val upper = str.uppercase(Locale.getDefault())
+            return upper.filter { it in ALPHABET }
         }
     }
 }
