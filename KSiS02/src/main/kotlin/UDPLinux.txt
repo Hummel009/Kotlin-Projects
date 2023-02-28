@@ -10,7 +10,7 @@ fun main() {
     val random = java.util.Random()
     random.nextBytes(expectedData)
 
-    while (true) {
+    repeat(1024) {
         // Получение данных
         val data = ByteArray(dataSize)
         val packet = DatagramPacket(data, data.size)
