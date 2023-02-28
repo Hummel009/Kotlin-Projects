@@ -1,4 +1,5 @@
 import kotlin.math.ln
+import kotlin.math.log2
 
 fun main() {
     val code =
@@ -123,7 +124,8 @@ class Parser {
                 allOperators += value
             }
         }
-        sb.append("The sum of operators: $allOperators\n\n")
+        sb.append("The quantity of unique operators (n1): ${numOperators--}\n")
+        sb.append("The quantity of all operators (N1): $allOperators\n\n")
 
         operands.remove("in")
         sb.append("Operands:\n")
@@ -133,14 +135,14 @@ class Parser {
             sb.append("${numOperands++}) \"$key\": $value times\n")
             allOperands += value
         }
-        sb.append("The sum of operands: $allOperands\n\n")
+        sb.append("The quantity of unique operands (n2): ${numOperands--}\n")
+        sb.append("The quantity of all operands (N2): $allOperands\n\n")
 
-        val num = numOperands - 1 + numOperators - 1
+        val num = numOperands + numOperators
         val all = allOperands + allOperators
-        sb.append("Dictionary: $num\n")
-        sb.append("Program length: $all\n")
-        sb.append("Program volume: ${all + ln(num.toDouble()).toInt()}\n")
-
+        sb.append("Dictionary (the quantity of unique items): $num\n")
+        sb.append("Program length (the quantity of all items): $all\n")
+        sb.append("Program volume (number of bits to keep the src): ${all + log2(num.toDouble()).toInt()}\n")
         return sb.toString()
     }
 }
