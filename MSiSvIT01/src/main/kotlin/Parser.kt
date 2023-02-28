@@ -48,8 +48,7 @@ class Parser {
         "def" to 0,
         "if" to 0,
         ".." to 0,
-        "break" to 0,
-        "gets" to 0
+        "break" to 0
     )
 
     private var operands = mutableMapOf<String, Int>()
