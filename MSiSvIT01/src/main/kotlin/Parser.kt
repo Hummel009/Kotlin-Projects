@@ -1,7 +1,8 @@
 import kotlin.math.ln
 
 fun main() {
-    val code = "def gcd(a, b)\r\n while b != 0\r\n temp = b\r\n b = a % b\r\n a = temp\r\n end\r\n return a\r\nend"
+    val code =
+        "def gcd(a, b)\r\n  while b != 0\r\n    temp = b\r\n    b = a % b\r\n    c = (a + b)\r\n    a = temp\r\n  end\r\n  return a\r\nend"
     val session = Parser()
     println(session.getInfo(code))
 }
@@ -13,9 +14,8 @@ class Parser {
         "]" to 0,
         "." to 0,
         " " to 0,
-        "\r" to 0,
         "\n" to 0,
-        "\"" to 0,
+        "\r" to 0,
         "+" to 0,
         "-" to 0,
         "*" to 0,
@@ -33,6 +33,8 @@ class Parser {
         "==" to 0,
         ">" to 0,
         "<" to 0,
+        "%" to 0,
+        "return" to 0,
         ">=" to 0,
         "<=" to 0,
         "end" to 0,
@@ -41,23 +43,20 @@ class Parser {
         "when" to 0,
         "gets" to 0,
         "!" to 0,
-        "%" to 0,
-        "return" to 0,
         "break" to 0,
         "def" to 0,
         "if" to 0,
-        ".." to 0,
-        "break" to 0
+        ".." to 0
     )
 
     private var operands = mutableMapOf<String, Int>()
-    private var ignore = "do \r \n else elsif when in () ]"
+    private var ignore = "\r do \n else elsif when in ) ]"
 
     fun getInfo(code: String): String {
         var prevToken: String
         var currToken = ""
         var dot = false
-
+        val functions = mutableMapOf<String, Boolean>()
         for (symbol in code) {
             prevToken = currToken
             currToken += symbol
@@ -68,6 +67,9 @@ class Parser {
                 if (prevToken == ".") {
                     dot = true
                 }
+                if (functions.containsKey(prevToken)) {
+                    operators["("] = (operators["("] ?: 0) - 1
+                }
                 operators[prevToken] = (operators[prevToken] ?: 0) + 1
 
                 currToken = symbol.toString()
@@ -77,7 +79,8 @@ class Parser {
             } else if (operators.containsKey(symbol.toString())) {
                 if (dot || symbol == '(') {
                     if (symbol == '(') {
-                        operators["("] = (operators["("] ?: 0) + 1
+                        operators["("] = (operators["("] ?: 0) - 1
+                        functions[prevToken] = true
                     }
                     operators[prevToken] = (operators[prevToken] ?: 0) + 1
                 } else {
@@ -86,7 +89,6 @@ class Parser {
                 currToken = symbol.toString()
                 dot = false
             }
-
         }
 
         if (operators.containsKey(currToken)) {
@@ -98,9 +100,9 @@ class Parser {
         }
 
         if (operands.containsKey("ped")) {
+            operators["("] = (operators["("] ?: 0) + (operands["ped"] ?: 0)
             operands["swapped"] = (operands["swapped"] ?: 0) + (operands["ped"] ?: 0)
             operators["swap"] = (operators["swap"] ?: 0) + 1 - (operands["ped"] ?: 0)
-
             operands.remove("ped")
         }
 
