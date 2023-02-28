@@ -33,6 +33,8 @@ var operators = mutableMapOf(
     "when" to 0,
     "gets" to 0,
     "!" to 0,
+    "%" to 0,
+    "return" to 0,
     "break" to 0,
     "def" to 0,
     "if" to 0,
@@ -46,7 +48,7 @@ var ignore = "do \n else elsif when in () ]"
 
 
 fun main() {
-    val code = "def gcd(a, b)\r\n while b != 0\r\n temp = b\r\n b = a % b\r\n a = temp\r\n end\r\n return a\r\nend"
+    val code = "def gcd(a, b)\r\n while b != 0\r\n temp = b\r\n b = a % b\r\n a = temp\r\n end\r\n return a\r\nend".replace("\r", "")
     getInfo(code)
 }
 
