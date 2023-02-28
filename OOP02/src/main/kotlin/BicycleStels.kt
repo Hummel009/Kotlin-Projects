@@ -1,4 +1,4 @@
-class BicycleStels(private var color: String? = null) : BicycleTransport("Stels") {
+class BicycleStels(private var color: String) : BicycleTransport("Stels") {
     private var price = 300
 
     constructor(color: String, i: Int) : this(color) {
