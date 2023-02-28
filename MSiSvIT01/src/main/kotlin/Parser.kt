@@ -7,7 +7,6 @@ fun main() {
 }
 
 class Parser {
-
     private var operators = mutableMapOf(
         "puts" to 0,
         "[" to 0,
@@ -142,6 +141,4 @@ class Parser {
 
         return sb.toString()
     }
-
-    companion object
 }
