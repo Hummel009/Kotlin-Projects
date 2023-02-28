@@ -2,10 +2,12 @@ import kotlin.math.ln
 
 fun main() {
     val code = "def gcd(a, b)\r\n while b != 0\r\n temp = b\r\n b = a % b\r\n a = temp\r\n end\r\n return a\r\nend"
-    Parser.getInfo(code)
+    val session = Parser()
+    session.getInfo(code)
 }
 
-object Parser {
+class Parser {
+
     var operators = mutableMapOf(
         "puts" to 0,
         "[" to 0,
@@ -141,4 +143,6 @@ object Parser {
 
         return sb.toString()
     }
+
+    companion object
 }

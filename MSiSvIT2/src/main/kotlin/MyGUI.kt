@@ -40,7 +40,8 @@ class MyFrame : JFrame() {
 
     private fun processButton() {
         inputText = inputFile?.readText()
-        outputText = Parser.getInfo(inputText!!)
+        val session = Parser()
+        outputText = session.getInfo(inputText!!)
         outputFile?.writeText(outputText!!)
     }
 
