@@ -8,7 +8,7 @@ fun main() {
 
 class Parser {
 
-    var operators = mutableMapOf(
+    private var operators = mutableMapOf(
         "puts" to 0,
         "[" to 0,
         "]" to 0,
@@ -52,8 +52,8 @@ class Parser {
         "gets" to 0
     )
 
-    var operands = mutableMapOf<String, Int>()
-    var ignore = "do \r \n else elsif when in () ]"
+    private var operands = mutableMapOf<String, Int>()
+    private var ignore = "do \r \n else elsif when in () ]"
 
     fun getInfo(code: String): String {
         var prevToken: String
