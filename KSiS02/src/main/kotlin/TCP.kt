@@ -11,28 +11,32 @@ fun main() {
 
     // Генерация случайных данных
     val random = Random()
-    val dataSize = 1024
-    val data = ByteArray(dataSize)
-    random.nextBytes(data)
+    val packetSize = 1024
+    val data = Array(1024) { ByteArray(1024) }
+    for (i in 0 until 1024) {
+        random.nextBytes(data[i])
+    }
 
     // Отправка данных и замер времени передачи
     val time = measureTimeMillis {
         val outputStream = tcpSocket.getOutputStream()
         val inputStream = tcpSocket.getInputStream()
 
-        // Отправка данных
-        outputStream.write(data)
-        outputStream.flush()
+        for (i in 0 until 1024) {
+            // Отправка пакета
+            outputStream.write(data[i])
+            outputStream.flush()
 
-        // Получение результата
-        val result = inputStream.read()
-        if (result == 0) {
-            println("Обмен прошёл успешно")
+            // Получение результата
+            val result = inputStream.read()
+            if (result != 0) {
+                println("Пакет $i: ошибка при передаче данных")
+            }
         }
     }
 
     // Вывод результатов
-    val speed = dataSize / (time / 1000.0)
+    val speed = packetSize * 1024 / (time / 1000.0)
     println("Скорость передачи: $speed байт/с")
     tcpSocket.close()
 }
