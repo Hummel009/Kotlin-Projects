@@ -4,7 +4,6 @@ import java.awt.FlowLayout
 import java.io.File
 import javax.swing.*
 
-
 class MyFrame : JFrame() {
     private val inputFileButton: JButton = JButton("Выбрать входной файл")
     private val outputFileButton: JButton = JButton("Выбрать выходной файл")

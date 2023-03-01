@@ -1,4 +1,3 @@
-import kotlin.math.ln
 import kotlin.math.log2
 
 fun main() {
@@ -124,7 +123,7 @@ class Parser {
                 allOperators += value
             }
         }
-        sb.append("The quantity of unique operators (n1): ${numOperators--}\n")
+        sb.append("The quantity of unique operators (n1): ${--numOperators}\n")
         sb.append("The quantity of all operators (N1): $allOperators\n\n")
 
         operands.remove("in")
@@ -135,7 +134,7 @@ class Parser {
             sb.append("${numOperands++}) \"$key\": $value times\n")
             allOperands += value
         }
-        sb.append("The quantity of unique operands (n2): ${numOperands--}\n")
+        sb.append("The quantity of unique operands (n2): ${--numOperands}\n")
         sb.append("The quantity of all operands (N2): $allOperands\n\n")
 
         val num = numOperands + numOperators
