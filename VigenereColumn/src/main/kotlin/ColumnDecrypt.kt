@@ -3,8 +3,8 @@ package main.java.hummel
 import java.util.*
 
 fun main() {
-    val key = FileEncryptionGUI.preprocess("ЯРМОЛИК")
-    val msg = FileEncryptionGUI.preprocess("МНАРНРФИЕОООНЦТЯИАЯИ")
+    val key = FileEncryptionGUI.preprocess("БВГДЕ")
+    val msg = FileEncryptionGUI.preprocess("ИНОАНЕОИФРЦНРЯМИАОЯТ")
     if (key.isNotEmpty() && key.isNotEmpty()) {
         val plaintext = ColumnDecrypt.decryptColumn(msg, key, true)
         println(plaintext)
@@ -27,38 +27,46 @@ object ColumnDecrypt {
     }
 
     private fun fillDecryptTable(square: Array<Array<String>>, keyword: String, message: String) {
-        val keyChrArr = keyword.toCharArray().clone()
         for (i in keyword.indices) {
-            square[0][i] = keyChrArr[i].toString()
+            square[0][i] = keyword[i].toString()
             square[1][i] = FileEncryptionGUI.ALPHABET.indexOf(square[0][i]).toString()
             square[2][i] = (i + 1).toString()
         }
 
-        val newArr = IntArray(keyword.length)
+        val sortable = IntArray(keyword.length)
+        val usedIDs = HashSet<Int>()
         for (i in keyword.indices) {
-            newArr[i] = square[1][i].toInt()
+            sortable[i] = square[1][i].toInt()
         }
 
-        Arrays.sort(newArr)
+        Arrays.sort(sortable)
 
         for (i in keyword.indices) {
-            square[1][i] = (newArr.indexOf(square[1][i].toInt()) + 1).toString()
+            var newID = (sortable.indexOf(square[1][i].toInt()) + 1)
+            if (!usedIDs.contains(newID)) {
+                square[1][i] = newID.toString()
+                usedIDs.add(newID)
+            } else {
+                newID++
+                square[1][i] = newID.toString()
+                usedIDs.add(newID)
+            }
         }
 
-        var counter = 1
+        var currentPos = 1
         var currentLine = 3
         var currentRule = 1
 
         loop@ while (true) {
             for (i in keyword.indices) {
-                if (counter > message.length) {
+                if (currentPos > message.length) {
                     break@loop
                 }
                 if (currentRule == keyword.length + 1) {
                     currentRule = 1
                 }
                 square[currentLine][i] = "*"
-                counter++
+                currentPos++
                 if (square[1][i] == currentRule.toString()) {
                     currentLine++
                     currentRule++

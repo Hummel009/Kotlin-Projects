@@ -3,7 +3,7 @@ package main.java.hummel
 import java.util.*
 
 fun main() {
-    val key = FileEncryptionGUI.preprocess("ЯРМОЛИК")
+    val key = FileEncryptionGUI.preprocess("АБВГД")
     val msg = FileEncryptionGUI.preprocess("ИНФОРМАЦИОННАЯ ТЕОРИЯ")
     if (key.isNotEmpty() && key.isNotEmpty()) {
         val ciphertext = ColumnEncrypt.encryptColumn(msg, key, true)
@@ -35,6 +35,7 @@ object ColumnEncrypt {
         }
 
         val sortable = IntArray(keyword.length)
+        val usedIDs = HashSet<Int>()
         for (i in keyword.indices) {
             sortable[i] = square[1][i].toInt()
         }
@@ -42,18 +43,26 @@ object ColumnEncrypt {
         Arrays.sort(sortable)
 
         for (i in keyword.indices) {
-            square[1][i] = (sortable.indexOf(square[1][i].toInt()) + 1).toString()
+            var newID = (sortable.indexOf(square[1][i].toInt()) + 1)
+            if (!usedIDs.contains(newID)) {
+                square[1][i] = newID.toString()
+                usedIDs.add(newID)
+            } else {
+                newID++
+                square[1][i] = newID.toString()
+                usedIDs.add(newID)
+            }
         }
 
-        var savedPos = 0
+        var currentPos = 0
         var currentLine = 3
         var currentRule = 1
 
         loop@ while (true) {
             for (i in keyword.indices) {
-                square[currentLine][i] = message[savedPos].toString()
-                savedPos++
-                if (savedPos >= message.length) {
+                square[currentLine][i] = message[currentPos].toString()
+                currentPos++
+                if (currentPos >= message.length) {
                     break@loop
                 }
                 if (currentRule == keyword.length + 1) {
