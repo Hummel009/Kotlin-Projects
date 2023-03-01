@@ -50,16 +50,16 @@ class FileEncryptionGUI : JFrame() {
             JOptionPane.showMessageDialog(this, "Please select a file to encrypt", "Error", JOptionPane.ERROR_MESSAGE)
             return
         }
-        if (key.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter a keyword and key", "Error", JOptionPane.ERROR_MESSAGE)
-            return
-        }
         if (outputPath.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please select an output path", "Error", JOptionPane.ERROR_MESSAGE)
             return
         }
         val inputText = readFile(inputFile!!)
         val msg = preprocess(inputText)
+        if (key.isEmpty() || msg.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter a keyword and message", "Error", JOptionPane.ERROR_MESSAGE)
+            return
+        }
         var outputText = ""
         if (algorithm == "Column Method") {
             outputText = ColumnEncrypt.encryptColumn(msg, key, false)
@@ -78,16 +78,16 @@ class FileEncryptionGUI : JFrame() {
             JOptionPane.showMessageDialog(this, "Please select a file to decrypt", "Error", JOptionPane.ERROR_MESSAGE)
             return
         }
-        if (key.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter a keyword and key", "Error", JOptionPane.ERROR_MESSAGE)
-            return
-        }
         if (outputPath.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please select an output path", "Error", JOptionPane.ERROR_MESSAGE)
             return
         }
         val inputText = readFile(inputFile!!)
         val msg = preprocess(inputText)
+        if (key.isEmpty() || msg.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter a keyword and message", "Error", JOptionPane.ERROR_MESSAGE)
+            return
+        }
         var outputText = ""
         if (algorithm == "Column Method") {
             outputText = ColumnDecrypt.decryptColumn(msg, key, false)
