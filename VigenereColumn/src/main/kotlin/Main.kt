@@ -178,7 +178,12 @@ class FileEncryptionGUI : JFrame() {
         fun main(args: Array<String>) {
             EventQueue.invokeLater {
                 try {
-                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName())
+                    for (info in UIManager.getInstalledLookAndFeels()) {
+                        if ("Windows Classic" == info.name) {
+                            UIManager.setLookAndFeel(info.className)
+                            break
+                        }
+                    }
                     val frame = FileEncryptionGUI()
                     frame.isVisible = true
                 } catch (e: Exception) {
