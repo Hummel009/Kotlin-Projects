@@ -21,10 +21,16 @@ object ColumnSharedMethods {
 
     fun show(square: Array<Array<String>>) {
         for (i in square.indices) {
+            var hasAtLeastOneLetter = false
             for (j in square[0].indices) {
-                print(square[i][j] + " ")
+                if (square[i][j] != " ") {
+                    print(square[i][j] + " ")
+                    hasAtLeastOneLetter = true
+                }
             }
-            println()
+            if (hasAtLeastOneLetter) {
+                println()
+            }
         }
     }
 }
