@@ -12,7 +12,7 @@ fun main() {
 }
 
 object VigenereEncrypt {
-    fun encryptVigenere(msg: String, key: String): String {
+    fun encryptVigenereOldAlgo(msg: String, key: String): String {
         val square = VigenereSharedMethods.generateVigenereSquare()
         var newKey = key + msg
         newKey = newKey.substring(0, newKey.length - key.length)
@@ -23,6 +23,20 @@ object VigenereEncrypt {
             val j = FileEncryptionGUI.ALPHABET.indexOf(newKey[x])
             val total = square[i][j]
             encryptMsg += total
+        }
+        return encryptMsg
+    }
+
+    fun encryptVigenere(msg: String, key: String): String {
+        var newKey = key + msg
+        newKey = newKey.substring(0, newKey.length - key.length)
+        var encryptMsg = ""
+
+        for (x in msg.indices) {
+            val Q = FileEncryptionGUI.ALPHABET.length
+            val mn = FileEncryptionGUI.ALPHABET.indexOf(msg[x])
+            val kn = FileEncryptionGUI.ALPHABET.indexOf(newKey[x])
+            encryptMsg += FileEncryptionGUI.ALPHABET[(Q + mn + kn) % Q]
         }
         return encryptMsg
     }
