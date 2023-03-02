@@ -3,7 +3,7 @@ package main.java.hummel
 fun main() {
     val key = FileEncryptionGUI.preprocess("АМОГУС")
     val msg = FileEncryptionGUI.preprocess("ИРЧЖВЮЧНЪОЭЭУО")
-    if (key.isNotEmpty() && key.isNotEmpty()) {
+    if (msg.isNotEmpty() && key.isNotEmpty()) {
         val plaintext = VigenereDecrypt.decryptVigenere(msg, key)
         println(plaintext)
     } else {

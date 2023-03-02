@@ -3,9 +3,9 @@ package main.java.hummel
 import java.util.*
 
 fun main() {
-    val key = FileEncryptionGUI.preprocess("АБВГД")
-    val msg = FileEncryptionGUI.preprocess("ИНФОРМАЦИОННАЯ ТЕОРИЯ")
-    if (key.isNotEmpty() && key.isNotEmpty()) {
+    val key = FileEncryptionGUI.preprocess("Ъ")
+    val msg = FileEncryptionGUI.preprocess("ТЕОРИЯ")
+    if (msg.isNotEmpty() && key.isNotEmpty()) {
         val ciphertext = ColumnEncrypt.encryptColumn(msg, key, true)
         println(ciphertext)
     } else {

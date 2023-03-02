@@ -5,7 +5,7 @@ import java.util.*
 fun main() {
     val key = FileEncryptionGUI.preprocess("БВГДЕ")
     val msg = FileEncryptionGUI.preprocess("ИНОАНЕОИФРЦНРЯМИАОЯТ")
-    if (key.isNotEmpty() && key.isNotEmpty()) {
+    if (msg.isNotEmpty() && key.isNotEmpty()) {
         val plaintext = ColumnDecrypt.decryptColumn(msg, key, true)
         println(plaintext)
     } else {
