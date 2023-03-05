@@ -3,7 +3,7 @@ package main.kotlin.hummel
 import java.util.*
 import kotlin.collections.ArrayList
 
-val list: ArrayList<Transport> = ArrayList()
+val list = ArrayList<Transport>()
 
 fun main() {
 	loadList()
