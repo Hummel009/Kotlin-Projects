@@ -1,10 +1,10 @@
 package main.kotlin.hummel.side_server
 
 object Start {
-    @JvmStatic
-    fun main(args: Array<String>) {
-        val server = Server(4000)
-        server.listenClientConnectionRequests()
-        println("Server is ON now")
-    }
+	@JvmStatic
+	fun main(args: Array<String>) {
+		val server = Server(4000)
+		server.listenClientConnectionRequests()
+		println("Server is ON now")
+	}
 }

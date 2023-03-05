@@ -12,6 +12,7 @@ class ClientPairingThread(var client: SClient) : Thread() {
                 var chosenPair: SClient? = null
                 while (client.socket!!.isConnected && chosenPair == null) {
                     for (client in Server.clients!!) {
+						client as SClient
                         if (client != this.client && !client.isPaired && client.isWantToPair) {
                             chosenPair = client
                             this.client.pair = client

@@ -8,43 +8,48 @@ import java.util.logging.Level
 import java.util.logging.Logger
 
 class SClient(socket: Socket?) {
-    @JvmField
-    var socket: Socket? = null
-    @JvmField
-    var cInput: ObjectInputStream? = null
-    var cOutput: ObjectOutputStream? = null
-    private var clientListenThread: ClientListenThread? = null
-    @JvmField
-    var pair: SClient? = null
-    @JvmField
-    var isPaired = false
-    @JvmField
-    var isWantToPair = false
-    @JvmField
-    var pairingThread: ClientPairingThread? = null
+	@JvmField
+	var socket: Socket? = null
 
-    init {
-        try {
-            this.socket = socket
-            cOutput = ObjectOutputStream(this.socket!!.getOutputStream())
-            cInput = ObjectInputStream(this.socket!!.getInputStream())
-            clientListenThread = ClientListenThread(this)
-            pairingThread = ClientPairingThread(this)
-            isPaired = false
-        } catch (ex: IOException) {
-            Logger.getLogger(SClient::class.java.name).log(Level.SEVERE, null, ex)
-        }
-    }
+	@JvmField
+	var cInput: ObjectInputStream? = null
+	var cOutput: ObjectOutputStream? = null
+	private var clientListenThread: ClientListenThread? = null
 
-    fun send(msg: Any?) {
-        try {
-            cOutput!!.writeObject(msg)
-        } catch (ex: IOException) {
-            Logger.getLogger(SClient::class.java.name).log(Level.SEVERE, null, ex)
-        }
-    }
+	@JvmField
+	var pair: SClient? = null
 
-    fun listen() {
-        clientListenThread!!.start()
-    }
+	@JvmField
+	var isPaired = false
+
+	@JvmField
+	var isWantToPair = false
+
+	@JvmField
+	var pairingThread: ClientPairingThread? = null
+
+	init {
+		try {
+			this.socket = socket
+			cOutput = ObjectOutputStream(this.socket!!.getOutputStream())
+			cInput = ObjectInputStream(this.socket!!.getInputStream())
+			clientListenThread = ClientListenThread(this)
+			pairingThread = ClientPairingThread(this)
+			isPaired = false
+		} catch (ex: IOException) {
+			Logger.getLogger(SClient::class.java.name).log(Level.SEVERE, null, ex)
+		}
+	}
+
+	fun send(msg: Any?) {
+		try {
+			cOutput!!.writeObject(msg)
+		} catch (ex: IOException) {
+			Logger.getLogger(SClient::class.java.name).log(Level.SEVERE, null, ex)
+		}
+	}
+
+	fun listen() {
+		clientListenThread!!.start()
+	}
 }

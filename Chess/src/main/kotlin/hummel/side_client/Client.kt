@@ -10,36 +10,36 @@ import java.util.logging.Level
 import java.util.logging.Logger
 
 class Client(@JvmField var game: Table) {
-    var socket: Socket? = null
-    var sInput: ObjectInputStream? = null
-    private var sOutput: ObjectOutputStream? = null
-    private var serverIP: String? = null
-    private var listenThread: ClientListenThread? = null
-    private var serverPort = 0
-    var isPaired = false
-    var team = Team.NO_COLOR
+	var socket: Socket? = null
+	var sInput: ObjectInputStream? = null
+	private var sOutput: ObjectOutputStream? = null
+	private var serverIP: String? = null
+	private var listenThread: ClientListenThread? = null
+	private var serverPort = 0
+	var isPaired = false
+	var team = Team.NO_COLOR
 
-    fun connect(serverIP: String, port: Int) {
-        try {
-            println("Connecting to the server")
-            this.serverIP = serverIP
-            serverPort = port
-            socket = Socket(this.serverIP, serverPort)
-            println("Connecting to the server")
-            sOutput = ObjectOutputStream(socket!!.getOutputStream())
-            sInput = ObjectInputStream(socket!!.getInputStream())
-            listenThread = ClientListenThread(this)
-            listenThread!!.start()
-        } catch (ex: IOException) {
-            println("Can not connected to the server.")
-        }
-    }
+	fun connect(serverIP: String, port: Int) {
+		try {
+			println("Connecting to the server")
+			this.serverIP = serverIP
+			serverPort = port
+			socket = Socket(this.serverIP, serverPort)
+			println("Connecting to the server")
+			sOutput = ObjectOutputStream(socket!!.getOutputStream())
+			sInput = ObjectInputStream(socket!!.getInputStream())
+			listenThread = ClientListenThread(this)
+			listenThread!!.start()
+		} catch (ex: IOException) {
+			println("Can not connected to the server.")
+		}
+	}
 
-    fun send(message: Any?) {
-        try {
-            sOutput!!.writeObject(message)
-        } catch (ex: IOException) {
-            Logger.getLogger(Client::class.java.name).log(Level.SEVERE, null, ex)
-        }
-    }
+	fun send(message: Any?) {
+		try {
+			sOutput!!.writeObject(message)
+		} catch (ex: IOException) {
+			Logger.getLogger(Client::class.java.name).log(Level.SEVERE, null, ex)
+		}
+	}
 }
