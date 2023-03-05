@@ -3,7 +3,7 @@ package main.kotlin.hummel
 import java.util.*
 import kotlin.collections.ArrayList
 
-val list = ArrayList<Transport>()
+val list: MutableList<Transport> = ArrayList()
 
 fun main() {
 	loadList()
@@ -38,7 +38,6 @@ fun searchByName() {
 	var found = false
 
 	for (car in list) {
-		car as Transport
 		if (car.getName() == str) {
 			println(car.getFullInfo())
 			found = true
@@ -56,7 +55,6 @@ fun searchByColor() {
 	var found = false
 
 	for (car in list) {
-		car as Transport
 		if (car.getColor() == str) {
 			println(car.getFullInfo())
 			found = true
@@ -74,7 +72,6 @@ fun searchByPrice() {
 	var found = false
 
 	for (car in list) {
-		car as Transport
 		if (car.getPrice() == price) {
 			println(car.getFullInfo())
 			found = true
