@@ -109,8 +109,9 @@ class Parser {
 		}
 
 		val sb = StringBuilder()
-
-		sb.append("Operators:\n")
+		sb.append("<style>\r\n body {background: #666 }  td {\r\n    background: White;\r\n}\r\n	  table {\r\n        border-collapse: collapse;\r\n        width: 100%;\r\n        max-width: 800px;\r\n        margin: 0 auto;\r\n    }\r\n\r\n    th, td {\r\n        padding: 8px;\r\n        text-align: left;\r\n        border-bottom: 1px solid #ddd;\r\n    }\r\n\r\n    th {\r\n        background-color: #bcbcbc;\r\n    }\r\n\r\n    tr:hover {\r\n        background-color: #f5f5f5;\r\n    }\r\n</style>")
+		sb.append("<table><tbody>\n")
+		sb.append("<tr><th>Number</th><th>Operator</th><th>How many</th></tr>\n")
 		var allOperators = 0
 		var numOperators = 1
 
@@ -121,29 +122,30 @@ class Parser {
 					iterator.remove()
 					continue
 				}
-				sb.append("${numOperators++}) \"$key\": $value times\n")
+				sb.append("<tr><td>${numOperators++}</td><td>$key</td><td>$value</td></tr>\n")
 				allOperators += value
 			}
 		}
-		sb.append("The quantity of unique operators (n1): ${--numOperators}\n")
-		sb.append("The quantity of all operators (N1): $allOperators\n\n")
-
+		sb.append("<tr><th>${--numOperators}</th><td></td><th>$allOperators</th></tr>\n")
+		sb.append("</table></tbody>\n")
+		sb.append("<br><table><tbody>\n")
+		sb.append("<tr><th>Number</th><th>Operand</th><th>How many</th></tr>\n")
+		
 		operands.remove("in")
-		sb.append("Operands:\n")
 		var allOperands = 0
 		var numOperands = 1
 		for ((key, value) in operands) {
-			sb.append("${numOperands++}) \"$key\": $value times\n")
+			sb.append("<tr><td>${numOperands++}</td><td>$key</td><td>$value</td></tr>\n")
 			allOperands += value
 		}
-		sb.append("The quantity of unique operands (n2): ${--numOperands}\n")
-		sb.append("The quantity of all operands (N2): $allOperands\n\n")
-
+		sb.append("<tr><th>${--numOperands}</th><td></td><th>$allOperands</th></tr>\n")
+		sb.append("</table></tbody>\n")
 		val num = numOperands + numOperators
 		val all = allOperands + allOperators
-		sb.append("Dictionary (the quantity of unique items): $num\n")
-		sb.append("Program length (the quantity of all items): $all\n")
-		sb.append("Program volume (number of bits to keep the src): ${all + log2(num.toDouble()).toInt()}\n")
+		sb.append("<br><table><tbody>\n")
+		sb.append("<tr><th>Dictionary</th><th>Length</th><th>Volume</th></tr>\n")
+		sb.append("<tr><td>$num</td><td>$all</td><td>${all + log2(num.toDouble()).toInt()}</td></tr>\n")
+		sb.append("</table></tbody>\n")
 		return sb.toString()
 	}
 }

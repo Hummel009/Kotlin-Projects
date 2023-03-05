@@ -3,22 +3,22 @@ def gcd(a, b)
   gcd(b, a % b)
 end
 
-def find_gcd(arr)
-  n = arr.length
+def find_gcd(retFun)
+  n = retFun.length
 
   for i in 0..n-1 do
-    arr[i] = arr[i].abs
+    retFun(i) = retFun(i).abs
   end
 
   for i in 0..n-2 do
-    if arr[i] != 0
-      while arr[i] != 0
-        if arr[i] < arr[i+1]
-          arr[i+1] %= arr[i]
+    if retFun(i) != 0
+      while retFun(i) != 0
+        if retFun(i) < retFun(i+1)
+          retFun(i+1) %= retFun(i)
         else
-          temp = arr[i]
-          arr[i] = arr[i+1]
-          arr[i+1] = temp
+          temp = retFun(i)
+          retFun(i) = retFun(i+1)
+          retFun(i+1) = temp
         end
       end
     end
@@ -26,11 +26,11 @@ def find_gcd(arr)
 end
 
 n = gets.to_i
-arr = []
+retFun = ()
 
 for i in 0..n-1 do
   num = gets.to_i
-  arr << num
+  retFun << num
 end
 
-find_gcd(arr)
+find_gcd(retFun)
