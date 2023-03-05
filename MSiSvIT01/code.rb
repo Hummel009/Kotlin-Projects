@@ -1,36 +1,38 @@
 def gcd(a, b)
-  return a.abs if b == 0
-  gcd(b, a % b)
+  if b == 0
+	mem = abs(a)
+  else
+	mem = gcd(b, a % b)
+  end
 end
 
-def find_gcd(retFun)
-  n = retFun.length
+def find_gcd(sugoma)
+  n = length(sugoma)
 
   for i in 0..n-1 do
-    retFun(i) = retFun(i).abs
+    amogus = abs(amogus)
   end
 
   for i in 0..n-2 do
-    if retFun(i) != 0
-      while retFun(i) != 0
-        if retFun(i) < retFun(i+1)
-          retFun(i+1) %= retFun(i)
+    if amogus != 0
+      while amogus != 0
+        if amogus < sus
+          sus %= amogus
         else
-          temp = retFun(i)
-          retFun(i) = retFun(i+1)
-          retFun(i+1) = temp
+          temp = amogus
+          amogus = sus
+          sus = temp
         end
       end
     end
   end
 end
 
-n = gets.to_i
-retFun = ()
+n = toi(gets)
 
 for i in 0..n-1 do
-  num = gets.to_i
-  retFun << num
+  num = toi(gets)
+  sugoma += num
 end
 
-find_gcd(retFun)
+find_gcd(sugoma)
