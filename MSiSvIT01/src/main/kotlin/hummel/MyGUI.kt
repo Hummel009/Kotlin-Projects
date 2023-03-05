@@ -16,10 +16,10 @@ class MyFrame : JFrame() {
 	private val outputFileLabel = JLabel("Output File:")
 	private val outputFileField = JTextField(30)
 
-	private var inputText: String? = null
-	private var outputText: String? = null
-	private var inputFile: File? = null
-	private var outputFile: File? = null
+	private lateinit var inputText: String
+	private lateinit var outputText: String
+	private lateinit var inputFile: File
+	private lateinit var outputFile: File
 
 	private fun inputFileButton() {
 		val fileChooser = JFileChooser()
@@ -40,15 +40,16 @@ class MyFrame : JFrame() {
 	}
 
 	private fun processButton() {
-		inputText = inputFile?.readText()
+		inputText = inputFile.readText()
 		val session = Parser()
-		outputText = session.getInfo(inputText!!)
-		outputFile?.writeText(outputText!!)
+		outputText = session.getInfo(inputText)
+		outputFile.writeText(outputText)
+		JOptionPane.showMessageDialog(this, "Calculated!", "Message", JOptionPane.INFORMATION_MESSAGE)
 	}
 
 	init {
 		defaultCloseOperation = EXIT_ON_CLOSE
-		size = Dimension(500, 250)
+		size = Dimension(650, 250)
 		layout = FlowLayout(FlowLayout.CENTER, 3, 3)
 
 		inputFileButton.addActionListener { inputFileButton() }
