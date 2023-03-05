@@ -1,7 +1,2 @@
 .metadata
 .sonarlint
-.gradle
-.idea
-build
-target
-gen
