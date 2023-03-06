@@ -1,7 +1,7 @@
-package main.kotlin.hummel.game
+package hummel.game
 
-import main.kotlin.hummel.game.piece.Coordinate
-import main.kotlin.hummel.game.piece.Team
+import hummel.game.piece.Coordinate
+import hummel.game.piece.Team
 import java.util.*
 import kotlin.collections.HashMap
 

@@ -1,4 +1,4 @@
-package main.kotlin.hummel.msg
+package hummel.msg
 
 import java.io.Serializable
 

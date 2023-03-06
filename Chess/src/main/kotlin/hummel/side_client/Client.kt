@@ -1,7 +1,7 @@
-package main.kotlin.hummel.side_client
+package hummel.side_client
 
-import main.kotlin.hummel.game.gui.Table
-import main.kotlin.hummel.game.piece.Team
+import hummel.game.gui.Table
+import hummel.game.piece.Team
 import java.io.IOException
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream

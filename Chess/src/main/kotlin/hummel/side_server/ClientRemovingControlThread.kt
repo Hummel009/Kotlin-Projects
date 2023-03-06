@@ -1,4 +1,4 @@
-package main.kotlin.hummel.side_server
+package hummel.side_server
 
 class ClientRemovingControlThread(private val server: Server) : Thread() {
 	override fun run() {

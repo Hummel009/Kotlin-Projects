@@ -1,4 +1,4 @@
-package main.kotlin.hummel
+package hummel
 
 import kotlin.math.log2
 

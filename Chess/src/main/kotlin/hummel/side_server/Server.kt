@@ -1,6 +1,6 @@
-package main.kotlin.hummel.side_server
+package hummel.side_server
 
-import main.kotlin.hummel.msg.Message
+import hummel.msg.Message
 import java.io.IOException
 import java.net.ServerSocket
 import java.util.concurrent.Semaphore

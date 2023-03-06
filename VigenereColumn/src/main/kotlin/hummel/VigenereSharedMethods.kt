@@ -1,4 +1,4 @@
-package main.kotlin.hummel
+package hummel
 
 object VigenereSharedMethods {
 	fun generateVigenereSquare(): Array<CharArray> {

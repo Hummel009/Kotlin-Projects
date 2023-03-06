@@ -1,4 +1,4 @@
-package main.kotlin.hummel
+package hummel
 
 import java.util.*
 import kotlin.collections.ArrayList

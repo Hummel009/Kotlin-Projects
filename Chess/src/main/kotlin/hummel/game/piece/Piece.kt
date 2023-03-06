@@ -1,7 +1,7 @@
-package main.kotlin.hummel.game.piece
+package hummel.game.piece
 
-import main.kotlin.hummel.game.Move
-import main.kotlin.hummel.game.board.Board
+import hummel.game.Move
+import hummel.game.board.Board
 import java.io.Serializable
 
 abstract class Piece(val team: Team, val type: PieceTypes) : Serializable {

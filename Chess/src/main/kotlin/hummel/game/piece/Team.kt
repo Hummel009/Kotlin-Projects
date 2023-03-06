@@ -1,4 +1,4 @@
-package main.kotlin.hummel.game.piece
+package hummel.game.piece
 
 import java.io.Serializable
 

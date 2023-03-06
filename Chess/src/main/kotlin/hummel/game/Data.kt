@@ -1,4 +1,4 @@
-package main.kotlin.hummel.game
+package hummel.game
 
 import java.awt.Color
 import java.awt.Dimension

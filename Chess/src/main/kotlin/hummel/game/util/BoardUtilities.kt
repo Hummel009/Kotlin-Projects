@@ -1,9 +1,9 @@
-package main.kotlin.hummel.game.util
+package hummel.game.util
 
-import main.kotlin.hummel.game.Data
-import main.kotlin.hummel.game.board.Tile
-import main.kotlin.hummel.game.board.TileNull
-import main.kotlin.hummel.game.piece.*
+import hummel.game.Data
+import hummel.game.board.Tile
+import hummel.game.board.TileNull
+import hummel.game.piece.*
 import java.io.File
 import java.io.IOException
 import java.util.logging.Level

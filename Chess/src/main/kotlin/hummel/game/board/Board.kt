@@ -1,12 +1,12 @@
-package main.kotlin.hummel.game.board
+package hummel.game.board
 
-import main.kotlin.hummel.game.Data
-import main.kotlin.hummel.game.Player
-import main.kotlin.hummel.game.piece.Coordinate
-import main.kotlin.hummel.game.piece.PieceNull
-import main.kotlin.hummel.game.piece.PieceTypes
-import main.kotlin.hummel.game.piece.Team
-import main.kotlin.hummel.game.util.BoardUtilities.createStandardBoardTiles
+import hummel.game.Data
+import hummel.game.Player
+import hummel.game.piece.Coordinate
+import hummel.game.piece.PieceNull
+import hummel.game.piece.PieceTypes
+import hummel.game.piece.Team
+import hummel.game.util.BoardUtilities.createStandardBoardTiles
 import java.io.Serializable
 
 class Board : Serializable {

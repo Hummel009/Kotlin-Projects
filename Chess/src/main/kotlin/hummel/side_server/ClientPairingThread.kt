@@ -1,8 +1,8 @@
-package main.kotlin.hummel.side_server
+package hummel.side_server
 
-import main.kotlin.hummel.game.piece.Team
-import main.kotlin.hummel.msg.Message
-import main.kotlin.hummel.side_server.Server.Companion.sendMessage
+import hummel.game.piece.Team
+import hummel.msg.Message
+import hummel.side_server.Server.Companion.sendMessage
 
 class ClientPairingThread(var client: SClient) : Thread() {
     override fun run() {

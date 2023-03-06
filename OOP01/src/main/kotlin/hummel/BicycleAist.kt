@@ -1,4 +1,4 @@
-package main.kotlin.hummel
+package hummel
 
 class BicycleAist(private var color: String) : BicycleTransport("Aist") {
 	private var price = 100

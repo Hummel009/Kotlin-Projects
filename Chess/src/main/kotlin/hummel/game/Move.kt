@@ -1,9 +1,9 @@
-package main.kotlin.hummel.game
+package hummel.game
 
-import main.kotlin.hummel.game.board.Board
-import main.kotlin.hummel.game.board.Tile
-import main.kotlin.hummel.game.piece.Piece
-import main.kotlin.hummel.game.piece.PieceNull
+import hummel.game.board.Board
+import hummel.game.board.Tile
+import hummel.game.piece.Piece
+import hummel.game.piece.PieceNull
 import java.io.Serializable
 
 class Move(var board: Board, @JvmField var currentTile: Tile, @JvmField var destinationTile: Tile) : Serializable {

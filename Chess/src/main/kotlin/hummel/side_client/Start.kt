@@ -1,6 +1,6 @@
-package main.kotlin.hummel.side_client
+package hummel.side_client
 
-import main.kotlin.hummel.game.gui.Table
+import hummel.game.gui.Table
 
 object Start {
 	@JvmStatic

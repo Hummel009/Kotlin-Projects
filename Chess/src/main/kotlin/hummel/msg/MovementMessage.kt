@@ -1,7 +1,7 @@
-package main.kotlin.hummel.msg
+package hummel.msg
 
 import java.io.Serializable
-import main.kotlin.hummel.game.piece.Coordinate
+import hummel.game.piece.Coordinate
 
 class MovementMessage : Serializable {
 	var isPieceKilled = false

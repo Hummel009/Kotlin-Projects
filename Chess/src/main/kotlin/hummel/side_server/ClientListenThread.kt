@@ -1,7 +1,7 @@
-package main.kotlin.hummel.side_server
+package hummel.side_server
 
-import main.kotlin.hummel.msg.Message
-import main.kotlin.hummel.msg.Message.MessageTypes
+import hummel.msg.Message
+import hummel.msg.Message.MessageTypes
 import java.io.IOException
 import java.util.logging.Level
 import java.util.logging.Logger

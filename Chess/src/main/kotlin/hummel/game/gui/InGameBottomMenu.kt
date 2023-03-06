@@ -1,4 +1,4 @@
-package main.kotlin.hummel.game.gui
+package hummel.game.gui
 
 import java.awt.Color
 import java.awt.Font

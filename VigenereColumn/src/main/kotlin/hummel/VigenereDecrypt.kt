@@ -1,4 +1,4 @@
-package main.kotlin.hummel
+package hummel
 
 fun main() {
 	val key = FileEncryptionGUI.preprocess("АМОГУС")

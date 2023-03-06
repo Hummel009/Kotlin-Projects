@@ -1,10 +1,10 @@
-package main.kotlin.hummel.game.piece
+package hummel.game.piece
 
-import main.kotlin.hummel.game.Move
-import main.kotlin.hummel.game.Pieces
-import main.kotlin.hummel.game.board.Board
-import main.kotlin.hummel.game.board.Tile
-import main.kotlin.hummel.game.util.BoardUtilities
+import hummel.game.Move
+import hummel.game.Pieces
+import hummel.game.board.Board
+import hummel.game.board.Tile
+import hummel.game.util.BoardUtilities
 
 class Bishop(team: Team) : Piece(team, PieceTypes.BISHOP) {
 	override fun availableMoves(board: Board, currentCoord: Coordinate): List<Move> {

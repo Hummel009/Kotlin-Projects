@@ -1,4 +1,4 @@
-package main.kotlin.hummel.side_server
+package hummel.side_server
 
 import java.io.IOException
 

@@ -1,4 +1,4 @@
-package main.kotlin.hummel
+package hummel
 
 class CarLada(private var color: String) : CarTransport("Lada") {
 	private var price = 5000

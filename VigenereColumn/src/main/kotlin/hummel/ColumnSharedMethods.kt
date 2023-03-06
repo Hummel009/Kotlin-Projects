@@ -1,4 +1,4 @@
-package main.kotlin.hummel
+package hummel
 
 object ColumnSharedMethods {
 	fun sort(square: Array<Array<String>>, row: Int) {

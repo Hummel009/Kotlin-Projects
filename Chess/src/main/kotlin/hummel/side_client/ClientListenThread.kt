@@ -1,11 +1,11 @@
-package main.kotlin.hummel.side_client
+package hummel.side_client
 
-import main.kotlin.hummel.game.Move
-import main.kotlin.hummel.game.piece.PieceTypes
-import main.kotlin.hummel.game.piece.Team
-import main.kotlin.hummel.msg.Message
-import main.kotlin.hummel.msg.Message.MessageTypes
-import main.kotlin.hummel.msg.MovementMessage
+import hummel.game.Move
+import hummel.game.piece.PieceTypes
+import hummel.game.piece.Team
+import hummel.msg.Message
+import hummel.msg.Message.MessageTypes
+import hummel.msg.MovementMessage
 import java.awt.Color
 import java.io.IOException
 import java.util.logging.Level

@@ -1,6 +1,6 @@
-package main.kotlin.hummel
+package hummel
 
-import main.kotlin.hummel.Transport
+import hummel.Transport
 import java.util.*
 import kotlin.collections.ArrayList
 

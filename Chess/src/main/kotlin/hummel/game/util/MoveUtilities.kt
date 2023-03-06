@@ -1,12 +1,12 @@
-package main.kotlin.hummel.game.util
+package hummel.game.util
 
-import main.kotlin.hummel.game.Pieces
-import main.kotlin.hummel.game.board.Board
-import main.kotlin.hummel.game.board.Tile
-import main.kotlin.hummel.game.piece.Coordinate
-import main.kotlin.hummel.game.piece.PieceTypes
-import main.kotlin.hummel.game.piece.Team
-import main.kotlin.hummel.game.util.BoardUtilities.isValidCoordinate
+import hummel.game.Pieces
+import hummel.game.board.Board
+import hummel.game.board.Tile
+import hummel.game.piece.Coordinate
+import hummel.game.piece.PieceTypes
+import hummel.game.piece.Team
+import hummel.game.util.BoardUtilities.isValidCoordinate
 
 object MoveUtilities {
 	@JvmStatic

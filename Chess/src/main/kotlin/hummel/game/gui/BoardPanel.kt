@@ -1,9 +1,9 @@
-package main.kotlin.hummel.game.gui
+package hummel.game.gui
 
-import main.kotlin.hummel.game.Data
-import main.kotlin.hummel.game.board.Board
-import main.kotlin.hummel.game.piece.Coordinate
-import main.kotlin.hummel.side_client.Client
+import hummel.game.Data
+import hummel.game.board.Board
+import hummel.game.piece.Coordinate
+import hummel.side_client.Client
 import java.awt.GridLayout
 import javax.swing.JPanel
 

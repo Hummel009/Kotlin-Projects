@@ -1,8 +1,8 @@
-package main.kotlin.hummel.game.board
+package hummel.game.board
 
-import main.kotlin.hummel.game.piece.Coordinate
-import main.kotlin.hummel.game.piece.Piece
-import main.kotlin.hummel.game.piece.PieceNull
+import hummel.game.piece.Coordinate
+import hummel.game.piece.Piece
+import hummel.game.piece.PieceNull
 import java.io.Serializable
 
 open class Tile(var coordinate: Coordinate, var piece: Piece) : Serializable {

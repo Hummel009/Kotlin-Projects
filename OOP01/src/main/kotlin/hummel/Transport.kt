@@ -1,4 +1,4 @@
-package main.kotlin.hummel
+package hummel
 
 open class Transport() {
     open fun getColor(): String {

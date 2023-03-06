@@ -1,8 +1,8 @@
-package main.kotlin.hummel.game
+package hummel.game
 
-import main.kotlin.hummel.game.board.Board
-import main.kotlin.hummel.game.piece.PieceNull
-import main.kotlin.hummel.game.piece.Team
+import hummel.game.board.Board
+import hummel.game.piece.PieceNull
+import hummel.game.piece.Team
 import java.io.Serializable
 
 class Player(@JvmField var team: Team) : Serializable {
