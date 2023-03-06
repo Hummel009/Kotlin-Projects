@@ -19,7 +19,7 @@ object BoardUtilities {
 
 	@JvmStatic
 	fun getImageOfTeamPiece(team: Team, pieceType: PieceTypes?): ImageIcon? {
-		var imagePath = "src/main/java/game/img/"
+		var imagePath = "src/main/kotlin/hummel/game/img/"
 		if (pieceType == null) {
 			imagePath += "transparent.png"
 		} else {
