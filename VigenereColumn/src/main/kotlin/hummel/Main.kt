@@ -9,6 +9,23 @@ import java.util.*
 import javax.swing.*
 import javax.swing.border.EmptyBorder
 
+fun main() {
+	EventQueue.invokeLater {
+		try {
+			for (info in UIManager.getInstalledLookAndFeels()) {
+				if ("Windows Classic" == info.name) {
+					UIManager.setLookAndFeel(info.className)
+					break
+				}
+			}
+			val frame = FileEncryptionGUI()
+			frame.isVisible = true
+		} catch (e: Exception) {
+			e.printStackTrace()
+		}
+	}
+}
+
 class FileEncryptionGUI : JFrame() {
 	private val contentPane: JPanel
 	private val textFieldFilePath: JTextField
@@ -183,24 +200,6 @@ class FileEncryptionGUI : JFrame() {
 
 	companion object {
 		const val ALPHABET = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ"
-
-		@JvmStatic
-		fun main(args: Array<String>) {
-			EventQueue.invokeLater {
-				try {
-					for (info in UIManager.getInstalledLookAndFeels()) {
-						if ("Windows Classic" == info.name) {
-							UIManager.setLookAndFeel(info.className)
-							break
-						}
-					}
-					val frame = FileEncryptionGUI()
-					frame.isVisible = true
-				} catch (e: Exception) {
-					e.printStackTrace()
-				}
-			}
-		}
 
 		fun preprocess(str: String): String {
 			val upper = str.uppercase(Locale.getDefault())

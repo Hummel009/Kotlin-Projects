@@ -6,6 +6,23 @@ import java.awt.FlowLayout
 import java.io.File
 import javax.swing.*
 
+fun main() {
+	EventQueue.invokeLater {
+		try {
+			for (info in UIManager.getInstalledLookAndFeels()) {
+				if ("Windows Classic" == info.name) {
+					UIManager.setLookAndFeel(info.className)
+					break
+				}
+			}
+			val frame = MyFrame()
+			frame.isVisible = true
+		} catch (e: Exception) {
+			e.printStackTrace()
+		}
+	}
+}
+
 class MyFrame : JFrame() {
 	private val inputFileButton: JButton = JButton("Выбрать входной файл")
 	private val outputFileButton: JButton = JButton("Выбрать выходной файл")
@@ -66,25 +83,5 @@ class MyFrame : JFrame() {
 		add(processButton)
 
 		setLocationRelativeTo(null)
-	}
-
-	companion object {
-		@JvmStatic
-		fun main(args: Array<String>) {
-			EventQueue.invokeLater {
-				try {
-					for (info in UIManager.getInstalledLookAndFeels()) {
-						if ("Windows Classic" == info.name) {
-							UIManager.setLookAndFeel(info.className)
-							break
-						}
-					}
-					val frame = MyFrame()
-					frame.isVisible = true
-				} catch (e: Exception) {
-					e.printStackTrace()
-				}
-			}
-		}
 	}
 }

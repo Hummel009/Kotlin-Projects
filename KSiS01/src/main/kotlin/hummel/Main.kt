@@ -14,7 +14,10 @@ fun main() {
 			if (mac != null) {
 				print("MAC Address of " + networkInterface.name + ": ")
 				for (i in mac.indices) {
-					System.out.format("%02X%s", arrayOf(mac[i], if (i < mac.size - 1) "-" else ""))
+					print(mac[i])
+					if (i < mac.size - 1) {
+						print("-")
+					}
 				}
 				println()
 			}

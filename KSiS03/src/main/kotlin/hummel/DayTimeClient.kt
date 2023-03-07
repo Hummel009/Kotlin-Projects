@@ -3,7 +3,7 @@ package hummel
 import java.net.*
 
 fun main() {
-	val serverAddress = "192.168.100.12"
+	val serverAddress = "localhost"
 	val serverPort = 13
 
 	val socket = Socket(serverAddress, serverPort)
