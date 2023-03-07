@@ -3,19 +3,19 @@ package hummel
 import kotlin.math.log2
 
 fun main() {
-	val code =
-		"def gcd(a, b)\r\n  while b != 0\r\n    temp = b\r\n    b = a % b\r\n    c = (a + b)\r\n    a = temp\r\n  end\r\n  return a\r\nend"
+	val code = "def gcd(a, b)\r\n  while b != 0\r\n    temp = b\r\n    b = a % b\r\n    c = (a + b)\r\n    a = temp\r\n  end\r\n  return a\r\nend"
 	val session = Parser()
 	println(session.getInfo(code))
 }
 
 class Parser {
-	private var operators = mutableMapOf(
+	private var operators = hashMapOf(
 		"puts" to 0,
 		"[" to 0,
 		"]" to 0,
 		"." to 0,
 		" " to 0,
+		"\t" to 0,
 		"\n" to 0,
 		"\r" to 0,
 		"+" to 0,
@@ -51,8 +51,8 @@ class Parser {
 		".." to 0
 	)
 
-	private var operands = mutableMapOf<String, Int>()
-	private var ignore = "\r do \n else elsif when in ) ]"
+	private var operands = hashMapOf<String, Int>()
+	private var ignore = hashSetOf("\r", "do", "end", "\n", "else", "elsif", "when", "in", ")", "]", "\t", " ")
 
 	fun getInfo(code: String): String {
 		var prevToken: String
@@ -62,7 +62,6 @@ class Parser {
 		for (symbol in code) {
 			prevToken = currToken
 			currToken += symbol
-
 			if (operators.containsKey(currToken)) {
 				continue
 			} else if (operators.containsKey(prevToken)) {
@@ -73,7 +72,6 @@ class Parser {
 					operators["("] = (operators["("] ?: 0) - 1
 				}
 				operators[prevToken] = (operators[prevToken] ?: 0) + 1
-
 				currToken = symbol.toString()
 				if (prevToken != ".") {
 					dot = false
@@ -92,7 +90,6 @@ class Parser {
 				dot = false
 			}
 		}
-
 		if (operators.containsKey(currToken)) {
 			operators[currToken] = (operators[currToken] ?: 0) + 1
 		} else if (dot) {
@@ -100,16 +97,14 @@ class Parser {
 		} else {
 			operands[currToken] = (operands[currToken] ?: 0) + 1
 		}
-
 		if (operands.containsKey("ped")) {
 			operators["("] = (operators["("] ?: 0) + (operands["ped"] ?: 0)
 			operands["swapped"] = (operands["swapped"] ?: 0) + (operands["ped"] ?: 0)
 			operators["swap"] = (operators["swap"] ?: 0) + 1 - (operands["ped"] ?: 0)
 			operands.remove("ped")
 		}
-
 		val sb = StringBuilder()
-		sb.append("<style>\r\n body {background: #666 }  td {\r\n    background: White;\r\n}\r\n	  table {\r\n        border-collapse: collapse;\r\n        width: 100%;\r\n        max-width: 800px;\r\n        margin: 0 auto;\r\n    }\r\n\r\n    th, td {\r\n        padding: 8px;\r\n        text-align: left;\r\n        border-bottom: 1px solid #ddd;\r\n    }\r\n\r\n    th {\r\n        background-color: #bcbcbc;\r\n    }\r\n\r\n    tr:hover {\r\n        background-color: #f5f5f5;\r\n    }\r\n</style>")
+		sb.append("<style>\r\nbody {\r\n\tbackground: #666 \r\n}\r\ntable {\r\n\tborder-collapse: collapse;\r\n\twidth: 100%;\r\n\tmax-width: 800px;\r\n\tmargin: 0 auto;\r\n}\r\nth, td {\r\n\tpadding: 8px;\r\n\ttext-align: left;\r\n\tborder-bottom: 1px solid #ddd;\r\n}\r\nth {\r\n\tbackground-color: #bcbcbc;\r\n}\r\ntd {\r\n\tbackground: White;\r\n}\r\ntr:hover {\r\n\tbackground-color: #f5f5f5;\r\n}\r\n</style>\r\n")
 		sb.append("<table><tbody>\n")
 		sb.append("<tr><th>Number</th><th>Operator</th><th>How many</th></tr>\n")
 		var allOperators = 0
@@ -118,7 +113,7 @@ class Parser {
 		operators.entries.iterator().let { iterator ->
 			while (iterator.hasNext()) {
 				val (key, value) = iterator.next()
-				if (value == 0 || (key != "if" && key in ignore)) {
+				if (value == 0 || (key != "if" && ignore.contains(key))) {
 					iterator.remove()
 					continue
 				}
@@ -128,9 +123,9 @@ class Parser {
 		}
 		sb.append("<tr><th>${--numOperators}</th><td></td><th>$allOperators</th></tr>\n")
 		sb.append("</table></tbody>\n")
-		sb.append("<br><table><tbody>\n")
+		sb.append("<br>\n<table><tbody>\n")
 		sb.append("<tr><th>Number</th><th>Operand</th><th>How many</th></tr>\n")
-		
+
 		operands.remove("in")
 		var allOperands = 0
 		var numOperands = 1
@@ -142,7 +137,7 @@ class Parser {
 		sb.append("</table></tbody>\n")
 		val num = numOperands + numOperators
 		val all = allOperands + allOperators
-		sb.append("<br><table><tbody>\n")
+		sb.append("<br>\n<table><tbody>\n")
 		sb.append("<tr><th>Dictionary</th><th>Length</th><th>Volume</th></tr>\n")
 		sb.append("<tr><td>$num</td><td>$all</td><td>${all + log2(num.toDouble()).toInt()}</td></tr>\n")
 		sb.append("</table></tbody>\n")
