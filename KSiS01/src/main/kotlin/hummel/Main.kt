@@ -9,7 +9,6 @@ fun main() {
 		val interfaces = NetworkInterface.getNetworkInterfaces()
 		while (interfaces.hasMoreElements()) {
 			val networkInterface = interfaces.nextElement()
-			networkInterface as NetworkInterface
 			val mac = networkInterface.hardwareAddress
 			if (mac != null) {
 				print("MAC Address of " + networkInterface.name + ": ")

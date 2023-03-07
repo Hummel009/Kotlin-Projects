@@ -89,13 +89,13 @@ fun searchByName() {
 	val scan = Scanner(System.`in`)
 	val str = scan.nextLine()
 	var found = false
- 
+
 	for (car in list) {
 		if (car.getName() == str) {
 			println(car.getFullInfo())
 			found = true
 		}
-	} 
+	}
 
 	if (!found) {
 		println("No info found")
