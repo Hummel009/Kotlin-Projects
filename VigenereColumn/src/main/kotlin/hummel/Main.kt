@@ -27,21 +27,11 @@ fun main() {
 }
 
 class FileEncryptionGUI : JFrame() {
-	private val contentPane: JPanel
-	private val textFieldFilePath: JTextField
-	private val textFieldKeyword: JTextField
-	private val textFieldOutputPath: JTextField
-	private val btnColumnMethod: JRadioButton
-	private val btnVigenere: JRadioButton
-	private val btnSelectFile: JButton
-	private val btnEncrypt: JButton
-	private val btnDecrypt: JButton
-	private val btnOutputPath: JButton
 	private var inputFile: File? = null
 	private var outputFile: File? = null
 	private var algorithm: String? = null
 
-	private fun selectFile() {
+	private fun selectFile(textFieldFilePath: JTextField) {
 		val fileChooser = JFileChooser()
 		val result = fileChooser.showOpenDialog(this)
 		if (result == JFileChooser.APPROVE_OPTION) {
@@ -50,7 +40,7 @@ class FileEncryptionGUI : JFrame() {
 		}
 	}
 
-	private fun selectOutputPath() {
+	private fun selectOutputPath(textFieldOutputPath: JTextField) {
 		val fileChooser = JFileChooser()
 		val result = fileChooser.showSaveDialog(this)
 		if (result == JFileChooser.APPROVE_OPTION) {
@@ -59,7 +49,7 @@ class FileEncryptionGUI : JFrame() {
 		}
 	}
 
-	private fun encryptFile() {
+	private fun encryptFile(textFieldKeyword: JTextField, textFieldOutputPath: JTextField) {
 		val keyword = textFieldKeyword.text
 		val key = preprocess(keyword)
 		val outputPath = textFieldOutputPath.text
@@ -92,7 +82,7 @@ class FileEncryptionGUI : JFrame() {
 		JOptionPane.showMessageDialog(this, "Encryption complete", "Message", JOptionPane.INFORMATION_MESSAGE)
 	}
 
-	private fun decryptFile() {
+	private fun decryptFile(textFieldKeyword: JTextField, textFieldOutputPath: JTextField) {
 		val keyword = textFieldKeyword.text
 		val key = preprocess(keyword)
 		val outputPath = textFieldOutputPath.text
@@ -129,55 +119,62 @@ class FileEncryptionGUI : JFrame() {
 		title = "File Encryption"
 		defaultCloseOperation = EXIT_ON_CLOSE
 		setBounds(100, 100, 450, 300)
-		contentPane = JPanel()
-		contentPane.border = EmptyBorder(5, 5, 5, 5)
-		setContentPane(contentPane)
-		contentPane.layout = BorderLayout(0, 0)
-		val panelFile = JPanel()
-		contentPane.add(panelFile, BorderLayout.NORTH)
-		val lblFilePath = JLabel("Input path:")
-		panelFile.add(lblFilePath)
-		textFieldFilePath = JTextField()
-		panelFile.add(textFieldFilePath)
-		textFieldFilePath.columns = 20
-		btnSelectFile = JButton("Select path")
-		btnSelectFile.addActionListener { selectFile() }
-		panelFile.add(btnSelectFile)
+
+		val panelContent = JPanel()
+		panelContent.border = EmptyBorder(5, 5, 5, 5)
+		panelContent.layout = BorderLayout(0, 0)
+		contentPane = panelContent
+
+		val panelInput = JPanel()
+
+		val elemInput1 = JLabel("Input path:")
+		val elemInput2 = JTextField(20)
+		val elemInput3 = JButton("Select path")
+		elemInput3.addActionListener { selectFile(elemInput2) }
+
+		panelInput.add(elemInput1)
+		panelInput.add(elemInput2)
+		panelInput.add(elemInput3)
+
 		val panelKey = JPanel()
-		contentPane.add(panelKey, BorderLayout.CENTER)
 		panelKey.layout = GridLayout(0, 1, 0, 0)
-		val lblKeyword = JLabel("Keyword:")
-		panelKey.add(lblKeyword)
-		textFieldKeyword = JTextField()
-		panelKey.add(textFieldKeyword)
-		textFieldKeyword.columns = 20
-		val lblAlgorithm = JLabel("Algorithm:")
-		panelKey.add(lblAlgorithm)
-		btnColumnMethod = JRadioButton("Column Method")
-		btnColumnMethod.addActionListener { algorithm = "Column Method" }
-		panelKey.add(btnColumnMethod)
-		btnVigenere = JRadioButton("Vigenere")
-		btnVigenere.addActionListener { algorithm = "Vigenere" }
-		panelKey.add(btnVigenere)
+		val elemKey1 = JLabel("Keyword:")
+		val elemKey2 = JTextField(20)
+		val elemKey3 = JLabel("Algorithm:")
+		val elemKey4 = JRadioButton("Column Method")
+		val elemKey5 = JRadioButton("Vigenere")
+		elemKey4.addActionListener { algorithm = "Column Method" }
+		elemKey5.addActionListener { algorithm = "Vigenere" }
+		panelKey.add(elemKey1)
+		panelKey.add(elemKey2)
+		panelKey.add(elemKey3)
+		panelKey.add(elemKey4)
+		panelKey.add(elemKey5)
+
 		val panelOutput = JPanel()
-		contentPane.add(panelOutput, BorderLayout.SOUTH)
-		val lblOutputPath = JLabel("Output path:")
-		panelOutput.add(lblOutputPath)
-		textFieldOutputPath = JTextField()
-		panelOutput.add(textFieldOutputPath)
-		textFieldOutputPath.columns = 20
-		btnOutputPath = JButton("Select path")
-		btnOutputPath.addActionListener { selectOutputPath() }
-		panelOutput.add(btnOutputPath)
+		val elemOutput1 = JLabel("Output path:")
+		val elemOutput2 = JTextField(20)
+		val elemOutput3 = JButton("Select path")
+		elemOutput3.addActionListener { selectOutputPath(elemInput2) }
+		panelOutput.add(elemOutput1)
+		panelOutput.add(elemOutput2)
+		panelOutput.add(elemOutput3)
+
 		val panelButtons = JPanel()
-		contentPane.add(panelButtons, BorderLayout.EAST)
 		panelButtons.layout = GridLayout(0, 1, 0, 0)
-		btnEncrypt = JButton("Encrypt")
-		btnEncrypt.addActionListener { encryptFile() }
-		panelButtons.add(btnEncrypt)
-		btnDecrypt = JButton("Decrypt")
-		btnDecrypt.addActionListener { decryptFile() }
-		panelButtons.add(btnDecrypt)
+		panelButtons.border = EmptyBorder(0, 5, 0, 0)
+		val elemButtons1 = JButton("Encrypt")
+		val elemButtons2 = JButton("Decrypt")
+		elemButtons1.addActionListener { encryptFile(elemKey2, elemInput2) }
+		elemButtons2.addActionListener { decryptFile(elemKey2, elemInput2) }
+		panelButtons.add(elemButtons1)
+		panelButtons.add(elemButtons2)
+
+		panelContent.add(panelInput, BorderLayout.NORTH)
+		panelContent.add(panelKey, BorderLayout.CENTER)
+		panelContent.add(panelOutput, BorderLayout.SOUTH)
+		panelContent.add(panelButtons, BorderLayout.EAST)
+
 		setLocationRelativeTo(null)
 	}
 

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="ed0f1510-3de0-4bab-bf6b-e6b8b973fb4f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,7 +22,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "D:/Eclipse/Kotlin Projects/KSiS01",
+    "last_opened_file_path": "D:/Eclipse/Kotlin Projects/VigenereColumn",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
