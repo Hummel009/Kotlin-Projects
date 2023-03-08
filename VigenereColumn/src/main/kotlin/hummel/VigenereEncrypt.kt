@@ -1,8 +1,8 @@
 package hummel
 
 fun main() {
-	val key = FileEncryptionGUI.preprocess("АМОГУС")
-	val msg = FileEncryptionGUI.preprocess("ИДИ ДОМОЙ СКОРЕЕ")
+	val key = GUI.preprocess("АМОГУС")
+	val msg = GUI.preprocess("ИДИ ДОМОЙ СКОРЕЕ")
 	if (msg.isNotEmpty() && key.isNotEmpty()) {
 		val ciphertext = VigenereEncrypt.encryptVigenere(msg, key)
 		println(ciphertext)
@@ -19,8 +19,8 @@ object VigenereEncrypt {
 		var encryptMsg = ""
 
 		for (x in msg.indices) {
-			val i = FileEncryptionGUI.ALPHABET.indexOf(msg[x])
-			val j = FileEncryptionGUI.ALPHABET.indexOf(newKey[x])
+			val i = GUI.ALPHABET.indexOf(msg[x])
+			val j = GUI.ALPHABET.indexOf(newKey[x])
 			val total = square[i][j]
 			encryptMsg += total
 		}
@@ -33,10 +33,10 @@ object VigenereEncrypt {
 		var encryptMsg = ""
 
 		for (x in msg.indices) {
-			val Q = FileEncryptionGUI.ALPHABET.length
-			val mn = FileEncryptionGUI.ALPHABET.indexOf(msg[x])
-			val kn = FileEncryptionGUI.ALPHABET.indexOf(newKey[x])
-			encryptMsg += FileEncryptionGUI.ALPHABET[(Q + mn + kn) % Q]
+			val Q = GUI.ALPHABET.length
+			val mn = GUI.ALPHABET.indexOf(msg[x])
+			val kn = GUI.ALPHABET.indexOf(newKey[x])
+			encryptMsg += GUI.ALPHABET[(Q + mn + kn) % Q]
 		}
 		return encryptMsg
 	}

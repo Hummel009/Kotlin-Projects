@@ -2,7 +2,7 @@ package hummel
 
 object VigenereSharedMethods {
 	fun generateVigenereSquare(): Array<CharArray> {
-		val alphabet = FileEncryptionGUI.ALPHABET.toCharArray()
+		val alphabet = GUI.ALPHABET.toCharArray()
 		val square = Array(alphabet.size) { CharArray(alphabet.size) }
 
 		for (row in alphabet.indices) {

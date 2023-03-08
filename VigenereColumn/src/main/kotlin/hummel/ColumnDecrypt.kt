@@ -3,8 +3,8 @@ package hummel
 import java.util.*
 
 fun main() {
-	val key = FileEncryptionGUI.preprocess("БВГДЕ")
-	val msg = FileEncryptionGUI.preprocess("ИНОАНЕОИФРЦНРЯМИАОЯТ")
+	val key = GUI.preprocess("БВГДЕ")
+	val msg = GUI.preprocess("ИНОАНЕОИФРЦНРЯМИАОЯТ")
 	if (msg.isNotEmpty() && key.isNotEmpty()) {
 		val plaintext = ColumnDecrypt.decryptColumn(msg, key, true)
 		println(plaintext)
@@ -29,7 +29,7 @@ object ColumnDecrypt {
 	private fun fillDecryptTable(square: Array<Array<String>>, keyword: String, message: String) {
 		for (i in keyword.indices) {
 			square[0][i] = keyword[i].toString()
-			square[1][i] = FileEncryptionGUI.ALPHABET.indexOf(square[0][i]).toString()
+			square[1][i] = GUI.ALPHABET.indexOf(square[0][i]).toString()
 			square[2][i] = (i + 1).toString()
 		}
 

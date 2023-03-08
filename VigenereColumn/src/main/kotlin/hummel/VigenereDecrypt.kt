@@ -1,8 +1,8 @@
 package hummel
 
 fun main() {
-	val key = FileEncryptionGUI.preprocess("АМОГУС")
-	val msg = FileEncryptionGUI.preprocess("ИРЧЖВЮЧНЪОЭЭУО")
+	val key = GUI.preprocess("АМОГУС")
+	val msg = GUI.preprocess("ИРЧЖВЮЧНЪОЭЭУО")
 	if (msg.isNotEmpty() && key.isNotEmpty()) {
 		val plaintext = VigenereDecrypt.decryptVigenere(msg, key)
 		println(plaintext)
@@ -18,14 +18,14 @@ object VigenereDecrypt {
 
 		for (x in msg.indices) {
 			var i = 0
-			val j = FileEncryptionGUI.ALPHABET.indexOf(currentKey[x])
-			for (c in FileEncryptionGUI.ALPHABET.indices) {
+			val j = GUI.ALPHABET.indexOf(currentKey[x])
+			for (c in GUI.ALPHABET.indices) {
 				if (square[c][j] == msg[x]) {
 					i = c
 					break
 				}
 			}
-			currentKey.append(FileEncryptionGUI.ALPHABET[i])
+			currentKey.append(GUI.ALPHABET[i])
 		}
 		return currentKey.substring(key.length).toString()
 	}
@@ -34,10 +34,10 @@ object VigenereDecrypt {
 		val currentKey = StringBuilder(key)
 
 		for (x in msg.indices) {
-			val Q = FileEncryptionGUI.ALPHABET.length
-			val mn = FileEncryptionGUI.ALPHABET.indexOf(msg[x])
-			val kn = FileEncryptionGUI.ALPHABET.indexOf(currentKey[x])
-			currentKey.append(FileEncryptionGUI.ALPHABET[(Q + mn - kn) % Q])
+			val Q = GUI.ALPHABET.length
+			val mn = GUI.ALPHABET.indexOf(msg[x])
+			val kn = GUI.ALPHABET.indexOf(currentKey[x])
+			currentKey.append(GUI.ALPHABET[(Q + mn - kn) % Q])
 		}
 		return currentKey.substring(key.length).toString()
 	}
