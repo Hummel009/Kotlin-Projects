@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ed0f1510-3de0-4bab-bf6b-e6b8b973fb4f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/memory/transport_0.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/memory/transport_1.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/memory/transport_10.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/memory/transport_11.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/memory/transport_12.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/memory/transport_13.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/memory/transport_14.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/memory/transport_2.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/memory/transport_3.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/memory/transport_4.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/memory/transport_5.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/memory/transport_6.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/memory/transport_7.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/memory/transport_8.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/memory/transport_9.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/hummel/Improvement.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MSiSvIT01/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MSiSvIT01/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../MSiSvIT01/src/main/kotlin/hummel/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../MSiSvIT01/src/main/kotlin/hummel/Main.kt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2MdvW1Ov6O2yyXK3rR1Ydq7BfdH" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Eclipse/Kotlin Projects/OOP03&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="hummel" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ed0f1510-3de0-4bab-bf6b-e6b8b973fb4f" name="Changes" comment="" />
+      <created>1678110302209</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1678110302209</updated>
+    </task>
+    <servers />
+  </component>
+</project>
