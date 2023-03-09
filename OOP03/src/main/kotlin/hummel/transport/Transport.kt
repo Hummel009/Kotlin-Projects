@@ -5,19 +5,19 @@ import java.io.Serializable
 open class Transport : Serializable {
 	private val serialVersionUID = 1L
 
-	open fun getColor(): String {
+	open fun getTheColor(): String {
 		return "no"
 	}
 
-	open fun getFullInfo(): String {
+	open fun getTheInfo(): String {
 		return "NULL"
 	}
 
-	open fun getPrice(): Int {
+	open fun getThePrice(): Int {
 		return 0
 	}
 
-	open fun getName(): String {
+	open fun getTheName(): String {
 		return "NULL"
 	}
 }

@@ -2,30 +2,24 @@ package hummel.transport
 
 import hummel.optional.Editable
 
-open class BicycleStels(private var color: String) : BicycleTransport("Stels"), Editable {
-	private var price = 300
-
-	constructor(color: String, price: Int) : this(color) {
-		this.price = price
-	}
-
-	override fun getPrice(): Int {
+open class BicycleStels(var price: Int = 300, var color: String) : BicycleTransport("Stels"), Editable {
+	override fun getThePrice(): Int {
 		return price
 	}
 
-	override fun getColor(): String {
+	override fun getTheColor(): String {
 		return color
 	}
 
-	override fun getFullInfo(): String {
-		return getName() + " (" + getColor() + "): " + getPrice() + "$"
+	override fun getTheInfo(): String {
+		return getTheName() + " (" + getTheColor() + "): " + getThePrice() + "$"
 	}
 
-	override fun setPrice(price: Int) {
+	override fun setThePrice(price: Int) {
 		this.price = price
 	}
 
-	override fun setColor(color: String) {
+	override fun setTheColor(color: String) {
 		this.color = color
 	}
 }

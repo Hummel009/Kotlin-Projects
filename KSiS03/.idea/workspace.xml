@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ed0f1510-3de0-4bab-bf6b-e6b8b973fb4f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/hummel/DayTimeClient.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/hummel/DayTimeClient.kt" afterDir="false" />
-    </list>
+    <list default="true" id="ed0f1510-3de0-4bab-bf6b-e6b8b973fb4f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,7 +22,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "D:/Eclipse/Kotlin Projects/KSiS03",
+    "last_opened_file_path": "D:/Eclipse/Kotlin Projects/OOP03",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>

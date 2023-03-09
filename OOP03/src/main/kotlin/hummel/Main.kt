@@ -25,6 +25,14 @@ fun main() {
 				searchByName()
 			}
 
+			"clear" -> {
+				list.clear()
+			}
+
+			"load" -> {
+				list.addAll(Data.loadDefaultList())
+			}
+
 			"sell" -> {
 				sell()
 			}
@@ -48,9 +56,9 @@ fun edit() {
 	val currentMap = HashMap<Int, Transport>()
 	var i = 0
 	for (transport in list) {
-		if (transport.getName() == str) {
+		if (transport.getTheName() == str) {
 			currentMap[i++] = transport
-			println("${i - 1} ${transport.getFullInfo()}")
+			println("${i - 1} ${transport.getTheInfo()}")
 			found = true
 		}
 	}
@@ -69,8 +77,8 @@ fun edit() {
 		val scan4 = Scanner(System.`in`)
 		val color = scan4.nextLine()
 		if (transport is Editable) {
-			transport.setPrice(price)
-			transport.setColor(color)
+			transport.setThePrice(price)
+			transport.setTheColor(color)
 		}
 	}
 }
@@ -87,19 +95,19 @@ fun sell() {
 	val color = scan2.nextLine()
 	when (type) {
 		"Volkswagen" -> {
-			list.add(CarVolkswagen(color, price))
+			list.add(CarVolkswagen(price, color))
 		}
 
 		"Lada" -> {
-			list.add(CarLada(color, price))
+			list.add(CarLada(price, color))
 		}
 
 		"Aist" -> {
-			list.add(BicycleAist(color, price))
+			list.add(BicycleAist(price, color))
 		}
 
 		"Stels" -> {
-			list.add(BicycleStels(color, price))
+			list.add(BicycleStels(price, color))
 		}
 	}
 }
@@ -111,8 +119,8 @@ fun searchByName() {
 	var found = false
 
 	for (car in list) {
-		if (car.getName() == str) {
-			println(car.getFullInfo())
+		if (car.getTheName() == str) {
+			println(car.getTheInfo())
 			found = true
 		}
 	}
@@ -129,8 +137,8 @@ fun searchByColor() {
 	var found = false
 
 	for (car in list) {
-		if (car.getColor() == str) {
-			println(car.getFullInfo())
+		if (car.getTheColor() == str) {
+			println(car.getTheInfo())
 			found = true
 		}
 	}
@@ -147,8 +155,8 @@ fun searchByPrice() {
 	var found = false
 
 	for (car in list) {
-		if (car.getPrice() == price) {
-			println(car.getFullInfo())
+		if (car.getThePrice() == price) {
+			println(car.getTheInfo())
 			found = true
 		}
 	}

@@ -2,7 +2,7 @@ package hummel.transport
 
 import hummel.optional.Improvable
 
-class BicycleStelsImproved(price: Int = 400, color: String, private var improve: String) : BicycleStels(price, color), Improvable {
+class BicycleAistImproved(price: Int = 300, color: String, private var improve: String) : BicycleAist(price, color), Improvable {
 	override fun getImprovement(): String {
 		return improve
 	}
