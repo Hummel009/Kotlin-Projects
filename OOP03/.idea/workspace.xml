@@ -5,24 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ed0f1510-3de0-4bab-bf6b-e6b8b973fb4f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/memory/transport_0.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/memory/transport_1.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/memory/transport_10.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/memory/transport_11.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/memory/transport_12.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/memory/transport_13.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/memory/transport_14.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/memory/transport_2.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/memory/transport_3.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/memory/transport_4.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/memory/transport_5.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/memory/transport_6.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/memory/transport_7.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/memory/transport_8.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/memory/transport_9.ser" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/hummel/Improvement.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MSiSvIT01/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../MSiSvIT01/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../MSiSvIT01/src/main/kotlin/hummel/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/../MSiSvIT01/src/main/kotlin/hummel/Main.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_10_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gson-2.10.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/memory/transports.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/memory/transports.ser" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/hummel/Data.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/hummel/optional/Editable.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/hummel/transport/BicycleTransport.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/OOP03.iml" beforeDir="false" afterPath="$PROJECT_DIR$/OOP03.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/memory/transport_0.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/memory/transport_1.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/memory/transport_10.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/memory/transport_11.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/memory/transport_12.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/memory/transport_13.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/memory/transport_14.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/memory/transport_2.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/memory/transport_3.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/memory/transport_4.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/memory/transport_5.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/memory/transport_6.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/memory/transport_7.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/memory/transport_8.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/memory/transport_9.ser" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/hummel/BicycleAist.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/hummel/transport/BicycleAist.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/hummel/BicycleStels.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/hummel/transport/BicycleStels.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/hummel/BicycleStelsImprovement.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/hummel/transport/BicycleStelsImproved.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/hummel/BicycleTransport.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/hummel/CarLada.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/hummel/transport/CarLada.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/hummel/CarTransport.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/hummel/transport/CarTransport.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/hummel/CarVolkswagen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/hummel/transport/CarVolkswagen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/hummel/CarVolkswagenImprovement.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/hummel/transport/CarVolkswagenImproved.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/hummel/Improvement.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/hummel/optional/Improvable.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/hummel/Main.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/hummel/Main.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/hummel/Price.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/hummel/Transport.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/hummel/transport/Transport.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/memory.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/hummel/util/TransportSerializer.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +52,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Interface" />
+        <option value="Kotlin Object" />
       </list>
     </option>
   </component>
@@ -40,19 +60,31 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2MdvW1Ov6O2yyXK3rR1Ydq7BfdH" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Eclipse/Kotlin Projects/OOP03&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "D:/Eclipse/Kotlin Projects/OOP03/gson-2.10.1.jar",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="hummel.transport" />
+      <recent name="hummel.optional" />
+    </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
       <recent name="hummel" />
     </key>
@@ -67,5 +99,8 @@
       <updated>1678110302209</updated>
     </task>
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>

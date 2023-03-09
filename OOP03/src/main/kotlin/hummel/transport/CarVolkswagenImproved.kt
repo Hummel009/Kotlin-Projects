@@ -1,6 +1,8 @@
-package hummel
+package hummel.transport
 
-class BicycleStelsImprovement(color: String, private var improve: String) : BicycleStels(color), Improvement {
+import hummel.optional.Improvable
+
+class CarVolkswagenImproved(color: String, private var improve: String) : CarVolkswagen(color), Improvable {
 	override fun getImprovement(): String {
 		return improve
 	}

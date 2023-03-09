@@ -1,19 +1,17 @@
 package hummel
 
-import java.io.*
+import hummel.optional.Editable
+import hummel.transport.*
 import java.util.*
 
 var list: MutableList<Transport> = ArrayList()
-fun main() {
-	list = deserializeList()
-	ask()
-}
 
-fun ask() {
+fun main() {
+	list = Data.deserializeList()
 	val scan = Scanner(System.`in`)
 
 	loop@ while (true) {
-		serializeList(list)
+		println("Enter the function:")
 		when (scan.nextLine()) {
 			"price" -> {
 				searchByPrice()
@@ -27,98 +25,87 @@ fun ask() {
 				searchByName()
 			}
 
-			"sellVW" -> {
-				sellVW()
+			"sell" -> {
+				sell()
 			}
 
-			"sellAist" -> {
-				sellAist()
-			}
-
-			"sellLada" -> {
-				sellLada()
-			}
-
-			"sellStels" -> {
-				sellStels()
-			}
-
-			"editCar" -> {
-				editCar()
+			"edit" -> {
+				edit()
 			}
 
 			"exit" -> break@loop
 		}
+		Data.serializeList(list)
 	}
 }
 
-fun editCar() {
+fun edit() {
+	println("Enter the name of the transport:")
 	val scan = Scanner(System.`in`)
 	val str = scan.nextLine()
 	var found = false
 
 	val currentMap = HashMap<Int, Transport>()
 	var i = 0
-	for (item in list) {
-		if (item.getName() == str) {
-			currentMap[i++] = item
-			println(item.getFullInfo())
+	for (transport in list) {
+		if (transport.getName() == str) {
+			currentMap[i++] = transport
+			println("${i - 1} ${transport.getFullInfo()}")
 			found = true
 		}
 	}
 	if (!found) {
 		println("No info found")
 	} else {
-		println("Select the item to edit")
+		println("Select the transport to edit")
 		val scan2 = Scanner(System.`in`)
 		val num = scan2.nextInt()
-		val item = currentMap[num]
+		val transport = currentMap[num]
 
+		println("Enter the new price")
 		val scan3 = Scanner(System.`in`)
 		val price = scan3.nextInt()
-		if (item is Price) {
-			item.newPrice(price)
+		println("Enter the new color")
+		val scan4 = Scanner(System.`in`)
+		val color = scan4.nextLine()
+		if (transport is Editable) {
+			transport.setPrice(price)
+			transport.setColor(color)
 		}
 	}
 }
 
-fun sellVW() {
+fun sell() {
+	println("Enter the name of the transport")
+	val scan0 = Scanner(System.`in`)
+	val type = scan0.nextLine()
+	println("Enter the price of the transport")
 	val scan1 = Scanner(System.`in`)
-	val scan2 = Scanner(System.`in`)
 	val price = scan1.nextInt()
+	println("Enter the color of the transport")
+	val scan2 = Scanner(System.`in`)
 	val color = scan2.nextLine()
-	list.add(CarVolkswagen(color, price))
-	println("Added")
-}
+	when (type) {
+		"Volkswagen" -> {
+			list.add(CarVolkswagen(color, price))
+		}
 
-fun sellAist() {
-	val scan1 = Scanner(System.`in`)
-	val scan2 = Scanner(System.`in`)
-	val price = scan1.nextInt()
-	val color = scan2.nextLine()
-	list.add(BicycleAist(color, price))
-	println("Added")
-}
+		"Lada" -> {
+			list.add(CarLada(color, price))
+		}
 
-fun sellStels() {
-	val scan1 = Scanner(System.`in`)
-	val scan2 = Scanner(System.`in`)
-	val price = scan1.nextInt()
-	val color = scan2.nextLine()
-	list.add(BicycleStels(color, price))
-	println("Added")
-}
+		"Aist" -> {
+			list.add(BicycleAist(color, price))
+		}
 
-fun sellLada() {
-	val scan1 = Scanner(System.`in`)
-	val scan2 = Scanner(System.`in`)
-	val price = scan1.nextInt()
-	val color = scan2.nextLine()
-	list.add(CarLada(color, price))
-	println("Added")
+		"Stels" -> {
+			list.add(BicycleStels(color, price))
+		}
+	}
 }
 
 fun searchByName() {
+	println("Enter the name of the transport")
 	val scan = Scanner(System.`in`)
 	val str = scan.nextLine()
 	var found = false
@@ -136,6 +123,7 @@ fun searchByName() {
 }
 
 fun searchByColor() {
+	println("Enter the color of the transport")
 	val scan = Scanner(System.`in`)
 	val str = scan.nextLine()
 	var found = false
@@ -153,6 +141,7 @@ fun searchByColor() {
 }
 
 fun searchByPrice() {
+	println("Enter the price of the transport")
 	val scan = Scanner(System.`in`)
 	val price = scan.nextInt()
 	var found = false
@@ -167,55 +156,4 @@ fun searchByPrice() {
 	if (!found) {
 		println("No info found")
 	}
-}
-
-fun loadList() {
-	list.add(BicycleAist("Red", 150))
-	list.add(BicycleStels("Red"))
-	list.add(CarVolkswagen("Red", 18500))
-	list.add(CarLada("Red"))
-
-	list.add(BicycleAist("Green"))
-	list.add(BicycleStels("Green", 350))
-	list.add(CarVolkswagen("Green"))
-	list.add(CarLada("Green"))
-
-	list.add(BicycleAist("Blue"))
-	list.add(BicycleStels("Blue"))
-	list.add(CarVolkswagen("Blue"))
-	list.add(CarLada("Blue", 5500))
-
-	list.add(BicycleStelsImprovement("Blue", "Packed"))
-	list.add(CarVolkswagenImprovement("Grey", "Sportline"))
-	list.add(CarVolkswagenImprovement("Grey", "Chroming"))
-}
-
-
-fun serializeList(list: List<Transport>) {
-	list.forEachIndexed { index, transport ->
-		val filename = "memory/transport_$index.ser"
-		val outputStream = FileOutputStream(filename)
-		val objectOutputStream = ObjectOutputStream(outputStream)
-		objectOutputStream.writeObject(transport)
-		objectOutputStream.close()
-		outputStream.close()
-		println("Object has been serialized to $filename")
-	}
-}
-
-fun deserializeList(): MutableList<Transport> {
-	var index = 0
-	while (File("memory/transport_$index.ser").exists()) {
-		val fileInputStream = FileInputStream("memory/transport_$index.ser")
-		val objectInputStream = ObjectInputStream(fileInputStream)
-		val obj = objectInputStream.readObject()
-		if (obj is Transport) {
-			list.add(obj)
-		}
-		objectInputStream.close()
-		fileInputStream.close()
-		println("Object has been deserialized from memory/transport_$index.ser")
-		index++
-	}
-	return list
 }
