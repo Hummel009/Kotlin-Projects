@@ -7,7 +7,7 @@ import java.util.*
 var list: MutableList<Transport> = ArrayList()
 
 fun main() {
-	list = Data.deserializeList()
+	list = Data.deserializeListJson()
 	val scan = Scanner(System.`in`)
 
 	loop@ while (true) {
@@ -35,7 +35,7 @@ fun main() {
 
 			"exit" -> break@loop
 		}
-		Data.serializeList(list)
+		Data.serializeListJson(list)
 	}
 }
 
