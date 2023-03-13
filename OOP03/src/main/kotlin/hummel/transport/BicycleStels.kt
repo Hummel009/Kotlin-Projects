@@ -2,7 +2,7 @@ package hummel.transport
 
 import hummel.optional.Editable
 
-open class BicycleStels(var price: Int = 300, var color: String) : BicycleTransport("Stels"), Editable {
+open class BicycleStels(var price: Int = 300, var color: String = "No") : BicycleTransport("Stels"), Editable {
 	override fun getThePrice(): Int {
 		return price
 	}

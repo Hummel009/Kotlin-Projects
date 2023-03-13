@@ -1,167 +1,178 @@
 package hummel
 
+import hummel.Shop.transport
 import hummel.optional.Editable
 import hummel.transport.*
+import hummel.utils.StandardUtils
+import hummel.utils.XmlUtils
 import java.util.*
+import javax.xml.bind.annotation.*
 
-var list: MutableList<Transport> = ArrayList()
+
+@XmlType(name = "zoo")
+@XmlRootElement
+object Shop {
+    @XmlElementWrapper(name="transports", nillable = true)
+    @JvmStatic
+    var transport: MutableList<Transport> = ArrayList()
+}
 
 fun main() {
-	list = Data.deserializeListJson()
-	val scan = Scanner(System.`in`)
+    transport = XmlUtils.deserialize()
+    val scan = Scanner(System.`in`)
 
-	loop@ while (true) {
-		println("Enter the function:")
-		when (scan.nextLine()) {
-			"price" -> {
-				searchByPrice()
-			}
+    loop@ while (true) {
+        println("Enter the function:")
+        when (scan.nextLine()) {
+            "price" -> {
+                searchByPrice()
+            }
 
-			"color" -> {
-				searchByColor()
-			}
+            "color" -> {
+                searchByColor()
+            }
 
-			"name" -> {
-				searchByName()
-			}
+            "name" -> {
+                searchByName()
+            }
 
-			"clear" -> {
-				list.clear()
-			}
+            "clear" -> {
+                transport.clear()
+            }
 
-			"load" -> {
-				list.addAll(Data.loadDefaultList())
-			}
+            "load" -> {
+                transport.addAll(StandardUtils.loadDefaultList())
+            }
 
-			"sell" -> {
-				sell()
-			}
+            "sell" -> {
+                sell()
+            }
 
-			"edit" -> {
-				edit()
-			}
+            "edit" -> {
+                edit()
+            }
 
-			"exit" -> break@loop
-		}
-		Data.serializeListJson(list)
-	}
+            "exit" -> break@loop
+        }
+        XmlUtils.serialize(transport)
+    }
 }
 
 fun edit() {
-	println("Enter the name of the transport:")
-	val scan = Scanner(System.`in`)
-	val str = scan.nextLine()
-	var found = false
+    println("Enter the name of the transport:")
+    val scan = Scanner(System.`in`)
+    val str = scan.nextLine()
+    var found = false
 
-	val currentMap = HashMap<Int, Transport>()
-	var i = 0
-	for (transport in list) {
-		if (transport.getTheName() == str) {
-			currentMap[i++] = transport
-			println("${i - 1} ${transport.getTheInfo()}")
-			found = true
-		}
-	}
-	if (!found) {
-		println("No info found")
-	} else {
-		println("Select the transport to edit")
-		val scan2 = Scanner(System.`in`)
-		val num = scan2.nextInt()
-		val transport = currentMap[num]
+    val currentMap = HashMap<Int, Transport>()
+    var i = 0
+    for (transport in transport) {
+        if (transport.getTheName() == str) {
+            currentMap[i++] = transport
+            println("${i - 1} ${transport.getTheInfo()}")
+            found = true
+        }
+    }
+    if (!found) {
+        println("No info found")
+    } else {
+        println("Select the transport to edit")
+        val scan2 = Scanner(System.`in`)
+        val num = scan2.nextInt()
+        val transport = currentMap[num]
 
-		println("Enter the new price")
-		val scan3 = Scanner(System.`in`)
-		val price = scan3.nextInt()
-		println("Enter the new color")
-		val scan4 = Scanner(System.`in`)
-		val color = scan4.nextLine()
-		if (transport is Editable) {
-			transport.setThePrice(price)
-			transport.setTheColor(color)
-		}
-	}
+        println("Enter the new price")
+        val scan3 = Scanner(System.`in`)
+        val price = scan3.nextInt()
+        println("Enter the new color")
+        val scan4 = Scanner(System.`in`)
+        val color = scan4.nextLine()
+        if (transport is Editable) {
+            transport.setThePrice(price)
+            transport.setTheColor(color)
+        }
+    }
 }
 
 fun sell() {
-	println("Enter the name of the transport")
-	val scan0 = Scanner(System.`in`)
-	val type = scan0.nextLine()
-	println("Enter the price of the transport")
-	val scan1 = Scanner(System.`in`)
-	val price = scan1.nextInt()
-	println("Enter the color of the transport")
-	val scan2 = Scanner(System.`in`)
-	val color = scan2.nextLine()
-	when (type) {
-		"Volkswagen" -> {
-			list.add(CarVolkswagen(price, color))
-		}
+    println("Enter the name of the transport")
+    val scan0 = Scanner(System.`in`)
+    val type = scan0.nextLine()
+    println("Enter the price of the transport")
+    val scan1 = Scanner(System.`in`)
+    val price = scan1.nextInt()
+    println("Enter the color of the transport")
+    val scan2 = Scanner(System.`in`)
+    val color = scan2.nextLine()
+    when (type) {
+        "Volkswagen" -> {
+            transport.add(CarVolkswagen(price, color))
+        }
 
-		"Lada" -> {
-			list.add(CarLada(price, color))
-		}
+        "Lada" -> {
+            transport.add(CarLada(price, color))
+        }
 
-		"Aist" -> {
-			list.add(BicycleAist(price, color))
-		}
+        "Aist" -> {
+            transport.add(BicycleAist(price, color))
+        }
 
-		"Stels" -> {
-			list.add(BicycleStels(price, color))
-		}
-	}
+        "Stels" -> {
+            transport.add(BicycleStels(price, color))
+        }
+    }
 }
 
 fun searchByName() {
-	println("Enter the name of the transport")
-	val scan = Scanner(System.`in`)
-	val str = scan.nextLine()
-	var found = false
+    println("Enter the name of the transport")
+    val scan = Scanner(System.`in`)
+    val str = scan.nextLine()
+    var found = false
 
-	for (car in list) {
-		if (car.getTheName() == str) {
-			println(car.getTheInfo())
-			found = true
-		}
-	}
+    for (car in transport) {
+        if (car.getTheName() == str) {
+            println(car.getTheInfo())
+            found = true
+        }
+    }
 
-	if (!found) {
-		println("No info found")
-	}
+    if (!found) {
+        println("No info found")
+    }
 }
 
 fun searchByColor() {
-	println("Enter the color of the transport")
-	val scan = Scanner(System.`in`)
-	val str = scan.nextLine()
-	var found = false
+    println("Enter the color of the transport")
+    val scan = Scanner(System.`in`)
+    val str = scan.nextLine()
+    var found = false
 
-	for (car in list) {
-		if (car.getTheColor() == str) {
-			println(car.getTheInfo())
-			found = true
-		}
-	}
+    for (car in transport) {
+        if (car.getTheColor() == str) {
+            println(car.getTheInfo())
+            found = true
+        }
+    }
 
-	if (!found) {
-		println("No info found")
-	}
+    if (!found) {
+        println("No info found")
+    }
 }
 
 fun searchByPrice() {
-	println("Enter the price of the transport")
-	val scan = Scanner(System.`in`)
-	val price = scan.nextInt()
-	var found = false
+    println("Enter the price of the transport")
+    val scan = Scanner(System.`in`)
+    val price = scan.nextInt()
+    var found = false
 
-	for (car in list) {
-		if (car.getThePrice() == price) {
-			println(car.getTheInfo())
-			found = true
-		}
-	}
+    for (car in transport) {
+        if (car.getThePrice() == price) {
+            println(car.getTheInfo())
+            found = true
+        }
+    }
 
-	if (!found) {
-		println("No info found")
-	}
+    if (!found) {
+        println("No info found")
+    }
 }
